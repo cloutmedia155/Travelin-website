@@ -1,0 +1,108 @@
+"use client";
+
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+
+export function useJourneyMotion() {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduced.matches) return;
+    document.documentElement.classList.add("journey-motion");
+    const mobile = window.matchMedia("(max-width: 700px)").matches;
+    const lenis = new Lenis({ duration: 1.25, smoothWheel: true, touchMultiplier: 1, syncTouch: false, anchors: { offset: -65 }, prevent: node => node.closest('[role="dialog"]') !== null || document.body.dataset.menuOpen === "true" });
+    lenis.on("scroll", ScrollTrigger.update);
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    let prevY = window.scrollY;
+    const header = document.querySelector<HTMLElement>(".site-header");
+    const navUpdate = () => {
+      const y = window.scrollY;
+      const heroBottom = document.querySelector(".hero")?.getBoundingClientRect().bottom || 0;
+      header?.classList.toggle("header-solid", heroBottom < 90);
+      if (Math.abs(y - prevY) > 8) header?.classList.toggle("header-hidden", y > prevY && y > 180 && document.body.dataset.menuOpen !== "true");
+      prevY = y;
+    };
+    window.addEventListener("scroll", navUpdate, { passive: true });
+    const ctx = gsap.context(() => {
+      const video = document.querySelector<HTMLVideoElement>(".hero-film");
+      let wantedTime = 0;
+      const seek = () => { if (video && video.readyState >= 1 && !video.seeking && Math.abs(video.currentTime - wantedTime) > .022) video.currentTime = wantedTime; };
+      video?.addEventListener("seeked", seek);
+      video?.addEventListener("loadedmetadata", seek);
+      const playhead = { time: 0 };
+      gsap.set([".hero-intro", ".hero-action"], { autoAlpha: 0 });
+      gsap.fromTo(".hero-line", { yPercent: 115, opacity: 0, rotate: 2, filter: "blur(6px)" }, { yPercent: 0, opacity: 1, rotate: 0, filter: "blur(0px)", duration: 1.8, stagger: .19, delay: .15, ease: "power3.out" });
+      const ht = gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: 1.15 } });
+      ht.to(playhead, { time: 4.7, duration: .82, ease: "none", onUpdate: () => { wantedTime = playhead.time; seek(); } }, .025)
+        .to(".hero-title", { y: -110, autoAlpha: 0, filter: "blur(7px)", duration: .16, ease: "power1.inOut" }, .09)
+        .fromTo(".hero-intro", { y: 45, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .12 }, .21)
+        .fromTo(".intro-line", { yPercent: 105, filter: "blur(4px)" }, { yPercent: 0, filter: "blur(0px)", stagger: .018, duration: .12 }, .22)
+        .fromTo(".intro-body", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .1 }, .3)
+        .to(".hero-intro", { y: -65, autoAlpha: 0, filter: "blur(5px)", duration: .13 }, .5)
+        .fromTo(".hero-action", { y: 30, autoAlpha: 0, filter: "blur(4px)" }, { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: .12 }, .62)
+        .to(".hero-action", { y: -35, autoAlpha: 0, duration: .09 }, .85)
+        .fromTo(".hero-cloud-back", { yPercent: 100, scale: 1.25 }, { yPercent: 0, scale: 1, duration: .24 }, .76)
+        .fromTo(".hero-cloud-front", { yPercent: 115, scale: 1.1 }, { yPercent: 0, scale: 1.28, duration: .19 }, .81)
+        .fromTo(".cloud-floor", { yPercent: 100 }, { yPercent: 0, duration: .15 }, .85)
+        .to(".hero-bottom", { autoAlpha: 0, duration: .08 }, .78)
+        .to(".hero-count b", { scaleX: 1, duration: 1, ease: "none" }, 0);
+
+      const panels = gsap.utils.toArray<HTMLElement>(".chapter-panel");
+      const et = gsap.timeline({ scrollTrigger: { trigger: ".experience-scroll", start: "top top", end: "bottom bottom", scrub: 1.2, onUpdate: self => { const index = self.progress < .29 ? 0 : self.progress < .63 ? 1 : 2; const counter = document.querySelector(".experience-current"); if (counter) counter.textContent = `0${index + 1}`; panels.forEach((p,i)=>p.setAttribute("aria-hidden",String(i!==index))); } } });
+      panels.forEach((panel, i) => {
+        const copy = panel.querySelector(".chapter-copy");
+        const row = panel.querySelector(".chapter-images");
+        const photos = panel.querySelectorAll(".journey-photo");
+        const start = i * 3;
+        if (i === 0) { gsap.set(copy, { autoAlpha: 1 }); }
+        else {
+          gsap.set(copy, { autoAlpha: 0 });
+          gsap.set(photos, { x: -window.innerWidth * 1.25, y: 65, autoAlpha: 0, rotation: -12 });
+          et.to(copy, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .65 }, start - .35)
+            .fromTo(copy, { y: 25 }, { y: 0, duration: .65 }, start - .35)
+            .to(photos, { x: 0, y: 0, autoAlpha: 1, rotation: 0, duration: 1.15, stagger: .12, ease: "power2.out" }, start - .65);
+        }
+        et.to(photos, { y: (j: number) => j % 2 ? -35 : -70, duration: 1.4, ease: "none" }, start + .45);
+        if (mobile) et.to(row, { x: -window.innerWidth * .72, duration: 1.6, ease: "none" }, start + .45);
+        if (i < 2) {
+          et.to(copy, { autoAlpha: 0, y: -35, filter: "blur(3px)", duration: .55 }, start + 1.85)
+            .to(photos, { x: window.innerWidth * 1.35, y: -120, autoAlpha: 0, rotation: 8, duration: 1.05, stagger: .1, ease: "power2.in" }, start + 1.9);
+        } else {
+          et.to(copy, { autoAlpha: 0, y: -30, duration: .6 }, 8.45).to(photos, { y: -100, autoAlpha: 0, duration: .7, stagger: .1 }, 8.45);
+        }
+      });
+      et.to(".experience-progress b", { scaleX: 1, duration: 9.35, ease: "none" }, 0);
+
+      gsap.fromTo(".film-frame", { clipPath: mobile ? "inset(12% 5% 8% 5%)" : "inset(16% 18% 10% 18%)", y: 80 }, { clipPath: "inset(0% 0% 0% 0%)", y: 0, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top 90%", end: "top top", scrub: .9 } });
+      gsap.fromTo(".film-poster", { yPercent: -7, scale: 1.15 }, { yPercent: 7, scale: 1.05, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top bottom", end: "bottom top", scrub: 1 } });
+      gsap.fromTo(".film-cloud-top", { xPercent: -10, yPercent: -28 }, { xPercent: 8, yPercent: -70, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top bottom", end: "bottom top", scrub: 1.5 } });
+      gsap.fromTo(".film-cloud-bottom", { xPercent: 12, yPercent: 45 }, { xPercent: -8, yPercent: 0, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top top", end: "bottom 35%", scrub: 1.4 } });
+      gsap.utils.toArray<HTMLElement>(".editorial-heading, .trips-heading h2, .people-heading h2, .founder-copy h2, .faq-intro h2, .booking-section h2, .final-copy h2, .collage-title h2").forEach(el => {
+        gsap.fromTo(el, { y: 48, autoAlpha: 0, clipPath: "inset(0 0 100% 0)", filter: "blur(3px)" }, { y: 0, autoAlpha: 1, clipPath: "inset(0 0 -4% 0)", filter: "blur(0px)", duration: 1.5, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 87%", toggleActions: "play none none reverse" } });
+      });
+      gsap.utils.toArray<HTMLElement>(".experience-intro-copy p, .people-heading>div:last-child, .founder-copy>p, .founder-copy>.text-link, .founder-copy>.signature, .faq-intro>p, .booking-step").forEach(el => {
+        gsap.fromTo(el, { y: 25, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.25, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 91%" } });
+      });
+      gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card img").forEach(el => {
+        gsap.fromTo(el, { yPercent: -7, scale: 1.16 }, { yPercent: 7, scale: 1.16, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: 1.1 } });
+      });
+      gsap.fromTo(".founder-photo", { clipPath: "inset(12% 8% 0% 8%)" }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none", scrollTrigger: { trigger: ".founder-section", start: "top 85%", end: "top 10%", scrub: 1 } });
+      const ct = gsap.timeline({ scrollTrigger: { trigger: ".collage-section", start: "top top", end: "bottom bottom", scrub: 1.1 } });
+      ct.fromTo(".collage-0", { scale: mobile ? 1.65 : 2.2 }, { scale: 1, duration: 1, ease: "power1.inOut" }, 0);
+      gsap.utils.toArray<HTMLElement>(".collage-image:not(.collage-0)").forEach((el,i)=>{
+        ct.fromTo(el, { x: i % 2 ? 130 : -130, y: i < 2 ? -90 : 160, scale: .75, autoAlpha: 0 }, { x: 0, y: 0, scale: 1, autoAlpha: 1, duration: .7, ease: "power2.out" }, .18 + i * .1);
+      });
+      gsap.fromTo(".path-fill", { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 80%", scrub: .8 } });
+      gsap.utils.toArray<HTMLElement>(".botanical").forEach(el=>gsap.fromTo(el, { scale: .2, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .8, scrollTrigger: { trigger: el, start: "top 77%", toggleActions: "play none none reverse" } }));
+      gsap.fromTo(".final-cta>img", { yPercent: -12, scale: 1.1 }, { yPercent: 12, scale: 1.1, ease: "none", scrollTrigger: { trigger: ".final-cta", start: "top bottom", end: "bottom top", scrub: 1.1 } });
+      return () => { video?.removeEventListener("seeked", seek); video?.removeEventListener("loadedmetadata", seek); };
+    });
+    const refresh = () => ScrollTrigger.refresh();
+    document.fonts.ready.then(refresh);
+    window.addEventListener("load", refresh);
+    return () => { ctx.revert(); lenis.destroy(); gsap.ticker.remove(tick); window.removeEventListener("scroll", navUpdate); window.removeEventListener("load", refresh); document.documentElement.classList.remove("journey-motion"); };
+  }, []);
+}
