@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 
 export function useJourneyMotion() {
   useEffect(() => {
@@ -12,10 +11,6 @@ export function useJourneyMotion() {
     if (reduced.matches) return;
     document.documentElement.classList.add("journey-motion");
     const mobile = window.matchMedia("(max-width: 700px)").matches;
-    const lenis = new Lenis({ duration: 1.25, smoothWheel: true, touchMultiplier: 1, syncTouch: false, anchors: { offset: -65 }, prevent: node => node.closest('[role="dialog"]') !== null || document.body.dataset.menuOpen === "true" });
-    lenis.on("scroll", ScrollTrigger.update);
-    const tick = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(tick);
     let prevY = window.scrollY;
     const header = document.querySelector<HTMLElement>(".site-header");
     const navUpdate = () => {
@@ -35,8 +30,8 @@ export function useJourneyMotion() {
       const playhead = { time: 0 };
       gsap.set([".hero-intro", ".hero-action"], { autoAlpha: 0 });
       gsap.fromTo(".hero-line", { yPercent: 115, opacity: 0, rotate: 2, filter: "blur(6px)" }, { yPercent: 0, opacity: 1, rotate: 0, filter: "blur(0px)", duration: 1.8, stagger: .19, delay: .15, ease: "power3.out" });
-      const ht = gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: 1.15 } });
-      ht.to(playhead, { time: 4.7, duration: .82, ease: "none", onUpdate: () => { wantedTime = playhead.time; seek(); } }, .025)
+      const ht = gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: .65 } });
+      ht.to(playhead, { time: 4.7, duration: .94, ease: "none", onUpdate: () => { wantedTime = playhead.time; seek(); } }, .025)
         .to(".hero-title", { y: -110, autoAlpha: 0, filter: "blur(7px)", duration: .16, ease: "power1.inOut" }, .09)
         .fromTo(".hero-intro", { y: 45, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .12 }, .21)
         .fromTo(".intro-line", { yPercent: 105, filter: "blur(4px)" }, { yPercent: 0, filter: "blur(0px)", stagger: .018, duration: .12 }, .22)
@@ -51,7 +46,7 @@ export function useJourneyMotion() {
         .to(".hero-count b", { scaleX: 1, duration: 1, ease: "none" }, 0);
 
       const panels = gsap.utils.toArray<HTMLElement>(".chapter-panel");
-      const et = gsap.timeline({ scrollTrigger: { trigger: ".experience-scroll", start: "top top", end: "bottom bottom", scrub: 1.2, onUpdate: self => { const index = self.progress < .29 ? 0 : self.progress < .63 ? 1 : 2; const counter = document.querySelector(".experience-current"); if (counter) counter.textContent = `0${index + 1}`; panels.forEach((p,i)=>p.setAttribute("aria-hidden",String(i!==index))); } } });
+      const et = gsap.timeline({ scrollTrigger: { trigger: ".experience-scroll", start: "top top", end: "bottom bottom", scrub: .8, onUpdate: self => { const index = self.progress < .29 ? 0 : self.progress < .63 ? 1 : 2; const counter = document.querySelector(".experience-current"); if (counter) counter.textContent = `0${index + 1}`; panels.forEach((p,i)=>p.setAttribute("aria-hidden",String(i!==index))); } } });
       panels.forEach((panel, i) => {
         const copy = panel.querySelector(".chapter-copy");
         const row = panel.querySelector(".chapter-images");
@@ -60,18 +55,17 @@ export function useJourneyMotion() {
         if (i === 0) { gsap.set(copy, { autoAlpha: 1 }); }
         else {
           gsap.set(copy, { autoAlpha: 0 });
-          gsap.set(photos, { x: -window.innerWidth * 1.25, y: 65, autoAlpha: 0, rotation: -12 });
-          et.to(copy, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .65 }, start - .35)
-            .fromTo(copy, { y: 25 }, { y: 0, duration: .65 }, start - .35)
-            .to(photos, { x: 0, y: 0, autoAlpha: 1, rotation: 0, duration: 1.15, stagger: .12, ease: "power2.out" }, start - .65);
+          gsap.set(photos, { x: -window.innerWidth * .68, y: 35, autoAlpha: 0, rotation: -5 });
+          et.fromTo(copy, { y: 25, filter: "blur(3px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .65, ease: "power2.out" }, start - .35)
+            .to(photos, { x: 0, y: 0, autoAlpha: 1, rotation: 0, duration: 1.4, stagger: .18, ease: "power2.out" }, start - .65);
         }
-        et.to(photos, { y: (j: number) => j % 2 ? -35 : -70, duration: 1.4, ease: "none" }, start + .45);
-        if (mobile) et.to(row, { x: -window.innerWidth * .72, duration: 1.6, ease: "none" }, start + .45);
+        et.to(photos, { y: (j: number) => j % 2 ? -18 : -34, duration: 1.6, ease: "none" }, start + .45);
+        if (mobile) et.to(row, { x: -window.innerWidth * .48, duration: 1.8, ease: "none" }, start + .45);
         if (i < 2) {
           et.to(copy, { autoAlpha: 0, y: -35, filter: "blur(3px)", duration: .55 }, start + 1.85)
-            .to(photos, { x: window.innerWidth * 1.35, y: -120, autoAlpha: 0, rotation: 8, duration: 1.05, stagger: .1, ease: "power2.in" }, start + 1.9);
+            .to(photos, { x: window.innerWidth * .7, y: -70, autoAlpha: 0, rotation: 4, duration: 1.35, stagger: .15, ease: "power2.in" }, start + 1.9);
         } else {
-          et.to(copy, { autoAlpha: 0, y: -30, duration: .6 }, 8.45).to(photos, { y: -100, autoAlpha: 0, duration: .7, stagger: .1 }, 8.45);
+          et.to(copy, { autoAlpha: 0, y: -30, duration: .6 }, 8.45).to(photos, { y: -55, autoAlpha: 0, duration: .85, stagger: .15 }, 8.45);
         }
       });
       et.to(".experience-progress b", { scaleX: 1, duration: 9.35, ease: "none" }, 0);
@@ -96,13 +90,13 @@ export function useJourneyMotion() {
         ct.fromTo(el, { x: i % 2 ? 130 : -130, y: i < 2 ? -90 : 160, scale: .75, autoAlpha: 0 }, { x: 0, y: 0, scale: 1, autoAlpha: 1, duration: .7, ease: "power2.out" }, .18 + i * .1);
       });
       gsap.fromTo(".path-fill", { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 80%", scrub: .8 } });
-      gsap.utils.toArray<HTMLElement>(".botanical").forEach(el=>gsap.fromTo(el, { scale: .2, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .8, scrollTrigger: { trigger: el, start: "top 77%", toggleActions: "play none none reverse" } }));
+      gsap.fromTo(".botanical", { scale: .65, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, stagger: .16, ease: "power1.out", scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 65%", scrub: .5 } });
       gsap.fromTo(".final-cta>img", { yPercent: -12, scale: 1.1 }, { yPercent: 12, scale: 1.1, ease: "none", scrollTrigger: { trigger: ".final-cta", start: "top bottom", end: "bottom top", scrub: 1.1 } });
       return () => { video?.removeEventListener("seeked", seek); video?.removeEventListener("loadedmetadata", seek); };
     });
     const refresh = () => ScrollTrigger.refresh();
     document.fonts.ready.then(refresh);
     window.addEventListener("load", refresh);
-    return () => { ctx.revert(); lenis.destroy(); gsap.ticker.remove(tick); window.removeEventListener("scroll", navUpdate); window.removeEventListener("load", refresh); document.documentElement.classList.remove("journey-motion"); };
+    return () => { ctx.revert(); window.removeEventListener("scroll", navUpdate); window.removeEventListener("load", refresh); document.documentElement.classList.remove("journey-motion"); };
   }, []);
 }
