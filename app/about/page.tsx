@@ -4,8 +4,8 @@ import "../journey.css";
 import "./about.css";
 
 export const metadata: Metadata = {
-  title: "Meet Olivia — Travel & LIV Collective",
-  description: "Meet Olivia Owen, the person bringing Travel & LIV together. A little of her story, a moment with the group, and an invitation to join the next trip.",
+  title: "Our Story — Travel & LIV Collective",
+  description: "Curated, personally hosted international group trips designed for connection, 4–5-star stays, and effortless days. Meet Olivia Owen and discover our collective.",
 };
 
 export default function AboutPage() {

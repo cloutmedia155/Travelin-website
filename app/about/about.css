@@ -1,14 +1,1254 @@
-.about-page{--about-cream:#f7f8f4;--about-green:#263c32;--about-muted:#69756c;--about-sage:#edf0e9;--about-white:#fffdf5;background:var(--about-cream);color:var(--about-green);overflow:clip}
-.about-page p{font-size:14px;line-height:1.85}.about-page h2{font-size:clamp(38px,4.2vw,64px);line-height:1.1}.about-label{display:block;font:500 10px/1.6 var(--sans);letter-spacing:.16em}.about-line-mask{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}.about-line-mask>*{display:block}.about-page .button{min-height:54px;font-size:13px}
-.about-header{position:fixed;inset:0 0 auto;z-index:40;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:25px 5%;color:var(--about-white);transition:color .5s,background .5s,padding .5s}.about-header nav{display:flex;gap:28px;align-items:center;font-size:11px}.about-home-link{display:flex;gap:10px;align-items:center}.about-current{border-bottom:1px solid currentColor;padding:6px 0}.about-header-trip{justify-self:end;display:flex;align-items:center;gap:25px;font-size:11px;border-bottom:1px solid currentColor;padding:8px 0}.about-header-ink{background:#f7f8f4ed;color:var(--about-green);backdrop-filter:blur(12px);padding-top:18px;padding-bottom:18px}
-.about-opening{position:relative;min-height:100svh}.about-opening-stage{position:relative;height:100svh;min-height:650px;overflow:hidden}.about-opening-frame{position:absolute;inset:0;clip-path:inset(0% 0% 0% 0%)}.about-opening-image{object-position:50% 50%}.about-opening-shade{position:absolute;inset:0;background:linear-gradient(90deg,#0d211e75,transparent 80%),linear-gradient(0deg,#0d211e96,transparent 72%)}.about-opening-copy{position:absolute;left:8%;bottom:21%;color:var(--about-white);max-width:650px;z-index:2}.about-opening-copy .about-label{margin-bottom:24px}.about-opening-copy h1{font-size:clamp(48px,5.6vw,82px);line-height:1.08;letter-spacing:-.025em}.about-opening-copy p{margin-top:25px;max-width:320px;color:#fffdf5e6;font-size:14px}.about-scroll-cue{position:absolute;bottom:6%;left:8%;display:flex;align-items:center;gap:28px;color:var(--about-white);font-size:9px;letter-spacing:.16em;z-index:2}.about-opening-bridge,.about-opening-caption{display:none}.about-motion .about-opening{height:195svh}.about-motion .about-opening-stage{position:sticky;top:0}.about-motion .about-opening-bridge{display:block;position:absolute;top:39%;left:8%;width:34%;visibility:hidden}.about-opening-bridge .about-label{margin-bottom:30px}.about-opening-bridge p{font:400 clamp(30px,3.2vw,49px)/1.18 var(--serif);letter-spacing:-.025em}.about-motion .about-opening-caption{display:block;position:absolute;bottom:7%;right:7%;font:italic 18px var(--serif);visibility:hidden}
-.about-story{position:relative;padding:100px 7% 130px}.about-story-stage{max-width:1240px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:13%;align-items:center}.about-story-images{position:relative;min-height:540px}.about-story-portrait{position:absolute;left:8%;top:5%;width:67%;height:77%;transform:rotate(-3deg)}.about-story-portrait img{object-position:50% 45%}.about-story-images figcaption{font:italic 17px/1.4 var(--serif);margin-top:13px;color:var(--about-muted)}.about-story-group{position:absolute;right:-4%;bottom:0;width:69%;height:47%;transform:rotate(5deg);border:7px solid var(--about-cream);background:var(--about-cream)}.about-story-handwriting{position:absolute;right:1%;top:0;font:italic 24px/1 var(--serif);color:var(--about-muted);transform:rotate(6deg)}.about-story-words>.about-label{margin-bottom:35px}.about-story-beat{margin-bottom:35px}.about-story-beat h2{font-size:clamp(34px,3.5vw,54px)}.about-story-beat p{max-width:295px;margin-top:24px;color:var(--about-muted)}.about-story-progress{display:none}.about-motion .about-story{height:310svh;padding:0 7%}.about-motion .about-story-stage{position:sticky;top:0;height:100svh;min-height:650px}.about-motion .about-story-images{height:64vh;min-height:420px;max-height:620px}.about-motion .about-story-words{position:relative;min-height:380px}.about-motion .about-story-beat{position:absolute;top:75px;left:0;right:0}.about-motion .about-story-progress{position:absolute;bottom:0;display:flex;gap:10px}.about-story-progress i{width:27px;height:1px;background:#263c3240;transition:background .5s}.about-story-progress i.is-active{background:var(--about-green)}
-.about-moments{position:relative;background:var(--about-sage);padding:125px 7% 155px}.about-moments-intro{max-width:1160px;margin:auto;display:grid;grid-template-columns:1fr 2fr;gap:7%;align-items:start}.about-moments-intro>.about-label{padding-top:13px}.about-moments-intro h2{font-size:clamp(37px,3.7vw,57px)}.about-moments-grid{max-width:1160px;margin:110px auto 0;display:grid;grid-template-columns:1fr 1.15fr .86fr;gap:5%;align-items:start}.about-moment-window{overflow:hidden;height:400px}.about-moment figcaption{padding:25px 0 0}.about-moment h3{font-size:29px;line-height:1.1}.about-moment p{font-size:12px;color:var(--about-muted);margin-top:10px}.about-moment-hello .about-moment-window{transform:rotate(-4deg)}.about-moment-table{margin-top:115px}.about-moment-table .about-moment-window{height:300px;transform:rotate(3deg)}.about-moment-quiet{margin-top:45px}.about-moment-quiet .about-moment-window{height:330px;transform:rotate(6deg)}
-.about-film{position:relative;height:100svh;background:var(--about-cream)}.about-film-stage{position:relative;height:100svh;min-height:600px;overflow:hidden}.about-film-frame{position:absolute;inset:0;overflow:hidden;background:var(--about-green)}.about-film-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}.about-film-shade{position:absolute;inset:0;background:#102b286b}.about-film-copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--about-white);padding:70px 20px;z-index:2}.about-film-copy .about-label{margin-bottom:25px}.about-film-copy h2{font-size:clamp(46px,5vw,75px);line-height:1.05}.about-watch{display:flex;align-items:center;gap:17px;background:none;color:inherit;font-size:12px;margin-top:35px;padding:8px}.about-watch>span{width:48px;height:48px;border:1px solid #fff9;border-radius:50%;display:grid;place-items:center;transition:background .3s}.about-watch:hover>span{background:#ffffff20}.about-ambient{position:absolute;bottom:9%;right:6%;width:42px;height:42px;display:grid;place-items:center;border:1px solid #ffffff80;border-radius:50%;background:#163d3030;color:white;z-index:3}.about-motion .about-film{height:180svh}.about-motion .about-film-stage{position:sticky;top:0}.about-clouds{display:none}.about-motion .about-clouds{display:block;position:absolute;inset:0;overflow:hidden;z-index:4;pointer-events:none}.about-clouds img{position:absolute;bottom:0;left:50%;width:100vw;min-width:100%;transform:translateX(-50%);object-fit:cover;object-position:center bottom}.about-cloud-back{height:100%}.about-cloud-front{height:80%}.about-cloud-floor{position:absolute;left:0;right:0;bottom:-2px;height:55%;background:linear-gradient(transparent,var(--about-cream) 70%)}
-.about-invitation{position:relative;min-height:920px;display:grid;place-items:center;padding:150px 7% 120px;overflow:hidden}.about-invitation-copy{position:relative;z-index:2;text-align:center}.about-invitation-copy .about-label{margin-bottom:32px}.about-invitation-copy h2{font-size:clamp(50px,5.6vw,84px);line-height:1.06}.about-invitation-copy .button{margin-top:42px}.about-question{display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;margin:22px auto 0;width:fit-content;border-bottom:1px solid #263c3233;padding-bottom:5px}.about-signature{margin-top:50px;font-size:11px!important}.about-signature em{font-size:36px;line-height:1.2}.about-invitation-pictures{position:absolute;inset:0;pointer-events:none}.about-memory{position:absolute;width:21%;max-width:290px;height:280px;overflow:hidden}.memory-left{left:-4%;top:19%;transform:rotate(-10deg)}.memory-right{right:-3%;bottom:17%;transform:rotate(9deg)}.about-footer{margin:0 5%;padding:45px 0 25px;border-top:1px solid #263c3226;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:30px}.about-footer nav{display:flex;gap:32px;font-size:11px}.about-footer nav a:last-child{display:flex;align-items:center;gap:9px}.about-footer-bottom{width:100%;display:flex;justify-content:space-between;font-size:10px;color:var(--about-muted);padding-top:25px}.about-film-error{font-size:13px!important}.about-film-error a{display:inline-flex;align-items:center;gap:5px;text-decoration:underline}.about-dialog video{max-height:70svh;object-fit:contain}
-@media(min-width:701px) and (max-width:1050px){.about-header nav{gap:15px}.about-story-stage{gap:7%}.about-story-images{min-height:430px}.about-motion .about-story-images{min-height:370px}.about-moment-window{height:320px}.about-moment-table .about-moment-window{height:250px}.about-moment-quiet .about-moment-window{height:280px}.about-moment h3{font-size:25px}.about-footer nav{gap:20px}}
-@media(max-width:700px){.about-header{padding:20px;grid-template-columns:1fr auto 1fr;gap:12px}.about-header .wordmark>span{font-size:23px}.about-header .wordmark small{font-size:6px}.about-header nav{font-size:10px}.about-header .about-current,.about-home-link span{display:none}.about-home-link{padding:10px 8px 10px 0}.about-home-link svg{width:20px;height:20px}.about-header-trip{font-size:10px;gap:8px;white-space:nowrap}.about-header-trip svg{width:13px}.about-header-ink{padding-top:15px;padding-bottom:15px}.about-opening-stage{min-height:620px}.about-opening-image{object-position:63% center}.about-opening-copy{left:7%;right:7%;bottom:22%}.about-opening-copy h1{font-size:clamp(44px,11vw,65px)}.about-opening-copy p{font-size:13px;margin-top:23px}.about-opening-copy .about-label{font-size:9px;margin-bottom:20px}.about-scroll-cue{left:7%;bottom:8%;font-size:8px}.about-motion .about-opening{height:190svh}.about-motion .about-opening-bridge{left:8%;top:64%;width:84%}.about-opening-bridge .about-label{font-size:8px;margin-bottom:18px}.about-opening-bridge p{font-size:31px;line-height:1.12}.about-motion .about-opening-caption{display:none}.about-story{padding:70px 7% 80px}.about-story-stage{display:flex;flex-direction:column;gap:50px;align-items:stretch}.about-story-images{min-height:360px;max-width:380px;width:100%;margin:auto}.about-story-portrait{width:59%;left:8%;top:2%;height:84%}.about-story-group{width:61%;right:0;bottom:0;height:46%}.about-story-handwriting{font-size:21px;right:3%;top:2%}.about-story-images figcaption{font-size:14px;margin-top:8px}.about-story-words{padding:0 3%}.about-story-beat h2{font-size:38px;line-height:1.1}.about-story-beat p{font-size:13px;margin-top:18px;max-width:290px}.about-motion .about-story{height:290svh;padding:0 7%}.about-motion .about-story-stage{height:100svh;min-height:700px;justify-content:center;gap:40px;padding:95px 0 45px}.about-motion .about-story-images{height:38svh;min-height:270px;max-height:350px;flex-shrink:0}.about-motion .about-story-words{min-height:220px}.about-story-words>.about-label{font-size:8px;margin-bottom:23px}.about-motion .about-story-beat{top:36px;left:3%;right:3%}.about-story-beat h2{font-size:clamp(31px,8.5vw,39px)}.about-motion .about-story-progress{bottom:0}.about-moments{padding:85px 7% 100px}.about-moments-intro{display:block}.about-moments-intro>.about-label{font-size:9px;padding:0;margin-bottom:24px}.about-moments-intro h2{font-size:38px}.about-moments-grid{display:flex;flex-direction:column;gap:65px;margin:60px auto 0;max-width:420px}.about-moment{width:77%}.about-moment-window{height:350px}.about-moment-table{margin-top:0;align-self:flex-end;width:85%}.about-moment-table .about-moment-window{height:280px}.about-moment-quiet{margin-top:0;width:72%}.about-moment-quiet .about-moment-window{height:310px}.about-moment h3{font-size:29px}.about-moment p{font-size:13px}.about-moment figcaption{padding-top:25px}.about-film-stage{min-height:600px}.about-motion .about-film{height:165svh}.about-film-copy h2{font-size:45px}.about-film-copy .about-label{font-size:9px}.about-film-video{object-position:62% center}.about-ambient{bottom:10%;right:7%}.about-cloud-back{height:85%}.about-cloud-front{height:70%}.about-invitation{min-height:940px;padding:270px 6% 220px}.about-invitation-copy h2{font-size:48px}.about-invitation-copy .about-label{font-size:9px;margin-bottom:24px}.about-memory{width:43%;height:170px}.memory-left{left:-6%;top:6%;transform:rotate(-9deg)}.memory-right{right:-7%;bottom:5%;transform:rotate(10deg)}.about-signature{margin-top:32px}.about-footer{margin:0 7%;padding:40px 0 25px;gap:35px}.about-footer>.wordmark{margin:auto}.about-footer nav{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:11px}.about-footer-bottom{gap:15px;flex-direction:column;font-size:10px;padding-top:5px}}
-@media(max-width:380px){.about-header{gap:8px;padding-left:16px;padding-right:16px}.about-header .wordmark>span{font-size:21px}.about-header-trip{gap:5px;font-size:9px}.about-opening-copy h1{font-size:43px}.about-moments-intro h2{font-size:33px}.about-story-beat h2{font-size:31px}.about-moment-window{height:300px}.about-invitation-copy h2{font-size:43px}}
-@media(prefers-reduced-motion:reduce){.about-page *{scroll-behavior:auto!important}.about-header{background:#f7f8f4ed;color:var(--about-green)}.about-story-beat{margin-bottom:42px}.about-story-beat:last-of-type{margin-bottom:0}.about-ambient{display:none}}
-.about-page:not(.about-motion) .about-header{background:#f7f8f4ed;color:var(--about-green)}
-@media(max-width:700px) and (max-height:740px){.about-motion .about-opening-stage{min-height:600px}.about-motion .about-opening-bridge{top:62%}.about-opening-bridge p{font-size:28px}.about-motion .about-story-stage{min-height:100svh;padding:85px 0 28px;gap:30px}.about-motion .about-story-images{height:32svh;min-height:210px}.about-motion .about-story-words{min-height:220px}.about-story-beat h2{font-size:31px}}
+/* ==========================================================================
+   Travel & LIV Collective — About Page Stylesheet
+   Strictly adheres to:
+   - docs/design-and-copy.md
+   - docs/psychology-and-ux-framework.md
+   - Section Spacing & Layout Architecture:
+     * Desktop Container: 1160px (.wrap)
+     * Main Section Padding: 125px–145px top/bottom (80px–85px mobile)
+     * Heading -> Supporting Text: 28px–32px
+     * Paragraph Spacing: 18px
+     * Editorial text width: max 480px–520px (45–60 characters)
+     * Typography: Cormorant Garamond (Serif) + Manrope (Sans)
+     * Palette: Cream (#f7f8f4), Forest Green (#263c32), Muted Olive (#69756c), Sage (#edf0e9)
+   ========================================================================== */
+
+.about-page {
+  --about-cream: #f7f8f4;
+  --about-green: #263c32;
+  --about-muted: #69756c;
+  --about-sage: #edf0e9;
+  --about-white: #fffdf5;
+  background: var(--about-cream);
+  color: var(--about-green);
+  overflow: clip;
+}
+
+.about-page .wrap {
+  width: calc(100% - 128px);
+  max-width: 1160px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-page p {
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.about-page h2 {
+  font-size: clamp(36px, 3.8vw, 58px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.about-page h3 {
+  font-size: clamp(26px, 2.6vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+}
+
+.about-label {
+  display: block;
+  font: 500 10px/1.6 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--about-muted);
+  margin-bottom: 22px;
+}
+
+.about-line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.about-line-mask > * {
+  display: block;
+}
+
+.about-page .button {
+  min-height: 52px;
+  font-size: 13px;
+  padding: 0 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 9999px;
+  font-family: var(--sans);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s;
+}
+
+.about-page .button:hover {
+  transform: translateY(-2px);
+}
+
+.about-page .button-dark {
+  background: var(--about-green);
+  color: var(--about-white);
+}
+
+.about-page .button-dark:hover {
+  background: #1b2e25;
+}
+
+/* --------------------------------------------------------------------------
+   Site Header (Sticky with blur background when scrolled)
+   -------------------------------------------------------------------------- */
+.about-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 40;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 24px 5%;
+  color: var(--about-white);
+  transition: color 0.5s, background 0.5s, padding 0.5s;
+}
+
+.about-header nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.about-home-link {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  opacity: 0.85;
+  transition: opacity 0.3s;
+}
+
+.about-home-link:hover {
+  opacity: 1;
+}
+
+.about-current {
+  border-bottom: 1px solid currentColor;
+  padding: 4px 0;
+}
+
+.about-header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.about-header-watch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  background: rgba(255, 253, 245, 0.12);
+  border: 1px solid rgba(255, 253, 245, 0.35);
+  color: inherit;
+  border-radius: 9999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.about-header-watch:hover {
+  background: rgba(255, 253, 245, 0.22);
+}
+
+.about-header-trip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  border-bottom: 1px solid currentColor;
+  padding: 6px 0;
+  letter-spacing: 0.04em;
+}
+
+.about-header-ink {
+  background: rgba(247, 248, 244, 0.94);
+  color: var(--about-green);
+  backdrop-filter: blur(14px);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  box-shadow: 0 1px 0 rgba(38, 60, 50, 0.06);
+}
+
+.about-header-ink .about-header-watch {
+  background: rgba(38, 60, 50, 0.06);
+  border-color: rgba(38, 60, 50, 0.2);
+}
+
+.about-header-ink .about-header-watch:hover {
+  background: rgba(38, 60, 50, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   Section 1: The Company — Opening (Hero Stage)
+   -------------------------------------------------------------------------- */
+.about-opening {
+  position: relative;
+  min-height: 100svh;
+}
+
+.about-opening-stage {
+  position: relative;
+  height: 100svh;
+  min-height: 650px;
+  overflow: hidden;
+}
+
+.about-opening-frame {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0% 0% 0% 0%);
+}
+
+.about-opening-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+.about-opening-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(13, 33, 30, 0.72) 0%, rgba(13, 33, 30, 0.3) 60%, transparent 100%),
+    linear-gradient(0deg, rgba(13, 33, 30, 0.8) 0%, transparent 65%);
+}
+
+.about-opening-copy {
+  position: absolute;
+  left: 8%;
+  bottom: 18%;
+  color: var(--about-white);
+  max-width: 620px;
+  z-index: 2;
+}
+
+.about-opening-copy .about-label {
+  color: rgba(255, 253, 245, 0.7);
+  margin-bottom: 20px;
+}
+
+.about-opening-copy h1 {
+  font-size: clamp(46px, 5.4vw, 78px);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+.about-opening-copy p {
+  margin-top: 24px;
+  max-width: 440px;
+  color: rgba(255, 253, 245, 0.9);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.about-scroll-cue {
+  position: absolute;
+  bottom: 5.5%;
+  left: 8%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 253, 245, 0.85);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  z-index: 2;
+  transition: opacity 0.3s;
+}
+
+.about-scroll-cue:hover {
+  opacity: 1;
+}
+
+.about-opening-bridge,
+.about-opening-caption {
+  display: none;
+}
+
+.about-motion .about-opening {
+  height: 195svh;
+}
+
+.about-motion .about-opening-stage {
+  position: sticky;
+  top: 0;
+}
+
+.about-motion .about-opening-bridge {
+  display: block;
+  position: absolute;
+  top: 38%;
+  left: 8%;
+  width: 36%;
+  max-width: 440px;
+  visibility: hidden;
+  color: var(--about-green);
+}
+
+.about-motion .about-opening-bridge .about-label {
+  margin-bottom: 24px;
+}
+
+.about-motion .about-opening-bridge p {
+  font: 400 clamp(30px, 3.2vw, 48px)/1.15 var(--serif);
+  letter-spacing: -0.025em;
+  color: var(--about-green);
+}
+
+.about-motion .about-opening-caption {
+  display: block;
+  position: absolute;
+  bottom: 7%;
+  right: 7%;
+  font: italic 17px var(--serif);
+  color: var(--about-muted);
+  visibility: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Section 2: Olivia — How It Started
+   Asymmetric 1:1.2 layout on desktop, readable text together, badges
+   -------------------------------------------------------------------------- */
+.about-story {
+  position: relative;
+  padding: 135px 0 140px;
+  background: var(--about-cream);
+}
+
+.about-story-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 10%;
+  align-items: center;
+}
+
+.about-story-media {
+  position: relative;
+  min-height: 520px;
+}
+
+.about-portrait-card {
+  position: relative;
+  width: 78%;
+  height: 440px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(38, 60, 50, 0.08);
+  transform: rotate(-3deg);
+  background: var(--about-white);
+}
+
+.about-portrait-card img {
+  width: 100%;
+  height: 86%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+.about-portrait-card figcaption {
+  height: 14%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font: italic 14px/1 var(--serif);
+  color: var(--about-muted);
+  background: var(--about-white);
+}
+
+.about-group-snap {
+  position: absolute;
+  right: -2%;
+  bottom: -4%;
+  width: 60%;
+  height: 240px;
+  border: 7px solid var(--about-white);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(38, 60, 50, 0.1);
+  transform: rotate(5deg);
+  background: var(--about-white);
+}
+
+.about-group-snap img {
+  width: 100%;
+  height: 78%;
+  object-fit: cover;
+}
+
+.about-group-snap figcaption {
+  height: 22%;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font: italic 13px/1 var(--serif);
+  color: var(--about-muted);
+  background: var(--about-white);
+}
+
+.about-story-content {
+  max-width: 500px;
+}
+
+.about-story-content h2 {
+  margin-bottom: 28px;
+}
+
+.about-story-prose p {
+  color: var(--about-muted);
+  margin-bottom: 18px;
+}
+
+.about-story-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.about-story-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(38, 60, 50, 0.12);
+}
+
+.about-badge {
+  font: 500 10.5px/1.4 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--about-green);
+  background: rgba(38, 60, 50, 0.05);
+  border: 1px solid rgba(38, 60, 50, 0.14);
+  border-radius: 9999px;
+  padding: 6px 14px;
+}
+
+/* --------------------------------------------------------------------------
+   Section 3: How That Becomes a Trip (Flowing sequence: Stay -> Days -> People)
+   Alternating asymmetrical compositions with lightly tilted frames
+   -------------------------------------------------------------------------- */
+.about-approach {
+  position: relative;
+  padding: 130px 0 145px;
+  background: var(--about-cream);
+  border-top: 1px solid rgba(38, 60, 50, 0.08);
+}
+
+.about-approach-intro {
+  margin-bottom: 95px;
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 8%;
+  align-items: start;
+}
+
+.about-approach-intro p {
+  padding-top: 14px;
+  color: var(--about-muted);
+  font-size: 15px;
+  max-width: 480px;
+}
+
+.about-approach-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+.about-flow-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10%;
+  align-items: center;
+}
+
+.about-flow-item.flow-right {
+  grid-template-columns: 1fr 1fr;
+}
+
+.about-flow-item.flow-right .about-flow-photo {
+  order: 2;
+}
+
+.about-flow-item.flow-right .about-flow-text {
+  order: 1;
+}
+
+.about-flow-photo {
+  position: relative;
+}
+
+.about-flow-window {
+  overflow: hidden;
+  height: 380px;
+  border-radius: 2px;
+  box-shadow: 0 18px 40px rgba(38, 60, 50, 0.07);
+}
+
+.flow-left .about-flow-window {
+  transform: rotate(-2.5deg);
+}
+
+.flow-right .about-flow-window {
+  transform: rotate(2.5deg);
+}
+
+.about-flow-window img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-flow-photo figcaption {
+  font: italic 14.5px/1.4 var(--serif);
+  color: var(--about-muted);
+  margin-top: 14px;
+  padding-left: 4px;
+}
+
+.about-flow-text {
+  max-width: 460px;
+}
+
+.about-flow-num {
+  display: block;
+  font: 500 10px/1.6 var(--sans);
+  letter-spacing: 0.16em;
+  color: var(--about-muted);
+  margin-bottom: 16px;
+}
+
+.about-flow-text h3 {
+  margin-bottom: 20px;
+}
+
+.about-flow-text p {
+  color: var(--about-muted);
+  font-size: 15px;
+}
+
+/* --------------------------------------------------------------------------
+   Section 4: The People Who Make the Collective
+   Quieter sage section (#edf0e9) with community cards and authentic guest voice
+   -------------------------------------------------------------------------- */
+.about-community {
+  position: relative;
+  background: var(--about-sage);
+  padding: 135px 0 150px;
+}
+
+.about-community-intro {
+  margin-bottom: 85px;
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 8%;
+  align-items: start;
+}
+
+.about-community-intro p {
+  padding-top: 14px;
+  color: var(--about-muted);
+  font-size: 15px;
+  max-width: 500px;
+}
+
+.about-community-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4%;
+  align-items: start;
+}
+
+.about-community-card {
+  background: var(--about-cream);
+  border: 1px solid rgba(38, 60, 50, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(38, 60, 50, 0.04);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.about-community-card:hover {
+  transform: translateY(-4px);
+}
+
+.about-community-image {
+  height: 250px;
+  overflow: hidden;
+}
+
+.about-community-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.about-community-card:hover .about-community-image img {
+  transform: scale(1.04);
+}
+
+.about-community-card figcaption {
+  padding: 28px 24px;
+}
+
+.community-tag {
+  display: block;
+  font: 500 9.5px/1.5 var(--sans);
+  letter-spacing: 0.16em;
+  color: var(--about-muted);
+  margin-bottom: 10px;
+}
+
+.about-community-card h3 {
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.about-community-card p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--about-muted);
+  margin-bottom: 14px;
+}
+
+.about-community-card small {
+  display: block;
+  font: italic 13px var(--serif);
+  color: var(--about-green);
+}
+
+.about-community-footnote {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(38, 60, 50, 0.1);
+}
+
+.about-community-footnote p {
+  font-size: 12.5px;
+  color: var(--about-muted);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   Section 5: The People Behind Your Plans (Organization & Practical Care)
+   Return to cream, open editorial rows with fine rules, candid photo
+   -------------------------------------------------------------------------- */
+.about-organization {
+  position: relative;
+  padding: 135px 0 145px;
+  background: var(--about-cream);
+}
+
+.about-org-stage {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10%;
+  align-items: start;
+}
+
+.about-org-visual {
+  position: sticky;
+  top: 100px;
+}
+
+.about-org-photo {
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(38, 60, 50, 0.08);
+}
+
+.about-org-photo img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.about-org-photo figcaption {
+  font: italic 14px/1.4 var(--serif);
+  color: var(--about-muted);
+  margin-top: 14px;
+}
+
+.about-org-card {
+  margin-top: 28px;
+  padding: 24px 28px;
+  background: var(--about-white);
+  border: 1px solid rgba(38, 60, 50, 0.1);
+  border-radius: 2px;
+}
+
+.org-card-title {
+  display: block;
+  font: 500 13px var(--sans);
+  letter-spacing: 0.02em;
+  color: var(--about-green);
+  margin-bottom: 8px;
+}
+
+.about-org-card p {
+  font-size: 13px;
+  color: var(--about-muted);
+  margin-bottom: 14px;
+}
+
+.about-org-content {
+  max-width: 520px;
+}
+
+.about-org-lead {
+  font-size: 16px;
+  color: var(--about-muted);
+  margin: 22px 0 45px;
+}
+
+.about-org-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-org-row {
+  padding: 26px 0;
+  border-top: 1px solid rgba(38, 60, 50, 0.12);
+}
+
+.about-org-row:last-child {
+  border-bottom: 1px solid rgba(38, 60, 50, 0.12);
+}
+
+.org-row-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.org-row-num {
+  font: 500 11px var(--sans);
+  letter-spacing: 0.1em;
+  color: var(--about-muted);
+}
+
+.org-row-head h4 {
+  font: 500 17px/1.3 var(--serif);
+  letter-spacing: -0.01em;
+  color: var(--about-green);
+}
+
+.about-org-row p {
+  padding-left: 32px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--about-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Section 6: The Invitation (Centered closing + signature + memory frames)
+   -------------------------------------------------------------------------- */
+.about-invitation {
+  position: relative;
+  min-height: 820px;
+  display: grid;
+  place-items: center;
+  padding: 140px 7% 120px;
+  overflow: hidden;
+  background: var(--about-cream);
+  border-top: 1px solid rgba(38, 60, 50, 0.08);
+}
+
+.about-invitation-copy {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.about-invitation-copy .about-label {
+  margin-bottom: 28px;
+}
+
+.about-invitation-copy h2 {
+  font-size: clamp(48px, 5.4vw, 80px);
+  line-height: 1.06;
+}
+
+.about-invitation-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.about-question {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--about-green);
+  border-bottom: 1px solid rgba(38, 60, 50, 0.25);
+  padding-bottom: 4px;
+  transition: border-color 0.3s;
+}
+
+.about-question:hover {
+  border-color: var(--about-green);
+}
+
+.about-signature {
+  margin-top: 48px;
+  font-size: 12px !important;
+  color: var(--about-muted);
+}
+
+.about-signature em {
+  font-size: 38px;
+  line-height: 1.2;
+  color: var(--about-green);
+}
+
+.about-invitation-pictures {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.about-memory {
+  position: absolute;
+  width: 22%;
+  max-width: 290px;
+  height: 270px;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 16px 40px rgba(38, 60, 50, 0.08);
+}
+
+.memory-left {
+  left: -3%;
+  top: 18%;
+  transform: rotate(-9deg);
+}
+
+.memory-right {
+  right: -2%;
+  bottom: 16%;
+  transform: rotate(8deg);
+}
+
+.about-memory img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   Site Footer
+   -------------------------------------------------------------------------- */
+.about-footer {
+  margin: 0 auto;
+  padding: 45px 5% 30px;
+  border-top: 1px solid rgba(38, 60, 50, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.about-footer nav {
+  display: flex;
+  gap: 32px;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+}
+
+.about-footer nav a:last-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-footer-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: var(--about-muted);
+  padding-top: 25px;
+}
+
+/* --------------------------------------------------------------------------
+   Film Dialog
+   -------------------------------------------------------------------------- */
+.about-film-error {
+  font-size: 13px !important;
+  color: var(--about-muted);
+}
+
+.about-film-error a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: underline;
+}
+
+.about-dialog video {
+  max-height: 70svh;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (min-width: 701px) and (max-width: 1050px) {
+  .about-page .wrap {
+    width: calc(100% - 70px);
+  }
+  .about-header nav {
+    gap: 18px;
+  }
+  .about-story-wrap {
+    gap: 6%;
+  }
+  .about-story-media {
+    min-height: 440px;
+  }
+  .about-flow-item {
+    gap: 6%;
+  }
+  .about-flow-window {
+    height: 300px;
+  }
+  .about-community-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .about-community-card:last-child {
+    grid-column: span 2;
+  }
+  .about-org-stage {
+    gap: 6%;
+  }
+  .about-org-photo img {
+    height: 320px;
+  }
+  .about-footer nav {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .about-page .wrap {
+    width: calc(100% - 40px);
+  }
+  .about-header {
+    padding: 18px 20px;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+  }
+  .about-header .wordmark > span {
+    font-size: 22px;
+  }
+  .about-header .wordmark small {
+    font-size: 6px;
+  }
+  .about-header nav {
+    font-size: 10px;
+  }
+  .about-header .about-current,
+  .about-home-link span {
+    display: none;
+  }
+  .about-home-link {
+    padding: 8px 6px 8px 0;
+  }
+  .about-home-link svg {
+    width: 18px;
+    height: 18px;
+  }
+  .about-header-actions {
+    gap: 14px;
+  }
+  .about-header-watch {
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+  .about-header-trip {
+    font-size: 10px;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .about-header-ink {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  /* Section 1: Opening */
+  .about-opening-stage {
+    min-height: 600px;
+  }
+  .about-opening-image {
+    object-position: 60% center;
+  }
+  .about-opening-copy {
+    left: 6%;
+    right: 6%;
+    bottom: 20%;
+  }
+  .about-opening-copy h1 {
+    font-size: clamp(40px, 10.5vw, 60px);
+  }
+  .about-opening-copy p {
+    font-size: 14px;
+    margin-top: 18px;
+  }
+  .about-scroll-cue {
+    left: 6%;
+    bottom: 7%;
+    font-size: 8.5px;
+  }
+  .about-motion .about-opening-bridge {
+    left: 6%;
+    top: 60%;
+    width: 88%;
+  }
+  .about-motion .about-opening-bridge p {
+    font-size: 28px;
+  }
+  .about-motion .about-opening-caption {
+    display: none;
+  }
+
+  /* Section 2: Story */
+  .about-story {
+    padding: 80px 0 85px;
+  }
+  .about-story-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+  }
+  .about-story-media {
+    min-height: 340px;
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .about-portrait-card {
+    width: 75%;
+    height: 300px;
+  }
+  .about-group-snap {
+    width: 65%;
+    height: 170px;
+  }
+  .about-story-content h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+  }
+  .about-story-badges {
+    margin-top: 24px;
+    gap: 8px;
+  }
+
+  /* Section 3: Approach */
+  .about-approach {
+    padding: 85px 0 90px;
+  }
+  .about-approach-intro {
+    display: block;
+    margin-bottom: 50px;
+  }
+  .about-approach-intro p {
+    margin-top: 16px;
+    padding-top: 0;
+  }
+  .about-approach-flow {
+    gap: 65px;
+  }
+  .about-flow-item,
+  .about-flow-item.flow-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .about-flow-item.flow-right .about-flow-photo {
+    order: 1;
+  }
+  .about-flow-item.flow-right .about-flow-text {
+    order: 2;
+  }
+  .about-flow-window {
+    height: 280px;
+  }
+  .about-flow-text h3 {
+    font-size: 26px;
+    margin-bottom: 14px;
+  }
+
+  /* Section 4: Community */
+  .about-community {
+    padding: 85px 0 95px;
+  }
+  .about-community-intro {
+    display: block;
+    margin-bottom: 50px;
+  }
+  .about-community-intro p {
+    margin-top: 16px;
+    padding-top: 0;
+  }
+  .about-community-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .about-community-image {
+    height: 220px;
+  }
+
+  /* Section 5: Organization */
+  .about-organization {
+    padding: 85px 0 90px;
+  }
+  .about-org-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .about-org-visual {
+    position: static;
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .about-org-photo img {
+    height: 260px;
+  }
+  .about-org-lead {
+    margin: 16px 0 32px;
+  }
+  .about-org-row {
+    padding: 20px 0;
+  }
+  .about-org-row p {
+    padding-left: 0;
+  }
+
+  /* Section 6: Invitation */
+  .about-invitation {
+    min-height: 640px;
+    padding: 160px 6% 110px;
+  }
+  .about-invitation-copy h2 {
+    font-size: 42px;
+  }
+  .about-memory {
+    width: 40%;
+    height: 160px;
+  }
+  .memory-left {
+    left: -5%;
+    top: 8%;
+  }
+  .memory-right {
+    right: -5%;
+    bottom: 6%;
+  }
+  .about-signature {
+    margin-top: 32px;
+  }
+
+  /* Footer */
+  .about-footer {
+    padding: 35px 6% 25px;
+    gap: 25px;
+  }
+  .about-footer > .wordmark {
+    margin: 0 auto;
+  }
+  .about-footer nav {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    font-size: 11px;
+  }
+  .about-footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .about-header {
+    gap: 8px;
+    padding: 14px;
+  }
+  .about-header .wordmark > span {
+    font-size: 19px;
+  }
+  .about-header-trip {
+    font-size: 9px;
+  }
+  .about-opening-copy h1 {
+    font-size: 38px;
+  }
+  .about-story-content h2 {
+    font-size: 30px;
+  }
+  .about-approach-intro h2 {
+    font-size: 32px;
+  }
+  .about-community-intro h2 {
+    font-size: 32px;
+  }
+  .about-invitation-copy h2 {
+    font-size: 36px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .about-page * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+  .about-header {
+    background: rgba(247, 248, 244, 0.94);
+    color: var(--about-green);
+  }
+  .about-portrait-card,
+  .about-group-snap,
+  .flow-left .about-flow-window,
+  .flow-right .about-flow-window,
+  .memory-left,
+  .memory-right {
+    transform: none !important;
+  }
+}
+
+.about-page:not(.about-motion) .about-header {
+  background: rgba(247, 248, 244, 0.94);
+  color: var(--about-green);
+}

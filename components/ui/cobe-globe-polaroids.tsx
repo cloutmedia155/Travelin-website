@@ -163,13 +163,13 @@ export function GlobePolaroids({
       {markers.map((m) => (
         <div
           key={m.id}
-          style={{
-            position: "absolute",
-            // @ts-expect-error CSS Anchor Positioning
-            positionAnchor: `--cobe-${m.id}`,
-            bottom: "anchor(top)",
-            left: "anchor(center)",
-            translate: "-50% 0",
+          style={
+            {
+              position: "absolute",
+              positionAnchor: `--cobe-${m.id}`,
+              bottom: "anchor(top)",
+              left: "anchor(center)",
+              translate: "-50% 0",
             marginBottom: 8,
             background: "#fff",
             padding: "6px 6px 24px",
