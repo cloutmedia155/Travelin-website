@@ -117,17 +117,18 @@ export function useJourneyMotion() {
       if (storyCards.length > 0) {
         gsap.fromTo(
           storyCards,
-          { y: 90, autoAlpha: 0, filter: "blur(6px)" },
+          { y: 80, autoAlpha: 0, filter: "blur(8px)" },
           {
             y: 0,
             autoAlpha: 1,
             filter: "blur(0px)",
-            duration: 1.8,
-            stagger: 0.32,
-            ease: "power3.out",
+            duration: 2.5,
+            stagger: 0.45,
+            ease: "power2.out",
+            force3D: true,
             scrollTrigger: {
               trigger: ".story-cards",
-              start: "top 84%",
+              start: "top 68%",
               toggleActions: "restart reverse restart reverse"
             }
           }

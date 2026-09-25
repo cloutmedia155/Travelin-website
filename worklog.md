@@ -336,7 +336,7 @@ if (expIntroP) {
 ---
 
 ### 12. `components/home/use-journey-motion.ts` & `app/journey.css` (Story Cards Staggered Slide-Up Entrance Animation)
-**Description:** Added an ultra-smooth, hardware-accelerated cascading slide-up entrance animation for the three `.story-card` blocks in `.people-section`. The first card is triggered by scroll when entering the viewport, and the subsequent cards smoothly appear behind the first in succession. Slowed down by 40% with a velvety `filter: blur(6px) -> blur(0px)` transition and `power3.out` deceleration for fluid luxury motion. Replays whenever the user passes by.
+**Description:** Added an ultra-smooth, hardware-accelerated cascading slide-up entrance animation for the three `.story-card` blocks in `.people-section`. The first card is triggered by scroll when comfortably entering the viewport (`start: "top 68%"` so it does not trigger prematurely), and the subsequent cards smoothly appear behind the first in succession. Slowed down by 40% more (`duration: 2.5s`, `stagger: 0.45s`) with a velvety `filter: blur(8px) -> blur(0px)` dissolve, `power2.out` deceleration, and `force3D: true` for buttery luxury motion. Replays whenever the user passes by.
 
 #### Change A: `components/home/use-journey-motion.ts` (GSAP ScrollTrigger Animation)
 * **Before:**
@@ -355,17 +355,18 @@ const storyCards = gsap.utils.toArray<HTMLElement>(".story-cards .story-card");
 if (storyCards.length > 0) {
   gsap.fromTo(
     storyCards,
-    { y: 90, autoAlpha: 0, filter: "blur(6px)" },
+    { y: 80, autoAlpha: 0, filter: "blur(8px)" },
     {
       y: 0,
       autoAlpha: 1,
       filter: "blur(0px)",
-      duration: 1.8,
-      stagger: 0.32,
-      ease: "power3.out",
+      duration: 2.5,
+      stagger: 0.45,
+      ease: "power2.out",
+      force3D: true,
       scrollTrigger: {
         trigger: ".story-cards",
-        start: "top 84%",
+        start: "top 68%",
         toggleActions: "restart reverse restart reverse"
       }
     }
