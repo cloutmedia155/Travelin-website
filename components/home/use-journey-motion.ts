@@ -7,10 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export function useJourneyMotion() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduced.matches) return;
-    document.documentElement.classList.add("journey-motion");
-    const mobile = window.matchMedia("(max-width: 700px)").matches;
     let prevY = window.scrollY;
     const header = document.querySelector<HTMLElement>(".site-header");
     const navUpdate = () => {
@@ -20,83 +16,96 @@ export function useJourneyMotion() {
       if (Math.abs(y - prevY) > 8) header?.classList.toggle("header-hidden", y > prevY && y > 180 && document.body.dataset.menuOpen !== "true");
       prevY = y;
     };
+    navUpdate();
     window.addEventListener("scroll", navUpdate, { passive: true });
-    const ctx = gsap.context(() => {
+
+    // Rebuild motion at a breakpoint change; desktop positions must not survive a mobile resize.
+    const media = gsap.matchMedia();
+    media.add({ mobile: "(max-width: 700px)", desktop: "(min-width: 701px)", reduced: "(prefers-reduced-motion: reduce)" }, context => {
+      if (context.conditions?.reduced) return;
+      const mobile = Boolean(context.conditions?.mobile);
+      document.documentElement.classList.add("journey-motion");
       const video = document.querySelector<HTMLVideoElement>(".hero-film");
-      let wantedTime = 0;
-      const seek = () => { if (video && video.readyState >= 1 && !video.seeking && Math.abs(video.currentTime - wantedTime) > .022) video.currentTime = wantedTime; };
+      const playhead = { progress: 0 };
+      let disposed = false;
+      const seek = () => {
+        if (!video || video.readyState < 2 || video.seeking || !Number.isFinite(video.duration)) return;
+        const time = playhead.progress * Math.max(0, video.duration - .05);
+        if (Math.abs(video.currentTime - time) > 1 / 60) video.currentTime = time;
+      };
+      // A decoded frame clears the poster on browsers that keep it visible before first playback.
+      const prime = () => {
+        if (!video) return;
+        void video.play().then(() => {
+          video.pause();
+          if (!disposed) seek();
+        }).catch(seek);
+      };
       video?.addEventListener("seeked", seek);
-      video?.addEventListener("loadedmetadata", seek);
-      const playhead = { time: 0 };
-      gsap.set([".hero-intro", ".hero-action"], { autoAlpha: 0 });
-      gsap.fromTo(".hero-line", { yPercent: 115, opacity: 0, rotate: 2, filter: "blur(6px)" }, { yPercent: 0, opacity: 1, rotate: 0, filter: "blur(0px)", duration: 1.8, stagger: .19, delay: .15, ease: "power3.out" });
-      const ht = gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: .65 } });
-      ht.to(playhead, { time: 4.7, duration: .94, ease: "none", onUpdate: () => { wantedTime = playhead.time; seek(); } }, .025)
-        .to(".hero-title", { y: -110, autoAlpha: 0, filter: "blur(7px)", duration: .16, ease: "power1.inOut" }, .09)
-        .fromTo(".hero-intro", { y: 45, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .12 }, .21)
-        .fromTo(".intro-line", { yPercent: 105, filter: "blur(4px)" }, { yPercent: 0, filter: "blur(0px)", stagger: .018, duration: .12 }, .22)
-        .fromTo(".intro-body", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .1 }, .3)
-        .to(".hero-intro", { y: -65, autoAlpha: 0, filter: "blur(5px)", duration: .13 }, .5)
-        .fromTo(".hero-action", { y: 30, autoAlpha: 0, filter: "blur(4px)" }, { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: .12 }, .62)
-        .to(".hero-action", { y: -35, autoAlpha: 0, duration: .09 }, .85)
-        .fromTo(".hero-cloud-back", { yPercent: 100, scale: 1.25 }, { yPercent: 0, scale: 1, duration: .24 }, .76)
-        .fromTo(".hero-cloud-front", { yPercent: 115, scale: 1.1 }, { yPercent: 0, scale: 1.28, duration: .19 }, .81)
-        .fromTo(".cloud-floor", { yPercent: 100 }, { yPercent: 0, duration: .15 }, .85)
-        .to(".hero-bottom", { autoAlpha: 0, duration: .08 }, .78)
+      video?.addEventListener("canplay", seek);
+      if (video && video.readyState >= 2) prime();
+      else video?.addEventListener("loadeddata", prime, { once: true });
+
+      gsap.set(".hero-intro", { autoAlpha: 0 });
+      gsap.fromTo(".hero-line", { yPercent: 105, opacity: 0, filter: "blur(3px)" }, { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1.45, stagger: .15, ease: "power3.out" });
+      const hero = gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: 1.1 } });
+      hero.to(playhead, { progress: 1, duration: 1, ease: "none", onUpdate: seek }, 0)
+        .to(".hero-title", { y: -24, autoAlpha: 0, duration: .16 }, .16)
+        .fromTo(".hero-intro", { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .17 }, .33)
+        .fromTo(".intro-line", { yPercent: 70 }, { yPercent: 0, stagger: .015, duration: .16 }, .33)
+        .to(".hero-intro", { y: -20, autoAlpha: 0, duration: .14 }, .78)
+        .fromTo(".hero-cloud-back", { yPercent: 80, opacity: 0 }, { yPercent: 0, opacity: .65, duration: .18 }, .82)
+        .fromTo(".hero-cloud-front", { yPercent: 90, opacity: 0 }, { yPercent: 0, opacity: .65, duration: .14 }, .86)
         .to(".hero-count b", { scaleX: 1, duration: 1, ease: "none" }, 0);
 
-      const panels = gsap.utils.toArray<HTMLElement>(".chapter-panel");
-      const et = gsap.timeline({ scrollTrigger: { trigger: ".experience-scroll", start: "top top", end: "bottom bottom", scrub: .8, onUpdate: self => { const index = self.progress < .29 ? 0 : self.progress < .63 ? 1 : 2; const counter = document.querySelector(".experience-current"); if (counter) counter.textContent = `0${index + 1}`; panels.forEach((p,i)=>p.setAttribute("aria-hidden",String(i!==index))); } } });
-      panels.forEach((panel, i) => {
-        const copy = panel.querySelector(".chapter-copy");
-        const row = panel.querySelector(".chapter-images");
-        const photos = panel.querySelectorAll(".journey-photo");
-        const start = i * 3;
-        if (i === 0) { gsap.set(copy, { autoAlpha: 1 }); }
-        else {
-          gsap.set(copy, { autoAlpha: 0 });
-          gsap.set(photos, { x: -window.innerWidth * .68, y: 35, autoAlpha: 0, rotation: -5 });
-          et.fromTo(copy, { y: 25, filter: "blur(3px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .65, ease: "power2.out" }, start - .35)
-            .to(photos, { x: 0, y: 0, autoAlpha: 1, rotation: 0, duration: 1.4, stagger: .18, ease: "power2.out" }, start - .65);
-        }
-        et.to(photos, { y: (j: number) => j % 2 ? -18 : -34, duration: 1.6, ease: "none" }, start + .45);
-        if (mobile) et.to(row, { x: -window.innerWidth * .48, duration: 1.8, ease: "none" }, start + .45);
-        if (i < 2) {
-          et.to(copy, { autoAlpha: 0, y: -35, filter: "blur(3px)", duration: .55 }, start + 1.85)
-            .to(photos, { x: window.innerWidth * .7, y: -70, autoAlpha: 0, rotation: 4, duration: 1.35, stagger: .15, ease: "power2.in" }, start + 1.9);
-        } else {
-          et.to(copy, { autoAlpha: 0, y: -30, duration: .6 }, 8.45).to(photos, { y: -55, autoAlpha: 0, duration: .85, stagger: .15 }, 8.45);
-        }
+      // Each chapter stays in document flow. No overlapping pinned panels or sideways exits.
+      gsap.utils.toArray<HTMLElement>(".chapter-panel").forEach(panel => {
+        gsap.fromTo(panel.querySelector(".chapter-copy"), { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: "power3.out", scrollTrigger: { trigger: panel, start: "top 84%", once: true } });
+        gsap.fromTo(panel.querySelectorAll(".journey-photo"), { x: mobile ? -12 : -48, y: 22, autoAlpha: 0 }, { x: 0, y: 0, autoAlpha: 1, duration: 1.35, stagger: .14, ease: "power3.out", scrollTrigger: { trigger: panel.querySelector(".chapter-images"), start: "top 91%", once: true } });
+        if (!mobile) gsap.fromTo(panel.querySelectorAll(".photo-window"), { y: 12 }, { y: -12, ease: "none", scrollTrigger: { trigger: panel, start: "top bottom", end: "bottom top", scrub: 1 } });
       });
-      et.to(".experience-progress b", { scaleX: 1, duration: 9.35, ease: "none" }, 0);
-
-      gsap.fromTo(".film-frame", { clipPath: mobile ? "inset(12% 5% 8% 5%)" : "inset(16% 18% 10% 18%)", y: 80 }, { clipPath: "inset(0% 0% 0% 0%)", y: 0, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top 90%", end: "top top", scrub: .9 } });
-      gsap.fromTo(".film-poster", { yPercent: -7, scale: 1.15 }, { yPercent: 7, scale: 1.05, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top bottom", end: "bottom top", scrub: 1 } });
-      gsap.fromTo(".film-cloud-top", { xPercent: -10, yPercent: -28 }, { xPercent: 8, yPercent: -70, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top bottom", end: "bottom top", scrub: 1.5 } });
-      gsap.fromTo(".film-cloud-bottom", { xPercent: 12, yPercent: 45 }, { xPercent: -8, yPercent: 0, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top top", end: "bottom 35%", scrub: 1.4 } });
+      gsap.fromTo(".film-frame", { clipPath: mobile ? "inset(4% 3% 4% 3%)" : "inset(8% 10% 8% 10%)", y: 35 }, { clipPath: "inset(0% 0% 0% 0%)", y: 0, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top 90%", end: "top 15%", scrub: .8 } });
       gsap.utils.toArray<HTMLElement>(".editorial-heading, .trips-heading h2, .people-heading h2, .founder-copy h2, .faq-intro h2, .booking-section h2, .final-copy h2, .collage-title h2").forEach(el => {
-        gsap.fromTo(el, { y: 48, autoAlpha: 0, clipPath: "inset(0 0 100% 0)", filter: "blur(3px)" }, { y: 0, autoAlpha: 1, clipPath: "inset(0 0 -4% 0)", filter: "blur(0px)", duration: 1.5, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 87%", toggleActions: "play none none reverse" } });
+        gsap.fromTo(el, { y: 28, autoAlpha: 0, clipPath: "inset(0 0 100% 0)" }, { y: 0, autoAlpha: 1, clipPath: "inset(0 0 -4% 0)", duration: 1.25, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%", once: true } });
       });
       gsap.utils.toArray<HTMLElement>(".experience-intro-copy p, .people-heading>div:last-child, .founder-copy>p, .founder-copy>.text-link, .founder-copy>.signature, .faq-intro>p, .booking-step").forEach(el => {
-        gsap.fromTo(el, { y: 25, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.25, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 91%" } });
+        gsap.fromTo(el, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 92%", once: true } });
       });
-      gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card img").forEach(el => {
-        gsap.fromTo(el, { yPercent: -7, scale: 1.16 }, { yPercent: 7, scale: 1.16, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: 1.1 } });
-      });
-      gsap.fromTo(".founder-photo", { clipPath: "inset(12% 8% 0% 8%)" }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none", scrollTrigger: { trigger: ".founder-section", start: "top 85%", end: "top 10%", scrub: 1 } });
-      const ct = gsap.timeline({ scrollTrigger: { trigger: ".collage-section", start: "top top", end: "bottom bottom", scrub: 1.1 } });
-      ct.fromTo(".collage-0", { scale: mobile ? 1.65 : 2.2 }, { scale: 1, duration: 1, ease: "power1.inOut" }, 0);
-      gsap.utils.toArray<HTMLElement>(".collage-image:not(.collage-0)").forEach((el,i)=>{
-        ct.fromTo(el, { x: i % 2 ? 130 : -130, y: i < 2 ? -90 : 160, scale: .75, autoAlpha: 0 }, { x: 0, y: 0, scale: 1, autoAlpha: 1, duration: .7, ease: "power2.out" }, .18 + i * .1);
-      });
-      gsap.fromTo(".path-fill", { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 80%", scrub: .8 } });
-      gsap.fromTo(".botanical", { scale: .65, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, stagger: .16, ease: "power1.out", scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 65%", scrub: .5 } });
-      gsap.fromTo(".final-cta>img", { yPercent: -12, scale: 1.1 }, { yPercent: 12, scale: 1.1, ease: "none", scrollTrigger: { trigger: ".final-cta", start: "top bottom", end: "bottom top", scrub: 1.1 } });
-      return () => { video?.removeEventListener("seeked", seek); video?.removeEventListener("loadedmetadata", seek); };
+      if (!mobile) {
+        gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card img").forEach(el => {
+          gsap.fromTo(el, { yPercent: -4, scale: 1.1 }, { yPercent: 4, scale: 1.1, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: 1 } });
+        });
+        const collage = gsap.timeline({ scrollTrigger: { trigger: ".collage-section", start: "top 20%", end: "bottom bottom", scrub: 1 } });
+        collage.fromTo(".collage-0", { scale: 1.12 }, { scale: 1, duration: 1, ease: "none" }, 0);
+        gsap.utils.toArray<HTMLElement>(".collage-image:not(.collage-0)").forEach((el, i) => {
+          collage.fromTo(el, { x: i % 2 ? 45 : -45, y: i < 2 ? -25 : 35, autoAlpha: 0 }, { x: 0, y: 0, autoAlpha: 1, duration: .7, ease: "power2.out" }, .12 + i * .08);
+        });
+      } else {
+        gsap.fromTo(".collage-image", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, stagger: .1, scrollTrigger: { trigger: ".collage-grid", start: "top 85%", once: true } });
+      }
+      const branch = gsap.timeline({ scrollTrigger: { trigger: ".booking-journey", start: "top 75%", end: "bottom 80%", scrub: .8 } });
+      branch.fromTo(".path-fill", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1, ease: "none" }, 0)
+        .fromTo(".branch-sprig .growth-line", { strokeDashoffset: 1, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: .18, stagger: .07, ease: "none" }, .12)
+        .fromTo(".branch-bloom", { scale: .75, opacity: 0, transformOrigin: "center center" }, { scale: 1, opacity: 1, duration: .2, stagger: .14, ease: "power2.out" }, .32);
+      if (!mobile) gsap.fromTo(".final-cta>img", { yPercent: -5, scale: 1.1 }, { yPercent: 5, scale: 1.1, ease: "none", scrollTrigger: { trigger: ".final-cta", start: "top bottom", end: "bottom top", scrub: 1 } });
+      return () => {
+        disposed = true;
+        video?.pause();
+        video?.removeEventListener("seeked", seek);
+        video?.removeEventListener("canplay", seek);
+        video?.removeEventListener("loadeddata", prime);
+        document.documentElement.classList.remove("journey-motion");
+      };
     });
-    const refresh = () => ScrollTrigger.refresh();
-    document.fonts.ready.then(refresh);
+    let mounted = true;
+    const refresh = () => { if (mounted) ScrollTrigger.refresh(); };
+    void document.fonts.ready.then(refresh);
     window.addEventListener("load", refresh);
-    return () => { ctx.revert(); window.removeEventListener("scroll", navUpdate); window.removeEventListener("load", refresh); document.documentElement.classList.remove("journey-motion"); };
+    return () => {
+      mounted = false;
+      media.revert();
+      window.removeEventListener("scroll", navUpdate);
+      window.removeEventListener("load", refresh);
+    };
   }, []);
 }

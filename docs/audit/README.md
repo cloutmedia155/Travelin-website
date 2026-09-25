@@ -1,7 +1,9 @@
-# Homepage review evidence
+# Homepage audit evidence
 
-- [Issues, repair prompts and client references](issues.md)
-- `reference/` contains the screenshots Olivia/the client supplied as design direction. They are labeled as references, not as old or new site states.
-- `after/homepage-published.jpg` is the publishing service's homepage thumbnail. It was captured during the intro line reveal and cannot prove animation smoothness.
-- The latest TypeScript and production build passed. This workspace did not provide a live interactive browser or phone viewport for a fresh screenshot pass, so no device test is claimed.
-- The group experience film was not watched or analyzed, per the client's earlier request.
+Read [the 12-issue repair record](issues.md) for each finding, exact client fix prompt, implementation and verification limits.
+
+- `before/`: client-provided screenshots from the 24 September 2026 audit and the earlier publication thumbnail `version-4-published-thumbnail.jpg`.
+- `after/`: desktop and emulated mobile browser captures of the revised local preview before publication. They do not prove frame rate or physical phone sound.
+- `reference/`: client-supplied design direction, not evidence of the Travel & LIV site's former or current state.
+
+The group film was not watched under the client's instruction. Real phone audio, intermediate gallery entrance and a direct policy link remain open for the reasons recorded in the audit.

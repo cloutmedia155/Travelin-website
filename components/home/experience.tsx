@@ -19,7 +19,6 @@ export function Experience() {
           <div className="chapter-copy"><span className="eyebrow">0{index + 1} / {chapter.name}</span><h3 id={`chapter-${index}`}>{chapter.title}</h3><p>{chapter.text}</p></div>
           <div className="chapter-images">{chapter.images.map((img, j) => <figure className={`journey-photo photo-${j}`} key={img}><div className="photo-window"><img src={`/media/${img}.webp`} alt={chapter.alts[j]} loading="lazy" /></div><figcaption>{chapter.labels[j]}</figcaption></figure>)}</div>
         </section>)}
-        <div className="experience-progress"><span className="experience-current">01</span><i><b /></i><span>03</span><small>The stay · The days out · The people</small></div>
       </div>
     </div>
   </section>;
