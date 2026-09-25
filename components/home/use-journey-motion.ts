@@ -97,7 +97,7 @@ export function useJourneyMotion() {
         }, {
           opacity: 1,
           filter: "blur(0px)",
-          duration: 0.8,
+          duration: 1,
           ease: "power2.out",
           stagger: 0.1,
           scrollTrigger: {
