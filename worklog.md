@@ -318,4 +318,20 @@ if (expIntroP) {
 }
 ```
 
+---
+
+### 11. `app/page.tsx` (Final CTA Headline Formatting)
+**Description:** Consolidated the opening clause of the final CTA section heading onto a single line by removing the line break `<br />`.
+
+#### Change A: Remove `<br />` from "You’ll either be on the next trip…"
+* **Before:**
+```tsx
+<h2>You’ll either be on<br />the next trip…<br /><em>or watching it on Instagram.</em></h2>
+```
+* **After:**
+```tsx
+<h2>You’ll either be on the next trip…<br /><em>or watching it on Instagram.</em></h2>
+```
+
+
 
