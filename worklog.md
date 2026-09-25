@@ -384,3 +384,16 @@ gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card
 ```css
 .people-section{background:#edf0e9;padding:0 0 100px}.story-cards{gap:25px;max-width:1160px}.story-card{will-change:transform,opacity,filter}.story-card h3{font-size:30px}
 ```
+
+---
+
+### 13. `components/home/use-journey-motion.ts` (Vine Sprout Effect on Booking Journey Path)
+**Description:** Transformed the booking journey curved line into a living vine. As the user scrolls and the SVG path draws forward, 26 tiny botanical sprouts grow on alternating sides of the curve — like leaves on a tree branch. Each sprout consists of a stem line that grows outward from the path, followed by a small flower (every 3rd sprout, 5-petal with center) or leaf (remaining sprouts, teardrop shape oriented along the stem) appearing at the tip. The entire sequence is synced to a GSAP ScrollTrigger timeline with `scrub: 0.8` matching the path draw, so sprouts progressively appear as the line reveals itself.
+
+#### Key Details:
+- **26 sprouts** sampled at evenly-spaced intervals along the SVG path via `getPointAtLength()`
+- **Alternating sides**: odd sprouts branch left, even sprouts branch right (perpendicular to the path tangent)
+- **Natural variation**: stem length varies randomly between 12–21 SVG units
+- **Two-phase animation per sprout**: stem grows from path → flower/leaf fades in at tip
+- **Flower palette**: petals `#a6b097`, centers `#7d8d66`, leaves `#78895b`
+- **Cleanup**: all dynamically created SVG elements are removed on component unmount
