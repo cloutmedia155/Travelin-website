@@ -1,11 +1,14 @@
 /* ==========================================================================
    Travel & LIV Collective — About Page Stylesheet
-   Editorial Monograph Aesthetic:
-   - High visual priority: photography takes center stage
-   - Concise, punchy micro-copy (no dense reading fatigue)
-   - Generous breathing room: 130px–150px section padding (80px mobile)
-   - 1160px architectural wrap
-   - Staggered triptych card offsets & lightly tilted Polaroid frames
+   Homepage-Aligned Visual Architecture:
+   - High visual priority: photography dominates the screen
+   - Minimalist micro-copy (no wall-of-text reading fatigue)
+   - Generous breathing space: 150px–160px section padding
+   - 1160px architectural wrap container (.wrap)
+   - 3 Chapter Stelae with dual staggered photos
+   - Full-bleed story cards triptych matching homepage .story-cards
+   - Architectural ledger list with hairline dividers
+   - Film section with 3-layer cloud immersion
    ========================================================================== */
 
 .about-page {
@@ -28,7 +31,7 @@
 
 .about-page p {
   font-size: 15px;
-  line-height: 1.8;
+  line-height: 1.85;
   margin: 0;
 }
 
@@ -41,7 +44,7 @@
 }
 
 .about-page h3 {
-  font-size: clamp(26px, 2.8vw, 40px);
+  font-size: clamp(26px, 2.8vw, 42px);
   line-height: 1.12;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -314,430 +317,493 @@
 }
 
 /* --------------------------------------------------------------------------
-   Section 2: Olivia — How It Started
-   Editorial Monograph Split: High-end portrait, crisp punchy text, badges
+   Section 2: Olivia — How It Started (High-Fashion Monograph Spread)
    -------------------------------------------------------------------------- */
-.about-story {
+.about-founder-spread {
   position: relative;
-  padding: 140px 0 145px;
+  padding: 150px 0 160px;
   background: var(--about-cream);
 }
 
-.about-story-wrap {
+.about-founder-wrap {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  gap: 10%;
+  gap: 12%;
   align-items: center;
 }
 
-.about-story-media {
+.about-founder-visual {
   position: relative;
-  min-height: 520px;
+  min-height: 540px;
 }
 
-.about-portrait-card {
+.about-founder-portrait {
   position: relative;
-  width: 76%;
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 20px 48px rgba(38, 60, 50, 0.08);
-  transform: rotate(-2.5deg);
+  width: 74%;
   background: var(--about-white);
-  padding: 10px 10px 18px;
+  padding: 12px 12px 20px;
+  border-radius: 2px;
+  box-shadow: 0 24px 50px rgba(38, 60, 50, 0.08);
+  transform: rotate(-3deg);
 }
 
-.about-portrait-window {
-  height: 420px;
+.founder-image-window {
+  height: 440px;
   overflow: hidden;
 }
 
-.about-portrait-window img {
+.founder-image-window img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 40%;
 }
 
-.about-portrait-card figcaption {
-  font: italic 13.5px var(--serif);
+.about-founder-portrait figcaption {
+  font: italic 14px var(--serif);
   color: var(--about-muted);
-  margin-top: 12px;
-  padding-left: 2px;
+  margin-top: 14px;
 }
 
-.about-group-snap {
+.about-founder-snap {
   position: absolute;
-  right: -3%;
-  bottom: -2%;
-  width: 58%;
+  right: -5%;
+  bottom: 0;
+  width: 62%;
   background: var(--about-white);
+  padding: 10px 10px 16px;
   border-radius: 2px;
-  padding: 8px 8px 14px;
-  box-shadow: 0 16px 36px rgba(38, 60, 50, 0.1);
-  transform: rotate(4deg);
+  box-shadow: 0 18px 40px rgba(38, 60, 50, 0.12);
+  transform: rotate(5deg);
 }
 
-.about-group-snap img {
+.about-founder-snap img {
   width: 100%;
-  height: 190px;
+  height: 200px;
   object-fit: cover;
 }
 
-.about-group-snap figcaption {
-  font: italic 12.5px var(--serif);
+.about-founder-snap figcaption {
+  font: italic 13px var(--serif);
   color: var(--about-muted);
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
-.about-story-content {
+.about-handwriting {
+  position: absolute;
+  right: 2%;
+  top: -15px;
+  font: italic 26px/1 var(--serif);
+  color: var(--about-muted);
+  transform: rotate(6deg);
+}
+
+.about-founder-narrative {
   max-width: 480px;
 }
 
-.about-story-content h2 {
+.about-founder-narrative h2 {
   margin-bottom: 28px;
 }
 
-.about-lead {
+.about-founder-lead {
   font-size: 16px !important;
   color: var(--about-green);
   line-height: 1.8 !important;
-  margin-bottom: 16px !important;
+  margin-bottom: 18px !important;
 }
 
-.about-sub {
+.about-founder-sub {
   font-size: 14.5px !important;
   color: var(--about-muted);
   line-height: 1.85 !important;
-  margin-bottom: 34px !important;
+  margin-bottom: 38px !important;
 }
 
-.about-badges {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(38, 60, 50, 0.12);
-}
-
-.about-badge-item {
+.about-stats-ledger {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  flex-direction: column;
+  border-top: 1px solid rgba(38, 60, 50, 0.14);
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 36px 1fr;
   gap: 16px;
-  padding-bottom: 12px;
+  padding: 16px 0;
   border-bottom: 1px solid rgba(38, 60, 50, 0.08);
 }
 
-.about-badge-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.stat-num {
+  font: 500 11px var(--sans);
+  letter-spacing: 0.12em;
+  color: var(--about-muted);
+  padding-top: 2px;
 }
 
-.about-badge-item strong {
-  font: 500 13px/1 var(--sans);
+.stat-text strong {
+  display: block;
+  font: 500 13.5px var(--sans);
   letter-spacing: 0.02em;
   color: var(--about-green);
+  margin-bottom: 3px;
 }
 
-.about-badge-item span {
+.stat-text small {
+  display: block;
   font: italic 13px var(--serif);
   color: var(--about-muted);
 }
 
 /* --------------------------------------------------------------------------
-   Section 3: The Trip Approach (The 3 Chapter Stelae)
-   Asymmetric 54% / 40% flow with generous 140px vertical gaps
+   Section 3: The Trip Approach (3 Chapter Stelae with Dual Photos)
    -------------------------------------------------------------------------- */
-.about-approach {
+.about-chapters {
   position: relative;
-  padding: 140px 0 150px;
+  padding: 150px 0 160px;
   background: var(--about-cream);
   border-top: 1px solid rgba(38, 60, 50, 0.08);
 }
 
-.about-approach-intro {
-  margin-bottom: 110px;
+.about-chapters-intro {
+  margin-bottom: 120px;
 }
 
-.about-approach-flow {
+.about-chapters-flow {
   display: flex;
   flex-direction: column;
-  gap: 140px;
+  gap: 160px;
 }
 
-.about-stela {
+.about-chapter-stela {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 10%;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 12%;
   align-items: center;
 }
 
-.about-stela.stela-right {
-  grid-template-columns: 1fr 1.25fr;
+.about-chapter-stela.chapter-right {
+  grid-template-columns: 1fr 1.35fr;
 }
 
-.about-stela.stela-right .about-stela-photo {
+.about-chapter-stela.chapter-right .chapter-photos {
   order: 2;
 }
 
-.about-stela.stela-right .about-stela-copy {
+.about-chapter-stela.chapter-right .chapter-meta {
   order: 1;
 }
 
-.about-stela-photo {
+.chapter-photos {
   position: relative;
+  min-height: 440px;
 }
 
-.about-stela-window {
-  overflow: hidden;
-  height: 400px;
+.photo-primary {
+  position: relative;
+  width: 78%;
+  background: var(--about-white);
+  padding: 10px 10px 18px;
   border-radius: 2px;
-  box-shadow: 0 20px 45px rgba(38, 60, 50, 0.08);
+  box-shadow: 0 20px 48px rgba(38, 60, 50, 0.08);
 }
 
-.stela-left .about-stela-window {
-  transform: rotate(-2.5deg);
+.chapter-left .photo-primary {
+  transform: rotate(-3deg);
 }
 
-.stela-right .about-stela-window {
-  transform: rotate(2.5deg);
+.chapter-right .photo-primary {
+  transform: rotate(3deg);
 }
 
-.about-stela-window img {
+.photo-primary .photo-window {
+  height: 380px;
+  overflow: hidden;
+}
+
+.photo-primary figcaption,
+.photo-secondary figcaption {
+  font: italic 13.5px var(--serif);
+  color: var(--about-muted);
+  margin-top: 12px;
+}
+
+.photo-secondary {
+  position: absolute;
+  right: -4%;
+  bottom: -20px;
+  width: 52%;
+  background: var(--about-white);
+  padding: 8px 8px 14px;
+  border-radius: 2px;
+  box-shadow: 0 16px 38px rgba(38, 60, 50, 0.1);
+}
+
+.chapter-left .photo-secondary {
+  transform: rotate(5deg);
+}
+
+.chapter-right .photo-secondary {
+  transform: rotate(-4deg);
+}
+
+.photo-secondary .photo-window {
+  height: 200px;
+  overflow: hidden;
+}
+
+.photo-window img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.about-stela-photo figcaption {
-  font: italic 14px/1.4 var(--serif);
-  color: var(--about-muted);
-  margin-top: 14px;
-  padding-left: 4px;
-}
-
-.about-stela-copy {
+.chapter-meta {
+  position: relative;
   max-width: 440px;
 }
 
-.about-stela-tag {
+.chapter-watermark {
+  position: absolute;
+  right: 0;
+  top: -45px;
+  font: 400 80px/1 var(--serif);
+  color: var(--about-green);
+  opacity: 0.12;
+  user-select: none;
+  pointer-events: none;
+}
+
+.chapter-tag {
   display: block;
   font: 500 10.5px/1.6 var(--sans);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   color: var(--about-muted);
   margin-bottom: 18px;
 }
 
-.about-stela-copy h3 {
+.chapter-meta h3 {
   margin-bottom: 20px;
 }
 
-.about-stela-copy p {
-  color: var(--about-muted);
+.chapter-meta p {
   font-size: 15px;
+  color: var(--about-muted);
+  line-height: 1.85;
   margin-bottom: 24px;
 }
 
-.about-stela-pill {
+.chapter-pill {
   display: inline-block;
-  font: 500 11px var(--sans);
-  letter-spacing: 0.06em;
+  font: 500 10.5px var(--sans);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--about-green);
   background: rgba(38, 60, 50, 0.05);
-  border: 1px solid rgba(38, 60, 50, 0.15);
+  border: 1px solid rgba(38, 60, 50, 0.16);
   border-radius: 9999px;
   padding: 6px 16px;
 }
 
 /* --------------------------------------------------------------------------
-   Section 4: The Collective (Staggered Triptych)
-   Quieter Sage canvas (#edf0e9) with cards lifted at different heights
+   Section 4: The Collective (Full-Bleed Story Cards Triptych)
+   Matches Homepage .story-cards with aspect-ratio: .76 and dark green gradient
    -------------------------------------------------------------------------- */
-.about-community {
+.about-collective {
   position: relative;
   background: var(--about-sage);
-  padding: 140px 0 160px;
+  padding: 150px 0 165px;
 }
 
-.about-community-intro {
-  margin-bottom: 80px;
+.about-collective-intro {
+  margin-bottom: 85px;
 }
 
-.about-community-sub {
+.about-collective-sub {
   margin-top: 18px;
   font-size: 15px;
   color: var(--about-muted);
 }
 
-.about-triptych {
+.about-story-triptych {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 36px;
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
-.about-card {
-  background: var(--about-cream);
-  border: 1px solid rgba(38, 60, 50, 0.1);
-  border-radius: 2px;
+.about-story-card {
+  position: relative;
+  aspect-ratio: 0.74;
   overflow: hidden;
-  box-shadow: 0 14px 34px rgba(38, 60, 50, 0.05);
+  background: #263c32;
+  border-radius: 2px;
+  box-shadow: 0 18px 45px rgba(38, 60, 50, 0.1);
+  margin: 0;
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.card-lift-1 {
-  transform: rotate(-2deg);
+.card-mid {
+  transform: translateY(35px);
 }
 
-.card-lift-2 {
-  margin-top: 55px;
-  transform: rotate(2.5deg);
+.about-story-card:hover {
+  transform: translateY(-6px);
 }
 
-.card-lift-3 {
-  margin-top: 25px;
-  transform: rotate(-1.5deg);
+.card-mid:hover {
+  transform: translateY(29px);
 }
 
-.about-card:hover {
-  transform: translateY(-5px) scale(1.01);
-}
-
-.about-card-window {
-  height: 270px;
-  overflow: hidden;
-}
-
-.about-card-window img {
+.about-story-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  object-position: 50% 40%;
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.about-card:hover .about-card-window img {
+.about-story-card:hover img {
   transform: scale(1.05);
 }
 
-.about-card figcaption {
-  padding: 26px 22px 28px;
+.story-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(19, 41, 27, 0.88) 0%, rgba(19, 41, 27, 0.3) 55%, transparent 100%);
+  pointer-events: none;
 }
 
-.card-tag {
+.about-story-card figcaption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 32px;
+  z-index: 2;
+  color: var(--about-white);
+}
+
+.story-card-num {
   display: block;
-  font: 500 9.5px var(--sans);
+  font: 500 12px var(--sans);
   letter-spacing: 0.16em;
-  color: var(--about-muted);
+  color: rgba(255, 253, 245, 0.75);
+  margin-bottom: 14px;
+}
+
+.about-story-card h3 {
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.1;
+  color: var(--about-white);
   margin-bottom: 12px;
 }
 
-.about-card h3 {
-  font-size: 24px;
-  margin-bottom: 12px;
-}
-
-.card-quote {
-  font: italic 14px/1.7 var(--serif) !important;
-  color: var(--about-green);
-}
-
-.card-caption {
+.about-story-card p {
   font-size: 13.5px !important;
-  color: var(--about-muted);
-  line-height: 1.7 !important;
+  line-height: 1.75 !important;
+  color: rgba(255, 253, 245, 0.85);
 }
 
 /* --------------------------------------------------------------------------
    Section 5: Practical Care & Organization (Architectural Ledger)
    -------------------------------------------------------------------------- */
-.about-organization {
+.about-logistics {
   position: relative;
-  padding: 140px 0 150px;
+  padding: 150px 0 160px;
   background: var(--about-cream);
 }
 
-.about-org-stage {
+.about-logistics-stage {
   display: grid;
   grid-template-columns: 1fr 1.25fr;
   gap: 12%;
   align-items: start;
 }
 
-.about-org-visual {
+.about-logistics-visual {
   position: sticky;
   top: 100px;
 }
 
-.about-org-frame {
+.about-logistics-photo {
   background: var(--about-white);
   padding: 10px 10px 16px;
   border-radius: 2px;
   box-shadow: 0 18px 45px rgba(38, 60, 50, 0.08);
+  margin: 0;
 }
 
-.about-org-window {
+.logistics-image-window {
   height: 380px;
   overflow: hidden;
 }
 
-.about-org-window img {
+.logistics-image-window img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
 }
 
-.about-org-frame figcaption {
+.about-logistics-photo figcaption {
   font: italic 13.5px var(--serif);
   color: var(--about-muted);
   margin-top: 12px;
 }
 
-.about-org-stat-box {
+.about-logistics-card {
   margin-top: 24px;
-  padding: 22px 24px;
+  padding: 24px 26px;
   background: var(--about-white);
   border: 1px solid rgba(38, 60, 50, 0.12);
   border-radius: 2px;
 }
 
-.stat-label {
+.card-kicker {
   display: block;
-  font: 500 11px var(--sans);
-  letter-spacing: 0.14em;
+  font: 500 10.5px var(--sans);
+  letter-spacing: 0.16em;
   color: var(--about-green);
   margin-bottom: 8px;
 }
 
-.about-org-stat-box p {
+.about-logistics-card p {
   font-size: 13px !important;
   color: var(--about-muted);
-  margin-bottom: 12px !important;
+  margin-bottom: 14px !important;
 }
 
-.about-org-content {
+.about-logistics-card .text-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12.5px;
+  border-bottom: 1px solid rgba(38, 60, 50, 0.25);
+  padding-bottom: 3px;
+  color: var(--about-green);
+}
+
+.about-logistics-content {
   max-width: 520px;
 }
 
-.about-org-content h2 {
+.about-logistics-content h2 {
   margin-bottom: 40px;
 }
 
-.about-ledger {
+.about-ledger-list {
   display: flex;
   flex-direction: column;
 }
 
-.ledger-row {
+.about-ledger-row {
   display: grid;
   grid-template-columns: 45px 1fr;
   gap: 20px;
-  padding: 28px 0;
+  padding: 30px 0;
   border-top: 1px solid rgba(38, 60, 50, 0.14);
 }
 
-.ledger-row:last-child {
+.about-ledger-row:last-child {
   border-bottom: 1px solid rgba(38, 60, 50, 0.14);
 }
 
@@ -748,25 +814,174 @@
   padding-top: 4px;
 }
 
-.ledger-body h4 {
-  font: 500 19px/1.2 var(--serif);
+.ledger-detail h4 {
+  font: 500 20px/1.2 var(--serif);
   letter-spacing: -0.01em;
   color: var(--about-green);
   margin: 0 0 8px;
 }
 
-.ledger-body p {
-  font-size: 14px !important;
+.ledger-detail p {
+  font-size: 14.5px !important;
   color: var(--about-muted);
   line-height: 1.75 !important;
 }
 
 /* --------------------------------------------------------------------------
-   Section 6: The Invitation
+   Section 6: Film & Atmospheric Clouds
+   Matches Homepage .film-scroll with cloud swell & clip-path expand
+   -------------------------------------------------------------------------- */
+.about-film-stage {
+  position: relative;
+  height: 100svh;
+  min-height: 650px;
+  background: var(--about-green);
+  overflow: hidden;
+}
+
+.about-film-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.about-film-element {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.about-film-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 43, 40, 0.42);
+}
+
+.about-film-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--about-white);
+  padding: 70px 20px;
+  z-index: 2;
+}
+
+.about-film-content .about-label {
+  color: rgba(255, 253, 245, 0.75);
+  margin-bottom: 24px;
+}
+
+.about-film-content h2 {
+  font-size: clamp(48px, 5.5vw, 80px);
+  line-height: 1.05;
+}
+
+.about-watch-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: none;
+  color: inherit;
+  font-size: 13px;
+  margin-top: 36px;
+  padding: 8px;
+  letter-spacing: 0.04em;
+}
+
+.about-watch-btn > span {
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(255, 253, 245, 0.6);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(8px);
+  transition: background 0.3s;
+}
+
+.about-watch-btn:hover > span {
+  background: rgba(255, 253, 245, 0.25);
+}
+
+.about-ambient-btn {
+  position: absolute;
+  bottom: 8%;
+  right: 6%;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 253, 245, 0.6);
+  border-radius: 50%;
+  background: rgba(22, 61, 48, 0.35);
+  color: white;
+  z-index: 3;
+}
+
+.about-motion .about-film-stage {
+  height: 180svh;
+}
+
+.about-motion .about-film-viewport {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+}
+
+.about-clouds {
+  display: none;
+}
+
+.about-motion .about-clouds {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.about-clouds img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  min-width: 100%;
+  transform: translateX(-50%);
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.about-cloud-back {
+  height: 100%;
+}
+
+.about-cloud-front {
+  height: 80%;
+}
+
+.about-cloud-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 55%;
+  background: linear-gradient(transparent, var(--about-cream) 70%);
+}
+
+/* --------------------------------------------------------------------------
+   Section 7: The Invitation
    -------------------------------------------------------------------------- */
 .about-invitation {
   position: relative;
-  min-height: 800px;
+  min-height: 820px;
   display: grid;
   place-items: center;
   padding: 160px 7% 130px;
@@ -920,7 +1135,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Responsive Media Queries
+   Responsive Breakpoints
    -------------------------------------------------------------------------- */
 @media (min-width: 701px) and (max-width: 1050px) {
   .about-page .wrap {
@@ -929,37 +1144,37 @@
   .about-header nav {
     gap: 18px;
   }
-  .about-story-wrap {
+  .about-founder-wrap {
     gap: 6%;
   }
-  .about-story-media {
+  .about-founder-visual {
     min-height: 440px;
   }
-  .about-portrait-window {
-    height: 340px;
+  .founder-image-window {
+    height: 350px;
   }
-  .about-stela {
+  .about-chapter-stela {
     gap: 6%;
   }
-  .about-stela-window {
-    height: 320px;
+  .photo-primary .photo-window {
+    height: 300px;
   }
-  .about-triptych {
+  .about-story-triptych {
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
   }
-  .card-lift-2 {
-    margin-top: 0;
+  .card-mid {
+    transform: none;
   }
-  .card-lift-3 {
+  .about-story-card:last-child {
     grid-column: span 2;
     max-width: 440px;
     margin: 20px auto 0;
   }
-  .about-org-stage {
+  .about-logistics-stage {
     gap: 6%;
   }
-  .about-org-window {
+  .logistics-image-window {
     height: 320px;
   }
   .about-footer nav {
@@ -1050,112 +1265,127 @@
   }
 
   /* Section 2: Story */
-  .about-story {
-    padding: 80px 0 85px;
+  .about-founder-spread {
+    padding: 85px 0 90px;
   }
-  .about-story-wrap {
+  .about-founder-wrap {
     display: flex;
     flex-direction: column;
     gap: 40px;
   }
-  .about-story-media {
+  .about-founder-visual {
     min-height: 320px;
     max-width: 340px;
     width: 100%;
     margin: 0 auto;
   }
-  .about-portrait-card {
+  .about-founder-portrait {
     width: 78%;
   }
-  .about-portrait-window {
+  .founder-image-window {
     height: 280px;
   }
-  .about-group-snap {
+  .about-founder-snap {
     width: 66%;
   }
-  .about-group-snap img {
+  .about-founder-snap img {
     height: 140px;
   }
-  .about-story-content h2 {
+  .about-founder-narrative h2 {
     font-size: 34px;
     margin-bottom: 18px;
   }
 
   /* Section 3: Approach */
-  .about-approach {
+  .about-chapters {
     padding: 85px 0 90px;
   }
-  .about-approach-intro {
+  .about-chapters-intro {
     margin-bottom: 50px;
   }
-  .about-approach-flow {
+  .about-chapters-flow {
     gap: 65px;
   }
-  .about-stela,
-  .about-stela.stela-right {
+  .about-chapter-stela,
+  .about-chapter-stela.chapter-right {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 24px;
   }
-  .about-stela.stela-right .about-stela-photo {
+  .about-chapter-stela.chapter-right .chapter-photos {
     order: 1;
   }
-  .about-stela.stela-right .about-stela-copy {
+  .about-chapter-stela.chapter-right .chapter-meta {
     order: 2;
   }
-  .about-stela-window {
-    height: 280px;
+  .photo-primary .photo-window {
+    height: 260px;
   }
-  .about-stela-copy h3 {
-    font-size: 26px;
+  .photo-secondary {
+    display: none;
+  }
+  .photo-primary {
+    width: 100%;
+    transform: none !important;
+  }
+  .chapter-meta h3 {
+    font-size: 28px;
     margin-bottom: 12px;
   }
 
-  /* Section 4: Community */
-  .about-community {
+  /* Section 4: Collective */
+  .about-collective {
     padding: 85px 0 95px;
   }
-  .about-community-intro {
+  .about-collective-intro {
     margin-bottom: 50px;
   }
-  .about-triptych {
+  .about-story-triptych {
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 28px;
   }
-  .card-lift-1,
-  .card-lift-2,
-  .card-lift-3 {
-    margin-top: 0;
+  .card-mid {
     transform: none;
   }
-  .about-card-window {
-    height: 230px;
+  .about-story-card {
+    aspect-ratio: 0.85;
   }
 
-  /* Section 5: Organization */
-  .about-organization {
+  /* Section 5: Logistics */
+  .about-logistics {
     padding: 85px 0 90px;
   }
-  .about-org-stage {
+  .about-logistics-stage {
     display: flex;
     flex-direction: column;
     gap: 40px;
   }
-  .about-org-visual {
+  .about-logistics-visual {
     position: static;
     max-width: 400px;
     margin: 0 auto;
     width: 100%;
   }
-  .about-org-window {
+  .logistics-image-window {
     height: 260px;
   }
-  .ledger-row {
-    padding: 20px 0;
+  .about-ledger-row {
+    padding: 22px 0;
   }
 
-  /* Section 6: Invitation */
+  /* Section 6: Film */
+  .about-film-stage {
+    min-height: 580px;
+  }
+  .about-motion .about-film-stage {
+    height: 160svh;
+  }
+  .about-film-content h2 {
+    font-size: 42px;
+  }
+
+  /* Section 7: Invitation */
   .about-invitation {
     min-height: 640px;
     padding: 160px 6% 110px;
@@ -1215,17 +1445,17 @@
   .about-opening-copy h1 {
     font-size: 38px;
   }
-  .about-story-content h2 {
+  .about-founder-narrative h2 {
+    font-size: 28px;
+  }
+  .about-chapters-intro h2 {
     font-size: 30px;
   }
-  .about-approach-intro h2 {
-    font-size: 32px;
-  }
-  .about-community-intro h2 {
-    font-size: 32px;
+  .about-collective-intro h2 {
+    font-size: 30px;
   }
   .about-invitation-copy h2 {
-    font-size: 36px;
+    font-size: 34px;
   }
 }
 
@@ -1242,16 +1472,17 @@
     background: rgba(247, 248, 244, 0.94);
     color: var(--about-green);
   }
-  .about-portrait-card,
-  .about-group-snap,
-  .stela-left .about-stela-window,
-  .stela-right .about-stela-window,
-  .card-lift-1,
-  .card-lift-2,
-  .card-lift-3,
+  .about-founder-portrait,
+  .about-founder-snap,
+  .photo-primary,
+  .photo-secondary,
+  .card-mid,
   .memory-left,
   .memory-right {
     transform: none !important;
+  }
+  .about-ambient-btn {
+    display: none;
   }
 }
 
