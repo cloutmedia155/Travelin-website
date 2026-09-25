@@ -312,7 +312,7 @@ if (expIntroP) {
     scrollTrigger: {
       trigger: expIntroP,
       start: "top 80%",
-      toggleActions: "play none none none"
+      toggleActions: "restart reverse restart reverse"
     }
   });
 }
