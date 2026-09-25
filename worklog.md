@@ -423,3 +423,28 @@ gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card
 - **`app/page.tsx`**: Removed `Leaf` and `Flower2` from lucide-react imports; removed all 4 `.botanical` divs.
 - **`components/home/use-journey-motion.ts`**: Removed `.botanical` GSAP animation setup.
 
+---
+
+### 16. Cloud Animations & Transitions Deep Audit & Overhaul (`app/journey.css`, `components/home/use-journey-motion.ts`, `components/home/flower-symbol.tsx`)
+**Description:** Conducted a comprehensive browser-level audit of both cloud systems on the homepage using headless Chrome CDP with live DOM coordinate telemetry and high-resolution screenshots. Identified and eliminated aspect ratio distortion, horizontal clipping gaps, upside-down inverted cloud textures, CTA button collisions, and scrub desynchronization.
+
+#### Flaws Identified & Fixed:
+1. **Aspect Ratio Flattening & Horizontal Cut-off (Hero Transition):**
+   - *Previous:* `.hero-clouds img` had `object-fit: fill` combined with `left: -10%; width: 120%;`, flattening high-resolution 1.6:1 and 2.6:1 textures into distorted 7:1 shapes and creating an unstyled blank gap on the right viewport margin (x = 1200px to 1440px).
+   - *Fix:* Replaced with full-bleed `width: 100vw; min-width: 100%; left: 50%; transform: translateX(-50%); object-fit: cover; object-position: center bottom; overflow: hidden;`.
+2. **Hero CTA Collision & Premature Cloud Leakage:**
+   - *Previous:* `.hero-clouds` was set to `z-index: 5` while `.hero-copy` was `z-index: 3`, and cloud elements had initial opacity > 0, causing cloud fringes to bleed into the hero and rise over the "Find Your Trip" CTA button.
+   - *Fix:* Added `.hero-cloud-back`, `.hero-cloud-front`, and `.cloud-floor` to `gsap.set(..., { autoAlpha: 0 })` on mount. Re-sequenced hero timeline so `.hero-action` fades out gently at progress `0.79` before clouds swell in from `0.80` to `1.0`.
+3. **Inverted Upside-Down Clouds (Film Section):**
+   - *Previous:* `.film-cloud-top` used `transform: rotate(180deg)` with `opacity: 0.8`, creating an upside-down stalactite appearance that felt unnatural.
+   - *Fix:* Removed the 180° rotation; converted to an upright atmospheric mist vignette with `opacity: 0.4`, `object-fit: cover`, and soft gradient mask `-webkit-mask-image: linear-gradient(180deg, black 20%, transparent 100%)`.
+4. **Button & Ambient Control Obscuration (Film Section):**
+   - *Previous:* `.film-cloud-bottom` height was 33% (desktop) / 25% (mobile), overlapping the center "Watch the experience" CTA and ambient sound control.
+   - *Fix:* Restrained `.film-cloud-bottom` height to `24%` (desktop) and `18%` (mobile) with `mask-image: linear-gradient(0deg, black 40%, transparent 100%)`.
+5. **Scrub Physics Harmonization:**
+   - *Previous:* Film clouds used `scrub: 1.5` and `scrub: 1.4` while the film frame scrubbed at `0.9` and poster at `1.0`, creating disjointed parallax lag.
+   - *Fix:* Harmonized both film clouds to `scrub: 1.0`, keeping the foreground mist perfectly in sync with the video expand motion.
+6. **Live Production & Build Verification:**
+   - Pushed commit `fd78116` to GitHub `main`.
+   - Verified automated Vercel build and live deployment `https://travelin-website.vercel.app` with Chrome CDP screen captures confirming pristine alignment and smooth transitions.
+
