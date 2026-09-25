@@ -84,7 +84,8 @@ export function GlobePolaroids({
       if (width === 0 || globe || destroyed) return
 
       try {
-        const cobeMod = await import("cobe")
+        // @ts-expect-error dynamic ESM import
+        const cobeMod = await import(/* webpackIgnore: true */ "https://esm.sh/cobe@0.6.4")
         const createGlobe = cobeMod.default || cobeMod
         if (destroyed || !canvasRef.current) return
 
