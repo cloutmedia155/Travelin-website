@@ -1,16 +1,11 @@
 /* ==========================================================================
    Travel & LIV Collective — About Page Stylesheet
-   Strictly adheres to:
-   - docs/design-and-copy.md
-   - docs/psychology-and-ux-framework.md
-   - Section Spacing & Layout Architecture:
-     * Desktop Container: 1160px (.wrap)
-     * Main Section Padding: 125px–145px top/bottom (80px–85px mobile)
-     * Heading -> Supporting Text: 28px–32px
-     * Paragraph Spacing: 18px
-     * Editorial text width: max 480px–520px (45–60 characters)
-     * Typography: Cormorant Garamond (Serif) + Manrope (Sans)
-     * Palette: Cream (#f7f8f4), Forest Green (#263c32), Muted Olive (#69756c), Sage (#edf0e9)
+   Editorial Monograph Aesthetic:
+   - High visual priority: photography takes center stage
+   - Concise, punchy micro-copy (no dense reading fatigue)
+   - Generous breathing room: 130px–150px section padding (80px mobile)
+   - 1160px architectural wrap
+   - Staggered triptych card offsets & lightly tilted Polaroid frames
    ========================================================================== */
 
 .about-page {
@@ -33,30 +28,33 @@
 
 .about-page p {
   font-size: 15px;
-  line-height: 1.85;
+  line-height: 1.8;
+  margin: 0;
 }
 
 .about-page h2 {
-  font-size: clamp(36px, 3.8vw, 58px);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-size: clamp(38px, 4.2vw, 62px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
   font-weight: 400;
+  margin: 0;
 }
 
 .about-page h3 {
-  font-size: clamp(26px, 2.6vw, 38px);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  font-size: clamp(26px, 2.8vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   font-weight: 400;
+  margin: 0;
 }
 
 .about-label {
   display: block;
   font: 500 10px/1.6 var(--sans);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--about-muted);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .about-line-mask {
@@ -98,7 +96,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Site Header (Sticky with blur background when scrolled)
+   Header Navigation
    -------------------------------------------------------------------------- */
 .about-header {
   position: fixed;
@@ -141,7 +139,7 @@
   justify-self: end;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .about-header-watch {
@@ -187,12 +185,8 @@
   border-color: rgba(38, 60, 50, 0.2);
 }
 
-.about-header-ink .about-header-watch:hover {
-  background: rgba(38, 60, 50, 0.12);
-}
-
 /* --------------------------------------------------------------------------
-   Section 1: The Company — Opening (Hero Stage)
+   Section 1: The Opening (Hero)
    -------------------------------------------------------------------------- */
 .about-opening {
   position: relative;
@@ -321,11 +315,11 @@
 
 /* --------------------------------------------------------------------------
    Section 2: Olivia — How It Started
-   Asymmetric 1:1.2 layout on desktop, readable text together, badges
+   Editorial Monograph Split: High-end portrait, crisp punchy text, badges
    -------------------------------------------------------------------------- */
 .about-story {
   position: relative;
-  padding: 135px 0 140px;
+  padding: 140px 0 145px;
   background: var(--about-cream);
 }
 
@@ -343,321 +337,330 @@
 
 .about-portrait-card {
   position: relative;
-  width: 78%;
-  height: 440px;
+  width: 76%;
   border-radius: 2px;
   overflow: hidden;
-  box-shadow: 0 18px 45px rgba(38, 60, 50, 0.08);
-  transform: rotate(-3deg);
+  box-shadow: 0 20px 48px rgba(38, 60, 50, 0.08);
+  transform: rotate(-2.5deg);
   background: var(--about-white);
+  padding: 10px 10px 18px;
 }
 
-.about-portrait-card img {
+.about-portrait-window {
+  height: 420px;
+  overflow: hidden;
+}
+
+.about-portrait-window img {
   width: 100%;
-  height: 86%;
+  height: 100%;
   object-fit: cover;
-  object-position: 50% 45%;
+  object-position: 50% 40%;
 }
 
 .about-portrait-card figcaption {
-  height: 14%;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  font: italic 14px/1 var(--serif);
+  font: italic 13.5px var(--serif);
   color: var(--about-muted);
-  background: var(--about-white);
+  margin-top: 12px;
+  padding-left: 2px;
 }
 
 .about-group-snap {
   position: absolute;
-  right: -2%;
-  bottom: -4%;
-  width: 60%;
-  height: 240px;
-  border: 7px solid var(--about-white);
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 14px 35px rgba(38, 60, 50, 0.1);
-  transform: rotate(5deg);
+  right: -3%;
+  bottom: -2%;
+  width: 58%;
   background: var(--about-white);
+  border-radius: 2px;
+  padding: 8px 8px 14px;
+  box-shadow: 0 16px 36px rgba(38, 60, 50, 0.1);
+  transform: rotate(4deg);
 }
 
 .about-group-snap img {
   width: 100%;
-  height: 78%;
+  height: 190px;
   object-fit: cover;
 }
 
 .about-group-snap figcaption {
-  height: 22%;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  font: italic 13px/1 var(--serif);
+  font: italic 12.5px var(--serif);
   color: var(--about-muted);
-  background: var(--about-white);
+  margin-top: 8px;
 }
 
 .about-story-content {
-  max-width: 500px;
+  max-width: 480px;
 }
 
 .about-story-content h2 {
   margin-bottom: 28px;
 }
 
-.about-story-prose p {
+.about-lead {
+  font-size: 16px !important;
+  color: var(--about-green);
+  line-height: 1.8 !important;
+  margin-bottom: 16px !important;
+}
+
+.about-sub {
+  font-size: 14.5px !important;
   color: var(--about-muted);
-  margin-bottom: 18px;
+  line-height: 1.85 !important;
+  margin-bottom: 34px !important;
 }
 
-.about-story-prose p:last-child {
-  margin-bottom: 0;
-}
-
-.about-story-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 32px;
+.about-badges {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
   padding-top: 24px;
   border-top: 1px solid rgba(38, 60, 50, 0.12);
 }
 
-.about-badge {
-  font: 500 10.5px/1.4 var(--sans);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.about-badge-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(38, 60, 50, 0.08);
+}
+
+.about-badge-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about-badge-item strong {
+  font: 500 13px/1 var(--sans);
+  letter-spacing: 0.02em;
   color: var(--about-green);
-  background: rgba(38, 60, 50, 0.05);
-  border: 1px solid rgba(38, 60, 50, 0.14);
-  border-radius: 9999px;
-  padding: 6px 14px;
+}
+
+.about-badge-item span {
+  font: italic 13px var(--serif);
+  color: var(--about-muted);
 }
 
 /* --------------------------------------------------------------------------
-   Section 3: How That Becomes a Trip (Flowing sequence: Stay -> Days -> People)
-   Alternating asymmetrical compositions with lightly tilted frames
+   Section 3: The Trip Approach (The 3 Chapter Stelae)
+   Asymmetric 54% / 40% flow with generous 140px vertical gaps
    -------------------------------------------------------------------------- */
 .about-approach {
   position: relative;
-  padding: 130px 0 145px;
+  padding: 140px 0 150px;
   background: var(--about-cream);
   border-top: 1px solid rgba(38, 60, 50, 0.08);
 }
 
 .about-approach-intro {
-  margin-bottom: 95px;
-  display: grid;
-  grid-template-columns: 1fr 1.8fr;
-  gap: 8%;
-  align-items: start;
-}
-
-.about-approach-intro p {
-  padding-top: 14px;
-  color: var(--about-muted);
-  font-size: 15px;
-  max-width: 480px;
+  margin-bottom: 110px;
 }
 
 .about-approach-flow {
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 140px;
 }
 
-.about-flow-item {
+.about-stela {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.25fr 1fr;
   gap: 10%;
   align-items: center;
 }
 
-.about-flow-item.flow-right {
-  grid-template-columns: 1fr 1fr;
+.about-stela.stela-right {
+  grid-template-columns: 1fr 1.25fr;
 }
 
-.about-flow-item.flow-right .about-flow-photo {
+.about-stela.stela-right .about-stela-photo {
   order: 2;
 }
 
-.about-flow-item.flow-right .about-flow-text {
+.about-stela.stela-right .about-stela-copy {
   order: 1;
 }
 
-.about-flow-photo {
+.about-stela-photo {
   position: relative;
 }
 
-.about-flow-window {
+.about-stela-window {
   overflow: hidden;
-  height: 380px;
+  height: 400px;
   border-radius: 2px;
-  box-shadow: 0 18px 40px rgba(38, 60, 50, 0.07);
+  box-shadow: 0 20px 45px rgba(38, 60, 50, 0.08);
 }
 
-.flow-left .about-flow-window {
+.stela-left .about-stela-window {
   transform: rotate(-2.5deg);
 }
 
-.flow-right .about-flow-window {
+.stela-right .about-stela-window {
   transform: rotate(2.5deg);
 }
 
-.about-flow-window img {
+.about-stela-window img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.about-flow-photo figcaption {
-  font: italic 14.5px/1.4 var(--serif);
+.about-stela-photo figcaption {
+  font: italic 14px/1.4 var(--serif);
   color: var(--about-muted);
   margin-top: 14px;
   padding-left: 4px;
 }
 
-.about-flow-text {
-  max-width: 460px;
+.about-stela-copy {
+  max-width: 440px;
 }
 
-.about-flow-num {
+.about-stela-tag {
   display: block;
-  font: 500 10px/1.6 var(--sans);
+  font: 500 10.5px/1.6 var(--sans);
   letter-spacing: 0.16em;
   color: var(--about-muted);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
-.about-flow-text h3 {
+.about-stela-copy h3 {
   margin-bottom: 20px;
 }
 
-.about-flow-text p {
+.about-stela-copy p {
   color: var(--about-muted);
   font-size: 15px;
+  margin-bottom: 24px;
+}
+
+.about-stela-pill {
+  display: inline-block;
+  font: 500 11px var(--sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--about-green);
+  background: rgba(38, 60, 50, 0.05);
+  border: 1px solid rgba(38, 60, 50, 0.15);
+  border-radius: 9999px;
+  padding: 6px 16px;
 }
 
 /* --------------------------------------------------------------------------
-   Section 4: The People Who Make the Collective
-   Quieter sage section (#edf0e9) with community cards and authentic guest voice
+   Section 4: The Collective (Staggered Triptych)
+   Quieter Sage canvas (#edf0e9) with cards lifted at different heights
    -------------------------------------------------------------------------- */
 .about-community {
   position: relative;
   background: var(--about-sage);
-  padding: 135px 0 150px;
+  padding: 140px 0 160px;
 }
 
 .about-community-intro {
-  margin-bottom: 85px;
-  display: grid;
-  grid-template-columns: 1fr 1.8fr;
-  gap: 8%;
-  align-items: start;
+  margin-bottom: 80px;
 }
 
-.about-community-intro p {
-  padding-top: 14px;
-  color: var(--about-muted);
+.about-community-sub {
+  margin-top: 18px;
   font-size: 15px;
-  max-width: 500px;
+  color: var(--about-muted);
 }
 
-.about-community-grid {
+.about-triptych {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 4%;
+  gap: 36px;
   align-items: start;
 }
 
-.about-community-card {
+.about-card {
   background: var(--about-cream);
-  border: 1px solid rgba(38, 60, 50, 0.08);
+  border: 1px solid rgba(38, 60, 50, 0.1);
   border-radius: 2px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(38, 60, 50, 0.04);
+  box-shadow: 0 14px 34px rgba(38, 60, 50, 0.05);
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.about-community-card:hover {
-  transform: translateY(-4px);
+.card-lift-1 {
+  transform: rotate(-2deg);
 }
 
-.about-community-image {
-  height: 250px;
+.card-lift-2 {
+  margin-top: 55px;
+  transform: rotate(2.5deg);
+}
+
+.card-lift-3 {
+  margin-top: 25px;
+  transform: rotate(-1.5deg);
+}
+
+.about-card:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+
+.about-card-window {
+  height: 270px;
   overflow: hidden;
 }
 
-.about-community-image img {
+.about-card-window img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.about-community-card:hover .about-community-image img {
-  transform: scale(1.04);
+.about-card:hover .about-card-window img {
+  transform: scale(1.05);
 }
 
-.about-community-card figcaption {
-  padding: 28px 24px;
+.about-card figcaption {
+  padding: 26px 22px 28px;
 }
 
-.community-tag {
+.card-tag {
   display: block;
-  font: 500 9.5px/1.5 var(--sans);
+  font: 500 9.5px var(--sans);
   letter-spacing: 0.16em;
   color: var(--about-muted);
-  margin-bottom: 10px;
-}
-
-.about-community-card h3 {
-  font-size: 24px;
-  line-height: 1.2;
   margin-bottom: 12px;
 }
 
-.about-community-card p {
-  font-size: 13.5px;
-  line-height: 1.75;
-  color: var(--about-muted);
-  margin-bottom: 14px;
+.about-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
 }
 
-.about-community-card small {
-  display: block;
-  font: italic 13px var(--serif);
+.card-quote {
+  font: italic 14px/1.7 var(--serif) !important;
   color: var(--about-green);
 }
 
-.about-community-footnote {
-  margin-top: 60px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(38, 60, 50, 0.1);
-}
-
-.about-community-footnote p {
-  font-size: 12.5px;
+.card-caption {
+  font-size: 13.5px !important;
   color: var(--about-muted);
-  font-style: italic;
+  line-height: 1.7 !important;
 }
 
 /* --------------------------------------------------------------------------
-   Section 5: The People Behind Your Plans (Organization & Practical Care)
-   Return to cream, open editorial rows with fine rules, candid photo
+   Section 5: Practical Care & Organization (Architectural Ledger)
    -------------------------------------------------------------------------- */
 .about-organization {
   position: relative;
-  padding: 135px 0 145px;
+  padding: 140px 0 150px;
   background: var(--about-cream);
 }
 
 .about-org-stage {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 10%;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 12%;
   align-items: start;
 }
 
@@ -666,106 +669,107 @@
   top: 100px;
 }
 
-.about-org-photo {
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 16px 40px rgba(38, 60, 50, 0.08);
-}
-
-.about-org-photo img {
-  width: 100%;
-  height: 380px;
-  object-fit: cover;
-  object-position: center 35%;
-}
-
-.about-org-photo figcaption {
-  font: italic 14px/1.4 var(--serif);
-  color: var(--about-muted);
-  margin-top: 14px;
-}
-
-.about-org-card {
-  margin-top: 28px;
-  padding: 24px 28px;
+.about-org-frame {
   background: var(--about-white);
-  border: 1px solid rgba(38, 60, 50, 0.1);
+  padding: 10px 10px 16px;
+  border-radius: 2px;
+  box-shadow: 0 18px 45px rgba(38, 60, 50, 0.08);
+}
+
+.about-org-window {
+  height: 380px;
+  overflow: hidden;
+}
+
+.about-org-window img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.about-org-frame figcaption {
+  font: italic 13.5px var(--serif);
+  color: var(--about-muted);
+  margin-top: 12px;
+}
+
+.about-org-stat-box {
+  margin-top: 24px;
+  padding: 22px 24px;
+  background: var(--about-white);
+  border: 1px solid rgba(38, 60, 50, 0.12);
   border-radius: 2px;
 }
 
-.org-card-title {
+.stat-label {
   display: block;
-  font: 500 13px var(--sans);
-  letter-spacing: 0.02em;
+  font: 500 11px var(--sans);
+  letter-spacing: 0.14em;
   color: var(--about-green);
   margin-bottom: 8px;
 }
 
-.about-org-card p {
-  font-size: 13px;
+.about-org-stat-box p {
+  font-size: 13px !important;
   color: var(--about-muted);
-  margin-bottom: 14px;
+  margin-bottom: 12px !important;
 }
 
 .about-org-content {
   max-width: 520px;
 }
 
-.about-org-lead {
-  font-size: 16px;
-  color: var(--about-muted);
-  margin: 22px 0 45px;
+.about-org-content h2 {
+  margin-bottom: 40px;
 }
 
-.about-org-rows {
+.about-ledger {
   display: flex;
   flex-direction: column;
 }
 
-.about-org-row {
-  padding: 26px 0;
-  border-top: 1px solid rgba(38, 60, 50, 0.12);
+.ledger-row {
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  gap: 20px;
+  padding: 28px 0;
+  border-top: 1px solid rgba(38, 60, 50, 0.14);
 }
 
-.about-org-row:last-child {
-  border-bottom: 1px solid rgba(38, 60, 50, 0.12);
+.ledger-row:last-child {
+  border-bottom: 1px solid rgba(38, 60, 50, 0.14);
 }
 
-.org-row-head {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 10px;
-}
-
-.org-row-num {
-  font: 500 11px var(--sans);
-  letter-spacing: 0.1em;
+.ledger-num {
+  font: 500 12px var(--sans);
+  letter-spacing: 0.12em;
   color: var(--about-muted);
+  padding-top: 4px;
 }
 
-.org-row-head h4 {
-  font: 500 17px/1.3 var(--serif);
+.ledger-body h4 {
+  font: 500 19px/1.2 var(--serif);
   letter-spacing: -0.01em;
   color: var(--about-green);
+  margin: 0 0 8px;
 }
 
-.about-org-row p {
-  padding-left: 32px;
-  font-size: 14px;
-  line-height: 1.8;
+.ledger-body p {
+  font-size: 14px !important;
   color: var(--about-muted);
+  line-height: 1.75 !important;
 }
 
 /* --------------------------------------------------------------------------
-   Section 6: The Invitation (Centered closing + signature + memory frames)
+   Section 6: The Invitation
    -------------------------------------------------------------------------- */
 .about-invitation {
   position: relative;
-  min-height: 820px;
+  min-height: 800px;
   display: grid;
   place-items: center;
-  padding: 140px 7% 120px;
+  padding: 160px 7% 130px;
   overflow: hidden;
   background: var(--about-cream);
   border-top: 1px solid rgba(38, 60, 50, 0.08);
@@ -782,8 +786,8 @@
 }
 
 .about-invitation-copy h2 {
-  font-size: clamp(48px, 5.4vw, 80px);
-  line-height: 1.06;
+  font-size: clamp(48px, 5.6vw, 84px);
+  line-height: 1.05;
 }
 
 .about-invitation-actions {
@@ -791,7 +795,7 @@
   flex-direction: column;
   align-items: center;
   gap: 18px;
-  margin-top: 40px;
+  margin-top: 44px;
 }
 
 .about-question {
@@ -836,10 +840,12 @@
   overflow: hidden;
   border-radius: 2px;
   box-shadow: 0 16px 40px rgba(38, 60, 50, 0.08);
+  background: var(--about-white);
+  padding: 8px 8px 14px;
 }
 
 .memory-left {
-  left: -3%;
+  left: -2%;
   top: 18%;
   transform: rotate(-9deg);
 }
@@ -929,23 +935,31 @@
   .about-story-media {
     min-height: 440px;
   }
-  .about-flow-item {
+  .about-portrait-window {
+    height: 340px;
+  }
+  .about-stela {
     gap: 6%;
   }
-  .about-flow-window {
-    height: 300px;
+  .about-stela-window {
+    height: 320px;
   }
-  .about-community-grid {
+  .about-triptych {
     grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
-  .about-community-card:last-child {
+  .card-lift-2 {
+    margin-top: 0;
+  }
+  .card-lift-3 {
     grid-column: span 2;
+    max-width: 440px;
+    margin: 20px auto 0;
   }
   .about-org-stage {
     gap: 6%;
   }
-  .about-org-photo img {
+  .about-org-window {
     height: 320px;
   }
   .about-footer nav {
@@ -983,7 +997,7 @@
     height: 18px;
   }
   .about-header-actions {
-    gap: 14px;
+    gap: 12px;
   }
   .about-header-watch {
     font-size: 10px;
@@ -1042,29 +1056,29 @@
   .about-story-wrap {
     display: flex;
     flex-direction: column;
-    gap: 45px;
+    gap: 40px;
   }
   .about-story-media {
-    min-height: 340px;
-    max-width: 360px;
+    min-height: 320px;
+    max-width: 340px;
     width: 100%;
     margin: 0 auto;
   }
   .about-portrait-card {
-    width: 75%;
-    height: 300px;
+    width: 78%;
+  }
+  .about-portrait-window {
+    height: 280px;
   }
   .about-group-snap {
-    width: 65%;
-    height: 170px;
+    width: 66%;
+  }
+  .about-group-snap img {
+    height: 140px;
   }
   .about-story-content h2 {
     font-size: 34px;
-    margin-bottom: 20px;
-  }
-  .about-story-badges {
-    margin-top: 24px;
-    gap: 8px;
+    margin-bottom: 18px;
   }
 
   /* Section 3: Approach */
@@ -1072,34 +1086,29 @@
     padding: 85px 0 90px;
   }
   .about-approach-intro {
-    display: block;
     margin-bottom: 50px;
-  }
-  .about-approach-intro p {
-    margin-top: 16px;
-    padding-top: 0;
   }
   .about-approach-flow {
     gap: 65px;
   }
-  .about-flow-item,
-  .about-flow-item.flow-right {
+  .about-stela,
+  .about-stela.stela-right {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 22px;
   }
-  .about-flow-item.flow-right .about-flow-photo {
+  .about-stela.stela-right .about-stela-photo {
     order: 1;
   }
-  .about-flow-item.flow-right .about-flow-text {
+  .about-stela.stela-right .about-stela-copy {
     order: 2;
   }
-  .about-flow-window {
+  .about-stela-window {
     height: 280px;
   }
-  .about-flow-text h3 {
+  .about-stela-copy h3 {
     font-size: 26px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
   /* Section 4: Community */
@@ -1107,20 +1116,21 @@
     padding: 85px 0 95px;
   }
   .about-community-intro {
-    display: block;
     margin-bottom: 50px;
   }
-  .about-community-intro p {
-    margin-top: 16px;
-    padding-top: 0;
-  }
-  .about-community-grid {
+  .about-triptych {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 36px;
   }
-  .about-community-image {
-    height: 220px;
+  .card-lift-1,
+  .card-lift-2,
+  .card-lift-3 {
+    margin-top: 0;
+    transform: none;
+  }
+  .about-card-window {
+    height: 230px;
   }
 
   /* Section 5: Organization */
@@ -1134,21 +1144,15 @@
   }
   .about-org-visual {
     position: static;
-    max-width: 420px;
+    max-width: 400px;
     margin: 0 auto;
     width: 100%;
   }
-  .about-org-photo img {
+  .about-org-window {
     height: 260px;
   }
-  .about-org-lead {
-    margin: 16px 0 32px;
-  }
-  .about-org-row {
+  .ledger-row {
     padding: 20px 0;
-  }
-  .about-org-row p {
-    padding-left: 0;
   }
 
   /* Section 6: Invitation */
@@ -1160,7 +1164,7 @@
     font-size: 42px;
   }
   .about-memory {
-    width: 40%;
+    width: 42%;
     height: 160px;
   }
   .memory-left {
@@ -1240,8 +1244,11 @@
   }
   .about-portrait-card,
   .about-group-snap,
-  .flow-left .about-flow-window,
-  .flow-right .about-flow-window,
+  .stela-left .about-stela-window,
+  .stela-right .about-stela-window,
+  .card-lift-1,
+  .card-lift-2,
+  .card-lift-3,
   .memory-left,
   .memory-right {
     transform: none !important;

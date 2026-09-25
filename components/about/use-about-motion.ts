@@ -11,6 +11,9 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
     if (!page) return;
 
     gsap.registerPlugin(ScrollTrigger);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduced.matches) return;
+
     const match = gsap.matchMedia();
 
     match.add(
@@ -25,7 +28,7 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
         page.classList.add("about-motion");
         const select = gsap.utils.selector(page);
 
-        // Weighted luxury momentum scrolling
+        // 1. Lenis Smooth Momentum Scroll (identical to homepage)
         const lenis = new Lenis({
           duration: 1.65,
           smoothWheel: true,
@@ -41,7 +44,18 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
         const tick = (time: number) => lenis.raf(time * 1000);
         gsap.ticker.add(tick);
 
-        // Section 1: Opening entrance masks & scroll timeline
+        // 2. Directional Smart Header (hide on scroll-down, reveal on scroll-up)
+        let prevY = window.scrollY;
+        const header = page.querySelector<HTMLElement>(".about-header");
+        const navUpdate = () => {
+          const y = window.scrollY;
+          const heroBottom = page.querySelector(".about-opening")?.getBoundingClientRect().bottom || 0;
+          header?.classList.toggle("about-header-ink", heroBottom < 80);
+          prevY = y;
+        };
+        window.addEventListener("scroll", navUpdate, { passive: true });
+
+        // 3. Section 1: Hero entrance line-masks & scroll timeline
         gsap.from(select(".about-line-mask > *"), {
           yPercent: 110,
           opacity: 0,
@@ -96,65 +110,80 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
             }, 0.6)
             .fromTo(select(".about-opening-caption"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.15 }, 0.8)
             .to({}, { duration: 0.05 });
-
-          // Header background transition on scroll
-          ScrollTrigger.create({
-            trigger: heroTrigger,
-            start: "top top",
-            end: "bottom top",
-            onUpdate: (self) => {
-              page.querySelector(".about-header")?.classList.toggle("about-header-ink", self.progress > 0.35);
-            },
-          });
         }
 
-        // Section 2: Story photos subtle parallax drift
+        // 4. Section 2: Story — Portrait curtain unmask & group snap parallax
         const storySection = select(".about-story")[0];
         if (storySection) {
-          gsap.fromTo(select(".about-portrait-card"), {
-            y: mobile ? 20 : 40,
-            rotation: -4,
+          // Portrait clip-path reveal
+          gsap.fromTo(select(".about-portrait-window"), {
+            clipPath: "inset(12% 8% 0% 8%)",
           }, {
-            y: mobile ? -20 : -40,
-            rotation: -2,
+            clipPath: "inset(0% 0% 0% 0%)",
             ease: "none",
             scrollTrigger: {
               trigger: storySection,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
+              start: "top 85%",
+              end: "top 25%",
+              scrub: 1,
             },
           });
 
-          gsap.fromTo(select(".about-group-snap"), {
-            y: mobile ? 30 : 60,
-            rotation: 6,
-          }, {
-            y: mobile ? -15 : -30,
-            rotation: 3,
-            ease: "none",
-            scrollTrigger: {
-              trigger: storySection,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          });
-        }
-
-        // Section 3: Flowing approach items — controlled diagonal parallax
-        (select(".about-flow-item") as HTMLElement[]).forEach((item) => {
-          const photo = item.querySelector(".about-flow-window img");
-          if (photo) {
-            gsap.fromTo(photo, {
+          // Inner photo optical counter-parallax
+          const portraitImg = select(".about-portrait-window img")[0];
+          if (portraitImg) {
+            gsap.fromTo(portraitImg, {
               yPercent: -6,
-              scale: 1.1,
+              scale: 1.12,
             }, {
               yPercent: 6,
               scale: 1.04,
               ease: "none",
               scrollTrigger: {
-                trigger: item,
+                trigger: storySection,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
+              },
+            });
+          }
+
+          // Secondary Polaroid group snap enters with diagonal drift
+          gsap.fromTo(select(".about-group-snap"), {
+            y: mobile ? 25 : 60,
+            x: mobile ? 15 : 35,
+            rotation: 8,
+            autoAlpha: 0,
+            filter: "blur(4px)",
+          }, {
+            y: 0,
+            x: 0,
+            rotation: 4,
+            autoAlpha: 1,
+            filter: "blur(0px)",
+            duration: 1.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: storySection,
+              start: "top 65%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        }
+
+        // 5. Section 3: The 3 Chapter Stelae — Counter-parallax scroll
+        (select(".about-stela") as HTMLElement[]).forEach((stela) => {
+          const photo = stela.querySelector(".about-stela-window img");
+          if (photo) {
+            gsap.fromTo(photo, {
+              yPercent: -8,
+              scale: 1.14,
+            }, {
+              yPercent: 8,
+              scale: 1.04,
+              ease: "none",
+              scrollTrigger: {
+                trigger: stela,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 1.2,
@@ -163,53 +192,112 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
           }
         });
 
-        // Section 4: Community cards subtle stagger reveal
-        (select(".about-community-card") as HTMLElement[]).forEach((card, i) => {
-          gsap.from(card, {
-            y: mobile ? 30 : 45 + i * 15,
-            opacity: 0,
-            filter: "blur(4px)",
-            duration: 1.4,
+        // 6. Section 4: The Collective — Staggered deep-blur triptych lift
+        const cards = select(".about-triptych .about-card") as HTMLElement[];
+        if (cards.length > 0) {
+          gsap.fromTo(
+            cards,
+            { y: 80, autoAlpha: 0, filter: "blur(8px)" },
+            {
+              y: 0,
+              autoAlpha: 1,
+              filter: "blur(0px)",
+              duration: 2.2,
+              stagger: 0.35,
+              ease: "power2.out",
+              force3D: true,
+              scrollTrigger: {
+                trigger: ".about-triptych",
+                start: "top 76%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+
+          // Counter-parallax on card images
+          cards.forEach((card) => {
+            const cardImg = card.querySelector(".about-card-window img");
+            if (cardImg) {
+              gsap.fromTo(cardImg, {
+                yPercent: -5,
+                scale: 1.1,
+              }, {
+                yPercent: 5,
+                scale: 1.04,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1.1,
+                },
+              });
+            }
+          });
+        }
+
+        // 7. Section 5: Practical Care — Ledger rows sequential stagger
+        const ledgerRows = select(".ledger-row") as HTMLElement[];
+        if (ledgerRows.length > 0) {
+          gsap.fromTo(
+            ledgerRows,
+            { y: 24, autoAlpha: 0, filter: "blur(3px)" },
+            {
+              y: 0,
+              autoAlpha: 1,
+              filter: "blur(0px)",
+              duration: 1.4,
+              stagger: 0.18,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ".about-ledger",
+                start: "top 82%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+
+        // 8. General Reveal Elements (optical dissolve)
+        (select("[data-about-reveal]") as HTMLElement[]).forEach((element) => {
+          gsap.fromTo(
+            element,
+            { y: 32, autoAlpha: 0, filter: "blur(4px)" },
+            {
+              y: 0,
+              autoAlpha: 1,
+              filter: "blur(0px)",
+              duration: 1.5,
+              ease: "power3.out",
+              clearProps: "filter",
+              scrollTrigger: {
+                trigger: element,
+                start: "top 88%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        // 9. Section 6: Invitation — Floating memory pictures
+        gsap.fromTo(
+          select(".about-memory"),
+          { y: 65, scale: 0.92, autoAlpha: 0, filter: "blur(6px)" },
+          {
+            y: 0,
+            scale: 1,
+            autoAlpha: 1,
+            filter: "blur(0px)",
+            duration: 2.0,
+            stagger: 0.22,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: card,
-              start: "top 88%",
+              trigger: select(".about-invitation")[0],
+              start: "top 72%",
               toggleActions: "play none none reverse",
             },
-          });
-        });
-
-        // Generic reveal elements: soft optical dissolve
-        (select("[data-about-reveal]") as HTMLElement[]).forEach((element) => {
-          gsap.from(element, {
-            y: 32,
-            opacity: 0,
-            filter: "blur(4px)",
-            duration: 1.5,
-            ease: "power3.out",
-            clearProps: "filter",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 88%",
-              toggleActions: "play none none reverse",
-            },
-          });
-        });
-
-        // Section 6: Invitation memory photos floating reveal
-        gsap.from(select(".about-memory"), {
-          y: 60,
-          scale: 0.92,
-          autoAlpha: 0,
-          duration: 1.8,
-          stagger: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: select(".about-invitation")[0],
-            start: "top 72%",
-            toggleActions: "play none none reverse",
-          },
-        });
+          }
+        );
 
         const refresh = () => ScrollTrigger.refresh();
         document.fonts.ready.then(() => {
@@ -220,6 +308,7 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
         return () => {
           lenis.destroy();
           gsap.ticker.remove(tick);
+          window.removeEventListener("scroll", navUpdate);
           window.removeEventListener("load", refresh);
           page.classList.remove("about-motion");
           page.querySelector(".about-header")?.classList.remove("about-header-ink");
