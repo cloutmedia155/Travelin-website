@@ -29,7 +29,11 @@ export function Hero() {
           </p>
         </div>
         <div className="hero-copy hero-action">
-          <p className="hero-action-lead">Olivia comes on every trip to host, help, and get everyone talking.</p>
+          <h2 className="hero-action-lead">
+            <span className="line-mask"><span className="action-line">Olivia comes on every trip</span></span>
+            <span className="line-mask"><span className="action-line">to host, help,</span></span>
+            <span className="line-mask"><span className="action-line">and get everyone talking.</span></span>
+          </h2>
           <div className="hero-action-cta">
             <a className="button button-light" href="#trips">Find Your Trip <ArrowUpRight size={17} /></a>
             <p className="hero-action-note">4–5-star stays <span>·</span> Personally hosted by Olivia<br />Payment plans on most trips</p>

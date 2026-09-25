@@ -42,6 +42,7 @@ export function useJourneyMotion() {
         .fromTo(".intro-line", { yPercent: 105, filter: "blur(4px)" }, { yPercent: 0, filter: "blur(0px)", stagger: .018, duration: .12 }, .22)
         .to(".hero-intro", { y: -65, autoAlpha: 0, filter: "blur(5px)", duration: .13 }, .5)
         .fromTo(".hero-action", { y: 30, autoAlpha: 0, filter: "blur(4px)" }, { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: .12 }, .62)
+        .fromTo(".action-line", { yPercent: 105, filter: "blur(4px)" }, { yPercent: 0, filter: "blur(0px)", stagger: .018, duration: .12 }, .63)
         .to(".hero-action", { y: -35, autoAlpha: 0, duration: .09 }, .85)
         .fromTo(".hero-cloud-back", { yPercent: 100, scale: 1.25 }, { yPercent: 0, scale: 1, duration: .24 }, .76)
         .fromTo(".hero-cloud-front", { yPercent: 115, scale: 1.1 }, { yPercent: 0, scale: 1.28, duration: .19 }, .81)
