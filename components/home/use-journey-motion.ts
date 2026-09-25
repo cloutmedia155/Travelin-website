@@ -40,15 +40,14 @@ export function useJourneyMotion() {
         .to(".hero-title", { y: -110, autoAlpha: 0, filter: "blur(7px)", duration: .16, ease: "power1.inOut" }, .09)
         .fromTo(".hero-intro", { y: 45, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .12 }, .21)
         .fromTo(".intro-line", { yPercent: 105, filter: "blur(4px)" }, { yPercent: 0, filter: "blur(0px)", stagger: .018, duration: .12 }, .22)
-        .fromTo(".intro-body", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .1 }, .3)
         .to(".hero-intro", { y: -65, autoAlpha: 0, filter: "blur(5px)", duration: .13 }, .5)
         .fromTo(".hero-action", { y: 30, autoAlpha: 0, filter: "blur(4px)" }, { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: .12 }, .62)
         .to(".hero-action", { y: -35, autoAlpha: 0, duration: .09 }, .85)
         .fromTo(".hero-cloud-back", { yPercent: 100, scale: 1.25 }, { yPercent: 0, scale: 1, duration: .24 }, .76)
         .fromTo(".hero-cloud-front", { yPercent: 115, scale: 1.1 }, { yPercent: 0, scale: 1.28, duration: .19 }, .81)
-        .fromTo(".cloud-floor", { yPercent: 100 }, { yPercent: 0, duration: .15 }, .85)
-        .to(".hero-bottom", { autoAlpha: 0, duration: .08 }, .78)
-        .to(".hero-count b", { scaleX: 1, duration: 1, ease: "none" }, 0);
+        .fromTo(".cloud-floor", { yPercent: 100 }, { yPercent: 0, duration: .15 }, .85);
+      if (document.querySelector(".hero-bottom")) ht.to(".hero-bottom", { autoAlpha: 0, duration: .08 }, .78);
+      if (document.querySelector(".hero-count b")) ht.to(".hero-count b", { scaleX: 1, duration: 1, ease: "none" }, 0);
 
       const panels = gsap.utils.toArray<HTMLElement>(".chapter-panel");
       const et = gsap.timeline({ scrollTrigger: { trigger: ".experience-scroll", start: "top top", end: "bottom bottom", scrub: 1.2, onUpdate: self => { const index = self.progress < .29 ? 0 : self.progress < .63 ? 1 : 2; const counter = document.querySelector(".experience-current"); if (counter) counter.textContent = `0${index + 1}`; panels.forEach((p,i)=>p.setAttribute("aria-hidden",String(i!==index))); } } });
@@ -74,7 +73,7 @@ export function useJourneyMotion() {
           et.to(copy, { autoAlpha: 0, y: -30, duration: .6 }, 8.45).to(photos, { y: -100, autoAlpha: 0, duration: .7, stagger: .1 }, 8.45);
         }
       });
-      et.to(".experience-progress b", { scaleX: 1, duration: 9.35, ease: "none" }, 0);
+      if (document.querySelector(".experience-progress b")) et.to(".experience-progress b", { scaleX: 1, duration: 9.35, ease: "none" }, 0);
 
       gsap.fromTo(".film-frame", { clipPath: mobile ? "inset(12% 5% 8% 5%)" : "inset(16% 18% 10% 18%)", y: 80 }, { clipPath: "inset(0% 0% 0% 0%)", y: 0, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top 90%", end: "top top", scrub: .9 } });
       gsap.fromTo(".film-poster", { yPercent: -7, scale: 1.15 }, { yPercent: 7, scale: 1.05, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top bottom", end: "bottom top", scrub: 1 } });

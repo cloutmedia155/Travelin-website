@@ -17,7 +17,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <div className="grid-overlay" aria-hidden="true">
+          <div className="grid-line line-1" />
+          <div className="grid-line line-2" />
+          <div className="grid-line line-3" />
+          <div className="grid-line line-4" />
+          <div className="grid-line line-5" />
+        </div>
+        {children}
+      </body>
     </html>
   );
 }

@@ -42,6 +42,14 @@ next-env.d.ts
 /.sites-runtime/
 /.agents/
 /.codex/
+/.claude/
+/.reticle.json
+/RETICLE.md
+/AGENTS.md
+/CLAUDE.md
+/dev-docs/
+package-lock.json
 /outputs/
 /work/
 *.tsbuildinfo
+

@@ -9,17 +9,15 @@ const chapters = [
 export function Experience() {
   return <section id="experience" className="experience">
     <div className="experience-intro wrap">
-      <span className="editorial-label">The experience</span>
+      <span className="editorial-label" aria-hidden="true" style={{ visibility: "hidden" }}>&nbsp;</span>
       <div className="experience-intro-copy"><h2 className="editorial-heading">There’s a whole trip behind<br /><em>those laughing videos.</em></h2><p>The days out. The conversations over dinner. Someone getting everyone up to dance. Those are the moments we make room for, along with time to head off on your own or do nothing for a while.</p></div>
     </div>
     <div className="experience-scroll">
       <div className="experience-stage">
-        <div className="experience-rule" aria-hidden="true" />
         {chapters.map((chapter, index) => <section className={`chapter-panel panel-${index}`} key={chapter.name} aria-labelledby={`chapter-${index}`}>
-          <div className="chapter-copy"><span className="eyebrow">0{index + 1} / {chapter.name}</span><h3 id={`chapter-${index}`}>{chapter.title}</h3><p>{chapter.text}</p></div>
-          <div className="chapter-images">{chapter.images.map((img, j) => <figure className={`journey-photo photo-${j}`} key={img}><div className="photo-window"><img src={`/media/${img}.webp`} alt={chapter.alts[j]} loading="lazy" /></div><figcaption>{chapter.labels[j]}</figcaption></figure>)}</div>
+          <div className="chapter-copy"><h3 id={`chapter-${index}`}>{chapter.title}</h3><p>{chapter.text}</p></div>
+          <div className="chapter-images">{chapter.images.map((img, j) => <figure className={`journey-photo photo-${j}`} key={img}><div className="photo-window"><img src={`/media/${img}.webp`} alt={chapter.alts[j]} loading="lazy" /></div></figure>)}</div>
         </section>)}
-        <div className="experience-progress"><span className="experience-current">01</span><i><b /></i><span>03</span><small>The stay · The days out · The people</small></div>
       </div>
     </div>
   </section>;
