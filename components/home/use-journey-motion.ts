@@ -53,27 +53,42 @@ export function useJourneyMotion() {
       if (document.querySelector(".hero-count b")) ht.to(".hero-count b", { scaleX: 1, duration: 1, ease: "none" }, 0);
 
       const panels = gsap.utils.toArray<HTMLElement>(".chapter-panel");
-      const et = gsap.timeline({ scrollTrigger: { trigger: ".experience-scroll", start: "top top", end: "bottom bottom", scrub: 1.2, onUpdate: self => { const index = self.progress < .29 ? 0 : self.progress < .63 ? 1 : 2; const counter = document.querySelector(".experience-current"); if (counter) counter.textContent = `0${index + 1}`; panels.forEach((p,i)=>p.setAttribute("aria-hidden",String(i!==index))); } } });
+      const xTravel = Math.min(window.innerWidth * 0.35, 420);
+      const et = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".experience-scroll",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.2,
+          onUpdate: self => {
+            const index = self.progress < .31 ? 0 : self.progress < .65 ? 1 : 2;
+            const counter = document.querySelector(".experience-current");
+            if (counter) counter.textContent = `0${index + 1}`;
+            panels.forEach((p, i) => p.setAttribute("aria-hidden", String(i !== index)));
+          }
+        }
+      });
       panels.forEach((panel, i) => {
         const copy = panel.querySelector(".chapter-copy");
         const row = panel.querySelector(".chapter-images");
         const photos = panel.querySelectorAll(".journey-photo");
         const start = i * 3;
-        if (i === 0) { gsap.set(copy, { autoAlpha: 1 }); }
-        else {
-          gsap.set(copy, { autoAlpha: 0 });
-          gsap.set(photos, { x: -window.innerWidth * 1.25, y: 65, autoAlpha: 0, rotation: -12 });
-          et.to(copy, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .65 }, start - .35)
-            .fromTo(copy, { y: 25 }, { y: 0, duration: .65 }, start - .35)
-            .to(photos, { x: 0, y: 0, autoAlpha: 1, rotation: 0, duration: 1.15, stagger: .12, ease: "power2.out" }, start - .65);
-        }
-        et.to(photos, { y: (j: number) => j % 2 ? -35 : -70, duration: 1.4, ease: "none" }, start + .45);
-        if (mobile) et.to(row, { x: -window.innerWidth * .72, duration: 1.6, ease: "none" }, start + .45);
-        if (i < 2) {
-          et.to(copy, { autoAlpha: 0, y: -35, filter: "blur(3px)", duration: .55 }, start + 1.85)
-            .to(photos, { x: window.innerWidth * 1.35, y: -120, autoAlpha: 0, rotation: 8, duration: 1.05, stagger: .1, ease: "power2.in" }, start + 1.9);
+        if (i === 0) {
+          gsap.set(copy, { autoAlpha: 1 });
         } else {
-          et.to(copy, { autoAlpha: 0, y: -30, duration: .6 }, 8.45).to(photos, { y: -100, autoAlpha: 0, duration: .7, stagger: .1 }, 8.45);
+          gsap.set(copy, { autoAlpha: 0, y: 25, filter: "blur(4px)" });
+          gsap.set(photos, { x: -xTravel, y: 45, autoAlpha: 0, rotation: -4, filter: "blur(3px)" });
+          et.to(photos, { x: 0, y: 0, autoAlpha: 1, rotation: 0, filter: "blur(0px)", duration: 1.05, stagger: .08, ease: "power1.out" }, start - .70)
+            .to(copy, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: .70, ease: "power1.out" }, start - .35);
+        }
+        et.to(photos, { y: (j: number) => j % 2 ? -30 : -60, duration: 1.4, ease: "none" }, start + .40);
+        if (mobile) et.to(row, { x: -window.innerWidth * .72, duration: 1.5, ease: "none" }, start + .40);
+        if (i < 2) {
+          et.to(copy, { autoAlpha: 0, y: -25, filter: "blur(4px)", duration: .65, ease: "power1.inOut" }, start + 1.80)
+            .to(photos, { x: xTravel, y: -95, autoAlpha: 0, rotation: 4, filter: "blur(3px)", duration: 1.1, stagger: .08, ease: "power1.inOut" }, start + 1.85);
+        } else {
+          et.to(copy, { autoAlpha: 0, y: -25, filter: "blur(4px)", duration: .65, ease: "power1.inOut" }, 8.30)
+            .to(photos, { y: -80, autoAlpha: 0, filter: "blur(4px)", duration: .75, stagger: .08, ease: "power1.inOut" }, 8.30);
         }
       });
       if (document.querySelector(".experience-progress b")) et.to(".experience-progress b", { scaleX: 1, duration: 9.35, ease: "none" }, 0);

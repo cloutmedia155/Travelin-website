@@ -31,3 +31,7 @@ Use concrete actions and observable details. Prefer “Olivia comes on every tri
 Cormorant Garamond supplies the light serif and italic contrast; Manrope carries practical reading. The new hero is approximately 58px at a 1348px viewport, instead of the first version’s much larger display text. Smaller labels and restrained body widths keep the image dominant.
 
 These choices are design hypotheses, not proven conversion results. After launch, evaluate trip clicks, trip-page engagement and booking completion by device and traffic source before claiming a conversion uplift.
+
+---
+
+> **Deep Psychological, UI/UX & Motion Analysis**: For the complete master framework detailing visitor cognitive friction, section-by-section psychological mapping, 6-column architectural grid overlay, dual cloud transitions, and botanical vine animations, see [**docs/psychology-and-ux-framework.md**](./psychology-and-ux-framework.md).
