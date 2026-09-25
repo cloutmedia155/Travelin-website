@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useCallback } from "react"
-import createGlobe from "cobe"
 
 export interface PolaroidMarker {
   id: string
@@ -75,25 +74,31 @@ export function GlobePolaroids({
   useEffect(() => {
     if (!canvasRef.current) return
     const canvas = canvasRef.current
-    let globe: ReturnType<typeof createGlobe> | null = null
+    let globe: { update: (state: Record<string, number>) => void; destroy: () => void } | null = null
     let animationId: number
     let phi = 0
+    let destroyed = false
 
-    function init() {
+    async function init() {
       const width = canvas.offsetWidth
-      if (width === 0 || globe) return
+      if (width === 0 || globe || destroyed) return
 
-      globe = createGlobe(canvas, {
-        devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
-        width,
-        height: width,
-        phi: 0,
-        theta: 0.2,
-        dark: 0,
-        diffuse: 1.5,
-        mapSamples: 16000,
-        mapBrightness: 9,
-        baseColor: [1, 1, 1],
+      try {
+        const cobeMod = await import("cobe")
+        const createGlobe = cobeMod.default || cobeMod
+        if (destroyed || !canvasRef.current) return
+
+        globe = createGlobe(canvas, {
+          devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+          width,
+          height: width,
+          phi: 0,
+          theta: 0.2,
+          dark: 0,
+          diffuse: 1.5,
+          mapSamples: 16000,
+          mapBrightness: 9,
+          baseColor: [1, 1, 1],
         markerColor: [0.4, 0.6, 0.9],
         glowColor: [0.94, 0.93, 0.91],
         markerElevation: 0,
@@ -115,21 +120,25 @@ export function GlobePolaroids({
       }
       animate()
       setTimeout(() => canvas && (canvas.style.opacity = "1"))
+      } catch (e) {
+        console.warn("Globe animation unavailable", e)
+      }
     }
 
     if (canvas.offsetWidth > 0) {
-      init()
+      void init()
     } else {
       const ro = new ResizeObserver((entries) => {
         if (entries[0]?.contentRect.width > 0) {
           ro.disconnect()
-          init()
+          void init()
         }
       })
       ro.observe(canvas)
     }
 
     return () => {
+      destroyed = true
       if (animationId) cancelAnimationFrame(animationId)
       if (globe) globe.destroy()
     }

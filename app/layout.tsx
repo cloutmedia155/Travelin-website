@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ReticleScript } from "@/components/reticle-script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
+        <ReticleScript />
         <div className="grid-overlay" aria-hidden="true">
           <div className="grid-line line-1" />
           <div className="grid-line line-2" />
