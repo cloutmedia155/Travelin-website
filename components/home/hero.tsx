@@ -36,7 +36,7 @@ export function Hero() {
           </h2>
           <div className="hero-action-cta">
             <a className="button button-light" href="#trips">Find Your Trip <ArrowUpRight size={17} /></a>
-            <p className="hero-action-note">4–5-star stays <span>·</span> Personally hosted by Olivia<br />Payment plans on most trips</p>
+            <p className="hero-action-note">4–5-star stays <span>·</span> Payment plans on most trips</p>
           </div>
         </div>
 
