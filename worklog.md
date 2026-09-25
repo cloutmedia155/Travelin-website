@@ -333,5 +333,53 @@ if (expIntroP) {
 <h2>You’ll either be on the next trip…<br /><em>or watching it on Instagram.</em></h2>
 ```
 
+---
 
+### 12. `components/home/use-journey-motion.ts` & `app/journey.css` (Story Cards Staggered Slide-Up Entrance Animation)
+**Description:** Added an ultra-smooth, hardware-accelerated cascading slide-up entrance animation for the three `.story-card` blocks in `.people-section`. The first card is triggered by scroll when entering the viewport, and the subsequent cards smoothly appear behind the first in succession. Slowed down by 40% with a velvety `filter: blur(6px) -> blur(0px)` transition and `power3.out` deceleration for fluid luxury motion. Replays whenever the user passes by.
 
+#### Change A: `components/home/use-journey-motion.ts` (GSAP ScrollTrigger Animation)
+* **Before:**
+```ts
+gsap.utils.toArray<HTMLElement>(".people-heading>div:last-child, .founder-copy>p, .founder-copy>.text-link, .founder-copy>.signature, .faq-intro>p, .booking-step").forEach(el => {
+  gsap.fromTo(el, { y: 25, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.25, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 91%" } });
+});
+gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card img").forEach(el => {
+```
+* **After:**
+```ts
+gsap.utils.toArray<HTMLElement>(".people-heading>div:last-child, .founder-copy>p, .founder-copy>.text-link, .founder-copy>.signature, .faq-intro>p, .booking-step").forEach(el => {
+  gsap.fromTo(el, { y: 25, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.25, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 91%" } });
+});
+const storyCards = gsap.utils.toArray<HTMLElement>(".story-cards .story-card");
+if (storyCards.length > 0) {
+  gsap.fromTo(
+    storyCards,
+    { y: 90, autoAlpha: 0, filter: "blur(6px)" },
+    {
+      y: 0,
+      autoAlpha: 1,
+      filter: "blur(0px)",
+      duration: 1.8,
+      stagger: 0.32,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".story-cards",
+        start: "top 84%",
+        toggleActions: "restart reverse restart reverse"
+      }
+    }
+  );
+}
+gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card img").forEach(el => {
+```
+
+#### Change B: `app/journey.css` (GPU Hardware Layer Acceleration)
+* **Before:**
+```css
+.people-section{background:#edf0e9;padding:0 0 100px}.story-cards{gap:25px;max-width:1160px}.story-card h3{font-size:30px}
+```
+* **After:**
+```css
+.people-section{background:#edf0e9;padding:0 0 100px}.story-cards{gap:25px;max-width:1160px}.story-card{will-change:transform,opacity,filter}.story-card h3{font-size:30px}
+```

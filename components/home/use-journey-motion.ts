@@ -113,6 +113,26 @@ export function useJourneyMotion() {
       gsap.utils.toArray<HTMLElement>(".people-heading>div:last-child, .founder-copy>p, .founder-copy>.text-link, .founder-copy>.signature, .faq-intro>p, .booking-step").forEach(el => {
         gsap.fromTo(el, { y: 25, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.25, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 91%" } });
       });
+      const storyCards = gsap.utils.toArray<HTMLElement>(".story-cards .story-card");
+      if (storyCards.length > 0) {
+        gsap.fromTo(
+          storyCards,
+          { y: 90, autoAlpha: 0, filter: "blur(6px)" },
+          {
+            y: 0,
+            autoAlpha: 1,
+            filter: "blur(0px)",
+            duration: 1.8,
+            stagger: 0.32,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".story-cards",
+              start: "top 84%",
+              toggleActions: "restart reverse restart reverse"
+            }
+          }
+        );
+      }
       gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card img").forEach(el => {
         gsap.fromTo(el, { yPercent: -7, scale: 1.16 }, { yPercent: 7, scale: 1.16, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: 1.1 } });
       });
