@@ -109,150 +109,133 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
             .to({}, { duration: 0.05 });
         }
 
-        // 4. Section 2: Olivia's Story — Portrait curtain unmask & snapshot drift
-        const storySection = select(".about-story")[0];
-        if (storySection) {
-          // Portrait clip-path reveal
-          gsap.fromTo(select(".portrait-image-wrapper"), {
-            clipPath: "inset(12% 8% 0% 8%)",
-          }, {
-            clipPath: "inset(0% 0% 0% 0%)",
-            ease: "none",
-            scrollTrigger: {
-              trigger: storySection,
-              start: "top 85%",
-              end: "top 25%",
-              scrub: 1,
-            },
-          });
-
-          // Inner photo optical counter-parallax
-          const portraitImg = select(".portrait-image-wrapper img")[0];
-          if (portraitImg) {
-            gsap.fromTo(portraitImg, {
-              yPercent: -6,
-              scale: 1.12,
-            }, {
-              yPercent: 6,
-              scale: 1.04,
-              ease: "none",
-              scrollTrigger: {
-                trigger: storySection,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.2,
-              },
-            });
-          }
-
-          // Secondary snapshot enters with diagonal drift
-          gsap.fromTo(select(".about-snapshot-card"), {
-            y: mobile ? 25 : 55,
-            x: mobile ? 15 : 30,
-            rotation: 8,
-            autoAlpha: 0,
-            filter: "blur(4px)",
-          }, {
-            y: 0,
-            x: 0,
-            rotation: 5,
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 1.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: storySection,
-              start: "top 65%",
-              toggleActions: "play none none reverse",
-            },
-          });
-        }
-
-        // 5. Section 3: The Trip Approach — 3-Photo Horizon Panorama Stagger & Parallax
-        const horizonSection = select(".about-horizon")[0];
-        if (horizonSection) {
-          const panels = select(".horizon-panel") as HTMLElement[];
-          if (panels.length > 0) {
-            gsap.fromTo(
-              panels,
-              { y: 55, autoAlpha: 0, filter: "blur(6px)" },
-              {
-                y: 0,
-                autoAlpha: 1,
-                filter: "blur(0px)",
-                duration: 1.8,
-                stagger: 0.22,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: ".about-horizon-grid",
-                  start: "top 78%",
-                  toggleActions: "play none none reverse",
-                },
-              }
-            );
-
-            panels.forEach((panel) => {
-              const panelImg = panel.querySelector(".horizon-window img");
-              if (panelImg) {
-                gsap.fromTo(panelImg, {
-                  yPercent: -8,
-                  scale: 1.12,
-                }, {
-                  yPercent: 8,
-                  scale: 1.04,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: panel,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1.2,
-                  },
-                });
-              }
-            });
-          }
-        }
-
-        // 6. Section 4: The Collective — Magazine Double-Page Spread
-        const spreadSection = select(".about-community-spread")[0];
-        if (spreadSection) {
-          const spreadImg = select(".spread-photo img")[0];
-          if (spreadImg) {
-            gsap.fromTo(spreadImg, {
-              yPercent: -6,
-              scale: 1.1,
-            }, {
-              yPercent: 6,
-              scale: 1.04,
-              ease: "none",
-              scrollTrigger: {
-                trigger: spreadSection,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.2,
-              },
-            });
-          }
-
+        // 4. Section 2: Olivia's Story — Editorial Letter & Polaroid Margin Drift
+        const letterSection = select(".about-editorial-letter")[0];
+        if (letterSection) {
           gsap.fromTo(
-            select(".spread-photo"),
-            { y: 45, autoAlpha: 0, filter: "blur(6px)" },
+            select(".editorial-content"),
+            { y: 35, autoAlpha: 0, filter: "blur(5px)" },
             {
               y: 0,
               autoAlpha: 1,
               filter: "blur(0px)",
-              duration: 1.8,
+              duration: 1.6,
               ease: "power2.out",
               scrollTrigger: {
-                trigger: spreadSection,
-                start: "top 72%",
+                trigger: letterSection,
+                start: "top 78%",
                 toggleActions: "play none none reverse",
               },
             }
           );
 
           gsap.fromTo(
-            select(".spread-points .point-item"),
+            select(".editorial-polaroid"),
+            {
+              y: mobile ? 25 : 55,
+              x: mobile ? 0 : 25,
+              rotation: -6,
+              autoAlpha: 0,
+              filter: "blur(4px)",
+            },
+            {
+              y: 0,
+              x: 0,
+              rotation: -3.5,
+              autoAlpha: 1,
+              filter: "blur(0px)",
+              duration: 1.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: letterSection,
+                start: "top 68%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+
+        // 5. Section 3: The Trip Standard — Asymmetrical Photographic Installation Parallax
+        const installSection = select(".about-installation")[0];
+        if (installSection) {
+          const domImg = select(".item-dominant .canvas-media img")[0];
+          if (domImg) {
+            gsap.fromTo(domImg, {
+              yPercent: -7,
+              scale: 1.08,
+            }, {
+              yPercent: 7,
+              scale: 1.02,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".item-dominant",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
+              },
+            });
+          }
+
+          const portImg = select(".item-portrait .canvas-media img")[0];
+          if (portImg) {
+            gsap.fromTo(portImg, {
+              yPercent: 8,
+              scale: 1.08,
+            }, {
+              yPercent: -8,
+              scale: 1.02,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".item-portrait",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
+              },
+            });
+          }
+
+          const candidImg = select(".item-candid .canvas-media img")[0];
+          if (candidImg) {
+            gsap.fromTo(candidImg, {
+              yPercent: -6,
+              scale: 1.08,
+            }, {
+              yPercent: 6,
+              scale: 1.02,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".item-candid",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
+              },
+            });
+          }
+        }
+
+        // 6. Section 4: Who Travels With Us — Typographic Manifesto on Sage
+        const manifestoSection = select(".about-manifesto")[0];
+        if (manifestoSection) {
+          const frameImg = select(".manifesto-frame img")[0];
+          if (frameImg) {
+            gsap.fromTo(frameImg, {
+              yPercent: -5,
+              scale: 1.06,
+            }, {
+              yPercent: 5,
+              scale: 1.02,
+              ease: "none",
+              scrollTrigger: {
+                trigger: manifestoSection,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
+              },
+            });
+          }
+
+          gsap.fromTo(
+            select(".manifesto-reassurance .reassurance-fact"),
             { y: 24, autoAlpha: 0 },
             {
               y: 0,
@@ -261,30 +244,30 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
               stagger: 0.16,
               ease: "power2.out",
               scrollTrigger: {
-                trigger: ".spread-points",
-                start: "top 85%",
+                trigger: ".manifesto-reassurance",
+                start: "top 86%",
                 toggleActions: "play none none reverse",
               },
             }
           );
         }
 
-        // 7. Section 5: Practical Care — Swiss Ledger Column Stagger
-        const ledgerColumns = select(".ledger-column") as HTMLElement[];
-        if (ledgerColumns.length > 0) {
+        // 7. Section 5: The Operating Ledger — Horizontal Timeline Row Stagger
+        const timelineRows = select(".timeline-row") as HTMLElement[];
+        if (timelineRows.length > 0) {
           gsap.fromTo(
-            ledgerColumns,
-            { y: 28, autoAlpha: 0, filter: "blur(3px)" },
+            timelineRows,
+            { y: 22, autoAlpha: 0, filter: "blur(2px)" },
             {
               y: 0,
               autoAlpha: 1,
               filter: "blur(0px)",
-              duration: 1.4,
-              stagger: 0.14,
+              duration: 1.3,
+              stagger: 0.12,
               ease: "power2.out",
               scrollTrigger: {
-                trigger: ".ledger-grid",
-                start: "top 80%",
+                trigger: ".ledger-timeline",
+                start: "top 82%",
                 toggleActions: "play none none reverse",
               },
             }

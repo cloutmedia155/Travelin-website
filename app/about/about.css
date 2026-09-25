@@ -317,357 +317,381 @@
 }
 
 /* --------------------------------------------------------------------------
-   Section 2: Olivia's Story — Monograph Asymmetry Spread
+   Section 2: Olivia's Story — Editorial Letter & Margin Artifact (Calm Reading)
    -------------------------------------------------------------------------- */
-.about-story {
+.about-editorial-letter {
   position: relative;
-  padding: 150px 0 160px;
+  padding: 160px 0 170px;
   background: var(--about-cream);
 }
 
-.about-story-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 12%;
-  align-items: center;
+.editorial-container {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
 }
 
-.about-story-visual {
-  position: relative;
-  min-height: 520px;
+.editorial-content {
+  max-width: 540px;
 }
 
-.about-portrait-frame {
-  position: relative;
-  width: 74%;
+.editorial-content h2 {
+  font-size: clamp(38px, 4.4vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+
+.editorial-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.editorial-lead {
+  font-size: 16.5px !important;
+  color: var(--about-green);
+  line-height: 1.8 !important;
+  font-weight: 400;
+}
+
+.editorial-prose p {
+  font-size: 14.5px !important;
+  color: var(--about-muted);
+  line-height: 1.85 !important;
+}
+
+.editorial-pullquote {
+  margin: 16px 0 8px;
+  padding-left: 20px;
+  border-left: 2px solid var(--about-green);
+  font: italic clamp(19px, 2vw, 24px)/1.4 var(--serif);
+  color: var(--about-green);
+}
+
+.editorial-signoff {
+  font: italic 14px var(--serif) !important;
+  color: var(--about-green) !important;
+  border-top: 1px solid rgba(38, 60, 50, 0.12);
+  padding-top: 20px;
+  margin-top: 10px;
+}
+
+.editorial-aside {
+  position: absolute;
+  right: 0;
+  top: 8%;
+  width: 280px;
+  pointer-events: none;
+}
+
+.editorial-polaroid {
   background: var(--about-white);
-  padding: 12px 12px 20px;
+  padding: 10px 10px 16px;
   border-radius: 2px;
-  box-shadow: 0 24px 50px rgba(38, 60, 50, 0.08);
-  transform: rotate(-3deg);
+  box-shadow: 0 20px 48px rgba(38, 60, 50, 0.1);
+  transform: rotate(-3.5deg);
   margin: 0;
 }
 
-.portrait-image-wrapper {
-  height: 430px;
+.polaroid-photo {
+  height: 290px;
   overflow: hidden;
 }
 
-.portrait-image-wrapper img {
+.polaroid-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 35%;
 }
 
-.about-portrait-frame figcaption {
-  font: italic 14px var(--serif);
-  color: var(--about-muted);
-  margin-top: 14px;
-}
-
-.about-snapshot-card {
-  position: absolute;
-  right: -4%;
-  bottom: 10px;
-  width: 60%;
-  background: var(--about-white);
-  padding: 10px 10px 16px;
-  border-radius: 2px;
-  box-shadow: 0 18px 40px rgba(38, 60, 50, 0.12);
-  transform: rotate(5deg);
-  margin: 0;
-}
-
-.about-snapshot-card img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-}
-
-.about-snapshot-card figcaption {
-  font: italic 13px var(--serif);
+.editorial-polaroid figcaption {
+  font: italic 12.5px var(--serif);
   color: var(--about-muted);
   margin-top: 10px;
+  text-align: center;
 }
 
-.about-handwriting {
-  position: absolute;
-  right: 2%;
-  top: -12px;
-  font: italic 24px/1 var(--serif);
+.editorial-cursive {
+  display: block;
+  font: italic 22px/1 var(--serif);
   color: var(--about-muted);
-  transform: rotate(6deg);
-}
-
-.about-story-narrative {
-  max-width: 480px;
-}
-
-.about-story-narrative h2 {
-  margin-bottom: 28px;
-}
-
-.story-lead {
-  font-size: 16px !important;
-  color: var(--about-green);
-  line-height: 1.8 !important;
-  margin-bottom: 18px !important;
-}
-
-.story-sub {
-  font-size: 14.5px !important;
-  color: var(--about-muted);
-  line-height: 1.85 !important;
-  margin-bottom: 28px !important;
-}
-
-.story-signoff {
-  border-top: 1px solid rgba(38, 60, 50, 0.12);
-  padding-top: 20px;
-}
-
-.story-signoff p {
-  font: italic 15px var(--serif) !important;
-  color: var(--about-green);
+  text-align: center;
+  margin-top: 18px;
+  transform: rotate(4deg);
 }
 
 /* --------------------------------------------------------------------------
-   Section 3: The Trip Approach — 3-Photo Horizon Panorama
+   Section 3: The Trip Standard — Asymmetrical Photographic Installation (Immersive)
    -------------------------------------------------------------------------- */
-.about-horizon {
+.about-installation {
   position: relative;
-  padding: 150px 0 160px;
+  padding: 160px 0 170px;
   background: var(--about-cream);
   border-top: 1px solid rgba(38, 60, 50, 0.08);
 }
 
-.about-horizon-intro {
-  margin-bottom: 80px;
+.installation-header {
+  margin-bottom: 90px;
+  max-width: 620px;
 }
 
-.about-horizon-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  align-items: start;
+.installation-header h2 {
+  margin-bottom: 18px;
 }
 
-.horizon-panel {
+.installation-intro {
+  font-size: 15px !important;
+  color: var(--about-muted);
+}
+
+.installation-canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.canvas-item {
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.horizon-panel.panel-left {
-  transform: rotate(-2deg);
-}
-
-.horizon-panel.panel-center {
-  transform: translateY(20px);
-}
-
-.horizon-panel.panel-right {
-  transform: rotate(2deg);
-}
-
-.horizon-panel:hover {
-  transform: translateY(-6px) rotate(0deg);
-}
-
-.horizon-window {
-  position: relative;
-  height: 380px;
+.canvas-media {
   overflow: hidden;
   background: var(--about-white);
   padding: 8px 8px 12px;
   border-radius: 2px;
-  box-shadow: 0 18px 45px rgba(38, 60, 50, 0.08);
+  box-shadow: 0 20px 50px rgba(38, 60, 50, 0.08);
 }
 
-.horizon-window img {
+.canvas-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.horizon-panel:hover .horizon-window img {
-  transform: scale(1.05);
+.canvas-item:hover .canvas-media img {
+  transform: scale(1.04);
 }
 
-.horizon-caption {
+.canvas-meta {
   margin-top: 24px;
-  padding: 0 4px;
 }
 
-.horizon-num {
+.canvas-num {
   display: block;
-  font: 500 11px var(--sans);
+  font: 500 10.5px var(--sans);
   letter-spacing: 0.16em;
   color: var(--about-muted);
   margin-bottom: 8px;
 }
 
-.horizon-caption h3 {
-  font-size: clamp(22px, 2.2vw, 30px);
+.canvas-meta h3 {
+  font-size: clamp(24px, 2.4vw, 34px);
   line-height: 1.15;
+  color: var(--about-green);
+  margin-bottom: 10px;
+}
+
+.canvas-meta p {
+  font-size: 14.5px !important;
+  line-height: 1.8 !important;
+  color: var(--about-muted);
+}
+
+/* Item 1: Dominant Landscape (Villa) */
+.item-dominant {
+  max-width: 76%;
+}
+
+.aspect-landscape {
+  height: 440px;
+}
+
+.item-dominant .canvas-meta {
+  max-width: 520px;
+}
+
+/* Row with Item 2 (Portrait Catamaran) and Item 3 (Square Host Moment) */
+.canvas-row {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 8%;
+  align-items: start;
+}
+
+.item-portrait {
+  margin-top: 40px;
+}
+
+.aspect-portrait {
+  height: 480px;
+}
+
+.aspect-square {
+  height: 380px;
+}
+
+/* --------------------------------------------------------------------------
+   Section 4: Who Travels With Us — Typographic Manifesto on Warm Sage (Calm)
+   -------------------------------------------------------------------------- */
+.about-manifesto {
+  position: relative;
+  background: var(--about-sage);
+  padding: 170px 0 180px;
+}
+
+.manifesto-statement {
+  max-width: 820px;
+  margin: 0 auto 70px;
+  text-align: center;
+}
+
+.manifesto-statement h2 {
+  font-size: clamp(38px, 4.8vw, 70px);
+  line-height: 1.08;
+  margin-bottom: 24px;
+}
+
+.manifesto-body {
+  font-size: 15.5px !important;
+  line-height: 1.85 !important;
+  color: var(--about-muted);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.manifesto-visual {
+  max-width: 980px;
+  margin: 0 auto 60px;
+}
+
+.manifesto-frame {
+  margin: 0;
+  background: var(--about-white);
+  padding: 10px 10px 18px;
+  border-radius: 2px;
+  box-shadow: 0 24px 60px rgba(38, 60, 50, 0.09);
+}
+
+.manifesto-frame img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+.manifesto-frame figcaption {
+  font: italic 13px var(--serif);
+  color: var(--about-muted);
+  text-align: center;
+  margin-top: 12px;
+}
+
+.manifesto-reassurance {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 780px;
+  margin: 0 auto;
+  gap: 56px;
+  border-top: 1px solid rgba(38, 60, 50, 0.14);
+  padding-top: 40px;
+}
+
+.reassurance-fact .fact-title {
+  display: block;
+  font: 500 11px var(--sans);
+  letter-spacing: 0.16em;
   color: var(--about-green);
   margin-bottom: 8px;
 }
 
-.horizon-caption p {
-  font-size: 14px !important;
-  line-height: 1.75 !important;
-  color: var(--about-muted);
-}
-
-/* --------------------------------------------------------------------------
-   Section 4: The Collective — Magazine Double-Page Spread on Sage
-   -------------------------------------------------------------------------- */
-.about-community-spread {
-  position: relative;
-  background: var(--about-sage);
-  padding: 150px 0 160px;
-}
-
-.about-spread-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  gap: 10%;
-  align-items: center;
-}
-
-.spread-visual {
-  position: relative;
-}
-
-.spread-photo {
-  background: var(--about-white);
-  padding: 10px 10px 16px;
-  border-radius: 2px;
-  box-shadow: 0 24px 50px rgba(38, 60, 50, 0.08);
-  margin: 0;
-  transform: rotate(-1.5deg);
-}
-
-.spread-photo img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  object-position: center 40%;
-}
-
-.spread-photo figcaption {
-  font: italic 13.5px var(--serif);
-  color: var(--about-muted);
-  margin-top: 12px;
-}
-
-.spread-content {
-  max-width: 500px;
-}
-
-.spread-content h2 {
-  margin-bottom: 24px;
-}
-
-.spread-quote {
-  margin: 0 0 32px;
-  padding-left: 20px;
-  border-left: 2px solid var(--about-green);
-  font: italic clamp(20px, 2.1vw, 28px)/1.35 var(--serif);
-  color: var(--about-green);
-}
-
-.spread-points {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-top: 1px solid rgba(38, 60, 50, 0.14);
-  padding-top: 24px;
-}
-
-.point-item strong {
-  display: block;
-  font: 500 14px var(--sans);
-  letter-spacing: 0.02em;
-  color: var(--about-green);
-  margin-bottom: 4px;
-}
-
-.point-item p {
+.reassurance-fact p {
   font-size: 14px !important;
   color: var(--about-muted);
   line-height: 1.7 !important;
 }
 
 /* --------------------------------------------------------------------------
-   Section 5: Practical Care — Swiss Architectural Ledger
+   Section 5: The Operating Ledger — Swiss Architectural Index Lines (Structured)
    -------------------------------------------------------------------------- */
-.about-ledger-section {
+.about-ledger {
   position: relative;
-  padding: 150px 0 160px;
+  padding: 160px 0 170px;
   background: var(--about-cream);
 }
 
-.ledger-header {
+.ledger-intro {
   margin-bottom: 70px;
+  max-width: 540px;
 }
 
-.ledger-grid {
+.ledger-intro h2 {
+  margin-bottom: 14px;
+}
+
+.ledger-subtitle {
+  font-size: 15px !important;
+  color: var(--about-muted);
+}
+
+.ledger-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border-top: 1px solid rgba(38, 60, 50, 0.16);
-  border-bottom: 1px solid rgba(38, 60, 50, 0.16);
+  grid-template-columns: 50px 170px 1fr;
+  gap: 32px;
+  align-items: baseline;
+  padding: 34px 0;
+  border-top: 1px solid rgba(38, 60, 50, 0.14);
+  transition: background-color 0.25s ease;
 }
 
-.ledger-column {
-  padding: 36px 28px 44px;
-  border-right: 1px solid rgba(38, 60, 50, 0.12);
-  transition: background-color 0.3s ease;
+.timeline-row:last-child {
+  border-bottom: 1px solid rgba(38, 60, 50, 0.14);
 }
 
-.ledger-column:first-child {
-  padding-left: 0;
+.timeline-row:hover {
+  background: rgba(38, 60, 50, 0.015);
 }
 
-.ledger-column:last-child {
-  border-right: none;
-  padding-right: 0;
+.timeline-step {
+  font: 500 12px var(--sans);
+  letter-spacing: 0.14em;
+  color: var(--about-muted);
 }
 
-.ledger-column:hover {
-  background: rgba(38, 60, 50, 0.02);
-}
-
-.ledger-index {
-  display: block;
+.timeline-phase {
   font: 500 11px var(--sans);
   letter-spacing: 0.16em;
-  color: var(--about-muted);
-  margin-bottom: 18px;
+  color: var(--about-green);
 }
 
-.ledger-column h4 {
-  font: 500 20px/1.2 var(--serif);
+.timeline-content h4 {
+  font: 500 21px/1.2 var(--serif);
   letter-spacing: -0.01em;
   color: var(--about-green);
-  margin: 0 0 12px;
+  margin: 0 0 8px;
 }
 
-.ledger-column p {
-  font-size: 13.5px !important;
-  color: var(--about-muted);
+.timeline-content p {
+  font-size: 14.5px !important;
   line-height: 1.75 !important;
+  color: var(--about-muted);
+  max-width: 620px;
 }
 
-.ledger-footer {
-  margin-top: 40px;
+.ledger-bottom-link {
+  margin-top: 48px;
   text-align: right;
 }
 
-.ledger-footer .text-link {
+.ledger-bottom-link .text-link {
   display: inline-flex;
   gap: 8px;
   align-items: center;
@@ -679,7 +703,7 @@
   transition: border-color 0.2s;
 }
 
-.ledger-footer .text-link:hover {
+.ledger-bottom-link .text-link:hover {
   border-color: var(--about-green);
 }
 
@@ -1001,42 +1025,34 @@
     gap: 18px;
   }
   /* Tablet: Section 2 to 5 */
-  .about-story-wrap {
-    gap: 6%;
+  .editorial-aside {
+    width: 230px;
+    top: 6%;
   }
-  .about-story-visual {
-    min-height: 440px;
+  .polaroid-photo {
+    height: 240px;
   }
-  .portrait-image-wrapper {
-    height: 350px;
+  .item-dominant {
+    max-width: 88%;
   }
-  .about-horizon-grid {
+  .aspect-landscape {
+    height: 360px;
+  }
+  .aspect-portrait {
+    height: 400px;
+  }
+  .aspect-square {
+    height: 320px;
+  }
+  .manifesto-frame img {
+    height: 380px;
+  }
+  .manifesto-reassurance {
+    gap: 32px;
+  }
+  .timeline-row {
+    grid-template-columns: 40px 140px 1fr;
     gap: 20px;
-  }
-  .horizon-window {
-    height: 300px;
-  }
-  .about-spread-wrap {
-    gap: 6%;
-  }
-  .spread-photo img {
-    height: 340px;
-  }
-  .ledger-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .ledger-column:nth-child(2) {
-    border-right: none;
-    padding-right: 0;
-  }
-  .ledger-column:nth-child(3) {
-    border-top: 1px solid rgba(38, 60, 50, 0.12);
-    padding-left: 0;
-  }
-  .ledger-column:nth-child(4) {
-    border-top: 1px solid rgba(38, 60, 50, 0.12);
-    border-right: none;
-    padding-right: 0;
   }
   .about-footer nav {
     gap: 20px;
@@ -1125,103 +1141,102 @@
     display: none;
   }
 
-  /* Section 2: Story */
-  .about-story {
-    padding: 85px 0 90px;
+  /* Section 2: Editorial Letter */
+  .about-editorial-letter {
+    padding: 90px 0 95px;
   }
-  .about-story-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-  .about-story-visual {
-    min-height: 320px;
-    max-width: 340px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .about-portrait-frame {
-    width: 78%;
-  }
-  .portrait-image-wrapper {
-    height: 280px;
-  }
-  .about-snapshot-card {
-    width: 66%;
-  }
-  .about-snapshot-card img {
-    height: 140px;
-  }
-  .about-story-narrative h2 {
+  .editorial-content h2 {
     font-size: 34px;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
+  }
+  .editorial-aside {
+    position: static;
+    width: 100%;
+    max-width: 260px;
+    margin: 40px auto 0;
+    pointer-events: auto;
+  }
+  .polaroid-photo {
+    height: 250px;
   }
 
-  /* Section 3: Approach */
-  .about-horizon {
-    padding: 85px 0 90px;
+  /* Section 3: Installation */
+  .about-installation {
+    padding: 90px 0 95px;
   }
-  .about-horizon-intro {
-    margin-bottom: 40px;
+  .installation-header {
+    margin-bottom: 50px;
   }
-  .about-horizon-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  .installation-canvas {
+    gap: 50px;
   }
-  .horizon-panel {
-    transform: none !important;
+  .item-dominant {
+    max-width: 100%;
   }
-  .horizon-window {
-    height: 260px;
-  }
-  .horizon-caption h3 {
-    font-size: 26px;
-  }
-
-  /* Section 4: Collective */
-  .about-community-spread {
-    padding: 85px 0 95px;
-  }
-  .about-spread-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-  }
-  .spread-photo {
-    transform: none !important;
-  }
-  .spread-photo img {
+  .aspect-landscape {
     height: 240px;
   }
-  .spread-quote {
-    font-size: 22px;
-    margin-bottom: 24px;
-  }
-
-  /* Section 5: Logistics */
-  .about-ledger-section {
-    padding: 85px 0 90px;
-  }
-  .ledger-header {
-    margin-bottom: 40px;
-  }
-  .ledger-grid {
+  .canvas-row {
     display: flex;
     flex-direction: column;
-    border-bottom: none;
+    gap: 50px;
   }
-  .ledger-column {
+  .item-portrait {
+    margin-top: 0;
+  }
+  .aspect-portrait {
+    height: 320px;
+  }
+  .aspect-square {
+    height: 260px;
+  }
+
+  /* Section 4: Typographic Manifesto */
+  .about-manifesto {
+    padding: 95px 0 100px;
+  }
+  .manifesto-statement {
+    margin-bottom: 45px;
+  }
+  .manifesto-statement h2 {
+    font-size: 34px;
+  }
+  .manifesto-visual {
+    margin-bottom: 40px;
+  }
+  .manifesto-frame img {
+    height: 240px;
+  }
+  .manifesto-reassurance {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 30px;
+  }
+
+  /* Section 5: Operating Ledger */
+  .about-ledger {
+    padding: 90px 0 95px;
+  }
+  .ledger-intro {
+    margin-bottom: 40px;
+  }
+  .timeline-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     padding: 24px 0;
-    border-right: none;
-    border-bottom: 1px solid rgba(38, 60, 50, 0.12);
   }
-  .ledger-column:first-child {
-    padding-left: 0;
+  .timeline-step {
+    display: inline-block;
   }
-  .ledger-footer {
+  .timeline-phase {
+    display: inline-block;
+    margin-left: 8px;
+  }
+  .ledger-bottom-link {
     text-align: left;
-    margin-top: 28px;
+    margin-top: 32px;
   }
 
   /* Section 6: Film */
@@ -1295,13 +1310,13 @@
   .about-opening-copy h1 {
     font-size: 38px;
   }
-  .about-story-narrative h2 {
+  .editorial-content h2 {
     font-size: 28px;
   }
-  .about-horizon-intro h2 {
+  .installation-header h2 {
     font-size: 30px;
   }
-  .spread-content h2 {
+  .manifesto-statement h2 {
     font-size: 30px;
   }
   .about-invitation-copy h2 {
@@ -1322,10 +1337,9 @@
     background: rgba(247, 248, 244, 0.94);
     color: var(--about-green);
   }
-  .about-portrait-frame,
-  .about-snapshot-card,
-  .horizon-panel,
-  .spread-photo,
+  .editorial-polaroid,
+  .canvas-media,
+  .manifesto-frame,
   .memory-left,
   .memory-right {
     transform: none !important;
