@@ -10,7 +10,13 @@ export function Experience() {
   return <section id="experience" className="experience">
     <div className="experience-intro wrap">
       <span className="editorial-label" aria-hidden="true" style={{ visibility: "hidden" }}>&nbsp;</span>
-      <div className="experience-intro-copy"><h2 className="editorial-heading">There’s a whole trip behind<br /><em>those laughing videos.</em></h2><p>The days out. The conversations over dinner. Someone getting everyone up to dance. Those are the moments we make room for, along with time to head off on your own or do nothing for a while.</p></div>
+      <div className="experience-intro-copy">
+        <h2 className="editorial-heading">
+          <span className="line-mask"><span className="editorial-line">There’s a whole trip behind</span></span>
+          <span className="line-mask"><em className="editorial-line">those laughing videos.</em></span>
+        </h2>
+        <p>The days out. The conversations over dinner. Someone getting everyone up to dance. Those are the moments we make room for, along with time to head off on your own or do nothing for a while.</p>
+      </div>
     </div>
     <div className="experience-scroll">
       <div className="experience-stage">
