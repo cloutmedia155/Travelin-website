@@ -317,27 +317,27 @@
 }
 
 /* --------------------------------------------------------------------------
-   Section 2: Olivia — How It Started (High-Fashion Monograph Spread)
+   Section 2: Olivia's Story — Monograph Asymmetry Spread
    -------------------------------------------------------------------------- */
-.about-founder-spread {
+.about-story {
   position: relative;
   padding: 150px 0 160px;
   background: var(--about-cream);
 }
 
-.about-founder-wrap {
+.about-story-wrap {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 1fr 1.1fr;
   gap: 12%;
   align-items: center;
 }
 
-.about-founder-visual {
+.about-story-visual {
   position: relative;
-  min-height: 540px;
+  min-height: 520px;
 }
 
-.about-founder-portrait {
+.about-portrait-frame {
   position: relative;
   width: 74%;
   background: var(--about-white);
@@ -345,45 +345,47 @@
   border-radius: 2px;
   box-shadow: 0 24px 50px rgba(38, 60, 50, 0.08);
   transform: rotate(-3deg);
+  margin: 0;
 }
 
-.founder-image-window {
-  height: 440px;
+.portrait-image-wrapper {
+  height: 430px;
   overflow: hidden;
 }
 
-.founder-image-window img {
+.portrait-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 40%;
+  object-position: 50% 35%;
 }
 
-.about-founder-portrait figcaption {
+.about-portrait-frame figcaption {
   font: italic 14px var(--serif);
   color: var(--about-muted);
   margin-top: 14px;
 }
 
-.about-founder-snap {
+.about-snapshot-card {
   position: absolute;
-  right: -5%;
-  bottom: 0;
-  width: 62%;
+  right: -4%;
+  bottom: 10px;
+  width: 60%;
   background: var(--about-white);
   padding: 10px 10px 16px;
   border-radius: 2px;
   box-shadow: 0 18px 40px rgba(38, 60, 50, 0.12);
   transform: rotate(5deg);
+  margin: 0;
 }
 
-.about-founder-snap img {
+.about-snapshot-card img {
   width: 100%;
-  height: 200px;
+  height: 190px;
   object-fit: cover;
 }
 
-.about-founder-snap figcaption {
+.about-snapshot-card figcaption {
   font: italic 13px var(--serif);
   color: var(--about-muted);
   margin-top: 10px;
@@ -392,439 +394,293 @@
 .about-handwriting {
   position: absolute;
   right: 2%;
-  top: -15px;
-  font: italic 26px/1 var(--serif);
+  top: -12px;
+  font: italic 24px/1 var(--serif);
   color: var(--about-muted);
   transform: rotate(6deg);
 }
 
-.about-founder-narrative {
+.about-story-narrative {
   max-width: 480px;
 }
 
-.about-founder-narrative h2 {
+.about-story-narrative h2 {
   margin-bottom: 28px;
 }
 
-.about-founder-lead {
+.story-lead {
   font-size: 16px !important;
   color: var(--about-green);
   line-height: 1.8 !important;
   margin-bottom: 18px !important;
 }
 
-.about-founder-sub {
+.story-sub {
   font-size: 14.5px !important;
   color: var(--about-muted);
   line-height: 1.85 !important;
-  margin-bottom: 38px !important;
+  margin-bottom: 28px !important;
 }
 
-.about-stats-ledger {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid rgba(38, 60, 50, 0.14);
+.story-signoff {
+  border-top: 1px solid rgba(38, 60, 50, 0.12);
+  padding-top: 20px;
 }
 
-.stat-row {
-  display: grid;
-  grid-template-columns: 36px 1fr;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(38, 60, 50, 0.08);
-}
-
-.stat-num {
-  font: 500 11px var(--sans);
-  letter-spacing: 0.12em;
-  color: var(--about-muted);
-  padding-top: 2px;
-}
-
-.stat-text strong {
-  display: block;
-  font: 500 13.5px var(--sans);
-  letter-spacing: 0.02em;
+.story-signoff p {
+  font: italic 15px var(--serif) !important;
   color: var(--about-green);
-  margin-bottom: 3px;
-}
-
-.stat-text small {
-  display: block;
-  font: italic 13px var(--serif);
-  color: var(--about-muted);
 }
 
 /* --------------------------------------------------------------------------
-   Section 3: The Trip Approach (3 Chapter Stelae with Dual Photos)
+   Section 3: The Trip Approach — 3-Photo Horizon Panorama
    -------------------------------------------------------------------------- */
-.about-chapters {
+.about-horizon {
   position: relative;
   padding: 150px 0 160px;
   background: var(--about-cream);
   border-top: 1px solid rgba(38, 60, 50, 0.08);
 }
 
-.about-chapters-intro {
-  margin-bottom: 120px;
+.about-horizon-intro {
+  margin-bottom: 80px;
 }
 
-.about-chapters-flow {
-  display: flex;
-  flex-direction: column;
-  gap: 160px;
-}
-
-.about-chapter-stela {
+.about-horizon-grid {
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 12%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.horizon-panel {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.horizon-panel.panel-left {
+  transform: rotate(-2deg);
+}
+
+.horizon-panel.panel-center {
+  transform: translateY(20px);
+}
+
+.horizon-panel.panel-right {
+  transform: rotate(2deg);
+}
+
+.horizon-panel:hover {
+  transform: translateY(-6px) rotate(0deg);
+}
+
+.horizon-window {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  background: var(--about-white);
+  padding: 8px 8px 12px;
+  border-radius: 2px;
+  box-shadow: 0 18px 45px rgba(38, 60, 50, 0.08);
+}
+
+.horizon-window img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.horizon-panel:hover .horizon-window img {
+  transform: scale(1.05);
+}
+
+.horizon-caption {
+  margin-top: 24px;
+  padding: 0 4px;
+}
+
+.horizon-num {
+  display: block;
+  font: 500 11px var(--sans);
+  letter-spacing: 0.16em;
+  color: var(--about-muted);
+  margin-bottom: 8px;
+}
+
+.horizon-caption h3 {
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.15;
+  color: var(--about-green);
+  margin-bottom: 8px;
+}
+
+.horizon-caption p {
+  font-size: 14px !important;
+  line-height: 1.75 !important;
+  color: var(--about-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Section 4: The Collective — Magazine Double-Page Spread on Sage
+   -------------------------------------------------------------------------- */
+.about-community-spread {
+  position: relative;
+  background: var(--about-sage);
+  padding: 150px 0 160px;
+}
+
+.about-spread-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 10%;
   align-items: center;
 }
 
-.about-chapter-stela.chapter-right {
-  grid-template-columns: 1fr 1.35fr;
-}
-
-.about-chapter-stela.chapter-right .chapter-photos {
-  order: 2;
-}
-
-.about-chapter-stela.chapter-right .chapter-meta {
-  order: 1;
-}
-
-.chapter-photos {
+.spread-visual {
   position: relative;
-  min-height: 440px;
 }
 
-.photo-primary {
-  position: relative;
-  width: 78%;
+.spread-photo {
   background: var(--about-white);
-  padding: 10px 10px 18px;
+  padding: 10px 10px 16px;
   border-radius: 2px;
-  box-shadow: 0 20px 48px rgba(38, 60, 50, 0.08);
+  box-shadow: 0 24px 50px rgba(38, 60, 50, 0.08);
+  margin: 0;
+  transform: rotate(-1.5deg);
 }
 
-.chapter-left .photo-primary {
-  transform: rotate(-3deg);
+.spread-photo img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center 40%;
 }
 
-.chapter-right .photo-primary {
-  transform: rotate(3deg);
-}
-
-.photo-primary .photo-window {
-  height: 380px;
-  overflow: hidden;
-}
-
-.photo-primary figcaption,
-.photo-secondary figcaption {
+.spread-photo figcaption {
   font: italic 13.5px var(--serif);
   color: var(--about-muted);
   margin-top: 12px;
 }
 
-.photo-secondary {
-  position: absolute;
-  right: -4%;
-  bottom: -20px;
-  width: 52%;
-  background: var(--about-white);
-  padding: 8px 8px 14px;
-  border-radius: 2px;
-  box-shadow: 0 16px 38px rgba(38, 60, 50, 0.1);
+.spread-content {
+  max-width: 500px;
 }
 
-.chapter-left .photo-secondary {
-  transform: rotate(5deg);
-}
-
-.chapter-right .photo-secondary {
-  transform: rotate(-4deg);
-}
-
-.photo-secondary .photo-window {
-  height: 200px;
-  overflow: hidden;
-}
-
-.photo-window img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.chapter-meta {
-  position: relative;
-  max-width: 440px;
-}
-
-.chapter-watermark {
-  position: absolute;
-  right: 0;
-  top: -45px;
-  font: 400 80px/1 var(--serif);
-  color: var(--about-green);
-  opacity: 0.12;
-  user-select: none;
-  pointer-events: none;
-}
-
-.chapter-tag {
-  display: block;
-  font: 500 10.5px/1.6 var(--sans);
-  letter-spacing: 0.18em;
-  color: var(--about-muted);
-  margin-bottom: 18px;
-}
-
-.chapter-meta h3 {
-  margin-bottom: 20px;
-}
-
-.chapter-meta p {
-  font-size: 15px;
-  color: var(--about-muted);
-  line-height: 1.85;
+.spread-content h2 {
   margin-bottom: 24px;
 }
 
-.chapter-pill {
-  display: inline-block;
-  font: 500 10.5px var(--sans);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.spread-quote {
+  margin: 0 0 32px;
+  padding-left: 20px;
+  border-left: 2px solid var(--about-green);
+  font: italic clamp(20px, 2.1vw, 28px)/1.35 var(--serif);
   color: var(--about-green);
-  background: rgba(38, 60, 50, 0.05);
-  border: 1px solid rgba(38, 60, 50, 0.16);
-  border-radius: 9999px;
-  padding: 6px 16px;
 }
 
-/* --------------------------------------------------------------------------
-   Section 4: The Collective (Full-Bleed Story Cards Triptych)
-   Matches Homepage .story-cards with aspect-ratio: .76 and dark green gradient
-   -------------------------------------------------------------------------- */
-.about-collective {
-  position: relative;
-  background: var(--about-sage);
-  padding: 150px 0 165px;
+.spread-points {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-top: 1px solid rgba(38, 60, 50, 0.14);
+  padding-top: 24px;
 }
 
-.about-collective-intro {
-  margin-bottom: 85px;
-}
-
-.about-collective-sub {
-  margin-top: 18px;
-  font-size: 15px;
-  color: var(--about-muted);
-}
-
-.about-story-triptych {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-
-.about-story-card {
-  position: relative;
-  aspect-ratio: 0.74;
-  overflow: hidden;
-  background: #263c32;
-  border-radius: 2px;
-  box-shadow: 0 18px 45px rgba(38, 60, 50, 0.1);
-  margin: 0;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.card-mid {
-  transform: translateY(35px);
-}
-
-.about-story-card:hover {
-  transform: translateY(-6px);
-}
-
-.card-mid:hover {
-  transform: translateY(29px);
-}
-
-.about-story-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 40%;
-  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.about-story-card:hover img {
-  transform: scale(1.05);
-}
-
-.story-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(19, 41, 27, 0.88) 0%, rgba(19, 41, 27, 0.3) 55%, transparent 100%);
-  pointer-events: none;
-}
-
-.about-story-card figcaption {
-  position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 32px;
-  z-index: 2;
-  color: var(--about-white);
-}
-
-.story-card-num {
+.point-item strong {
   display: block;
-  font: 500 12px var(--sans);
-  letter-spacing: 0.16em;
-  color: rgba(255, 253, 245, 0.75);
-  margin-bottom: 14px;
+  font: 500 14px var(--sans);
+  letter-spacing: 0.02em;
+  color: var(--about-green);
+  margin-bottom: 4px;
 }
 
-.about-story-card h3 {
-  font-size: clamp(24px, 2.4vw, 34px);
-  line-height: 1.1;
-  color: var(--about-white);
-  margin-bottom: 12px;
-}
-
-.about-story-card p {
-  font-size: 13.5px !important;
-  line-height: 1.75 !important;
-  color: rgba(255, 253, 245, 0.85);
+.point-item p {
+  font-size: 14px !important;
+  color: var(--about-muted);
+  line-height: 1.7 !important;
 }
 
 /* --------------------------------------------------------------------------
-   Section 5: Practical Care & Organization (Architectural Ledger)
+   Section 5: Practical Care — Swiss Architectural Ledger
    -------------------------------------------------------------------------- */
-.about-logistics {
+.about-ledger-section {
   position: relative;
   padding: 150px 0 160px;
   background: var(--about-cream);
 }
 
-.about-logistics-stage {
+.ledger-header {
+  margin-bottom: 70px;
+}
+
+.ledger-grid {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 12%;
-  align-items: start;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(38, 60, 50, 0.16);
+  border-bottom: 1px solid rgba(38, 60, 50, 0.16);
 }
 
-.about-logistics-visual {
-  position: sticky;
-  top: 100px;
+.ledger-column {
+  padding: 36px 28px 44px;
+  border-right: 1px solid rgba(38, 60, 50, 0.12);
+  transition: background-color 0.3s ease;
 }
 
-.about-logistics-photo {
-  background: var(--about-white);
-  padding: 10px 10px 16px;
-  border-radius: 2px;
-  box-shadow: 0 18px 45px rgba(38, 60, 50, 0.08);
-  margin: 0;
+.ledger-column:first-child {
+  padding-left: 0;
 }
 
-.logistics-image-window {
-  height: 380px;
-  overflow: hidden;
+.ledger-column:last-child {
+  border-right: none;
+  padding-right: 0;
 }
 
-.logistics-image-window img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
+.ledger-column:hover {
+  background: rgba(38, 60, 50, 0.02);
 }
 
-.about-logistics-photo figcaption {
-  font: italic 13.5px var(--serif);
-  color: var(--about-muted);
-  margin-top: 12px;
-}
-
-.about-logistics-card {
-  margin-top: 24px;
-  padding: 24px 26px;
-  background: var(--about-white);
-  border: 1px solid rgba(38, 60, 50, 0.12);
-  border-radius: 2px;
-}
-
-.card-kicker {
+.ledger-index {
   display: block;
-  font: 500 10.5px var(--sans);
+  font: 500 11px var(--sans);
   letter-spacing: 0.16em;
-  color: var(--about-green);
-  margin-bottom: 8px;
-}
-
-.about-logistics-card p {
-  font-size: 13px !important;
   color: var(--about-muted);
-  margin-bottom: 14px !important;
+  margin-bottom: 18px;
 }
 
-.about-logistics-card .text-link {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  font-size: 12.5px;
-  border-bottom: 1px solid rgba(38, 60, 50, 0.25);
-  padding-bottom: 3px;
-  color: var(--about-green);
-}
-
-.about-logistics-content {
-  max-width: 520px;
-}
-
-.about-logistics-content h2 {
-  margin-bottom: 40px;
-}
-
-.about-ledger-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.about-ledger-row {
-  display: grid;
-  grid-template-columns: 45px 1fr;
-  gap: 20px;
-  padding: 30px 0;
-  border-top: 1px solid rgba(38, 60, 50, 0.14);
-}
-
-.about-ledger-row:last-child {
-  border-bottom: 1px solid rgba(38, 60, 50, 0.14);
-}
-
-.ledger-num {
-  font: 500 12px var(--sans);
-  letter-spacing: 0.12em;
-  color: var(--about-muted);
-  padding-top: 4px;
-}
-
-.ledger-detail h4 {
+.ledger-column h4 {
   font: 500 20px/1.2 var(--serif);
   letter-spacing: -0.01em;
   color: var(--about-green);
-  margin: 0 0 8px;
+  margin: 0 0 12px;
 }
 
-.ledger-detail p {
-  font-size: 14.5px !important;
+.ledger-column p {
+  font-size: 13.5px !important;
   color: var(--about-muted);
   line-height: 1.75 !important;
+}
+
+.ledger-footer {
+  margin-top: 40px;
+  text-align: right;
+}
+
+.ledger-footer .text-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--about-green);
+  border-bottom: 1px solid rgba(38, 60, 50, 0.3);
+  padding-bottom: 3px;
+  transition: border-color 0.2s;
+}
+
+.ledger-footer .text-link:hover {
+  border-color: var(--about-green);
 }
 
 /* --------------------------------------------------------------------------
@@ -1144,38 +1000,43 @@
   .about-header nav {
     gap: 18px;
   }
-  .about-founder-wrap {
+  /* Tablet: Section 2 to 5 */
+  .about-story-wrap {
     gap: 6%;
   }
-  .about-founder-visual {
+  .about-story-visual {
     min-height: 440px;
   }
-  .founder-image-window {
+  .portrait-image-wrapper {
     height: 350px;
   }
-  .about-chapter-stela {
-    gap: 6%;
-  }
-  .photo-primary .photo-window {
-    height: 300px;
-  }
-  .about-story-triptych {
-    grid-template-columns: 1fr 1fr;
+  .about-horizon-grid {
     gap: 20px;
   }
-  .card-mid {
-    transform: none;
+  .horizon-window {
+    height: 300px;
   }
-  .about-story-card:last-child {
-    grid-column: span 2;
-    max-width: 440px;
-    margin: 20px auto 0;
-  }
-  .about-logistics-stage {
+  .about-spread-wrap {
     gap: 6%;
   }
-  .logistics-image-window {
-    height: 320px;
+  .spread-photo img {
+    height: 340px;
+  }
+  .ledger-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ledger-column:nth-child(2) {
+    border-right: none;
+    padding-right: 0;
+  }
+  .ledger-column:nth-child(3) {
+    border-top: 1px solid rgba(38, 60, 50, 0.12);
+    padding-left: 0;
+  }
+  .ledger-column:nth-child(4) {
+    border-top: 1px solid rgba(38, 60, 50, 0.12);
+    border-right: none;
+    padding-right: 0;
   }
   .about-footer nav {
     gap: 20px;
@@ -1265,113 +1126,102 @@
   }
 
   /* Section 2: Story */
-  .about-founder-spread {
+  .about-story {
     padding: 85px 0 90px;
   }
-  .about-founder-wrap {
+  .about-story-wrap {
     display: flex;
     flex-direction: column;
     gap: 40px;
   }
-  .about-founder-visual {
+  .about-story-visual {
     min-height: 320px;
     max-width: 340px;
     width: 100%;
     margin: 0 auto;
   }
-  .about-founder-portrait {
+  .about-portrait-frame {
     width: 78%;
   }
-  .founder-image-window {
+  .portrait-image-wrapper {
     height: 280px;
   }
-  .about-founder-snap {
+  .about-snapshot-card {
     width: 66%;
   }
-  .about-founder-snap img {
+  .about-snapshot-card img {
     height: 140px;
   }
-  .about-founder-narrative h2 {
+  .about-story-narrative h2 {
     font-size: 34px;
     margin-bottom: 18px;
   }
 
   /* Section 3: Approach */
-  .about-chapters {
+  .about-horizon {
     padding: 85px 0 90px;
   }
-  .about-chapters-intro {
-    margin-bottom: 50px;
+  .about-horizon-intro {
+    margin-bottom: 40px;
   }
-  .about-chapters-flow {
-    gap: 65px;
-  }
-  .about-chapter-stela,
-  .about-chapter-stela.chapter-right {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  .about-chapter-stela.chapter-right .chapter-photos {
-    order: 1;
-  }
-  .about-chapter-stela.chapter-right .chapter-meta {
-    order: 2;
-  }
-  .photo-primary .photo-window {
-    height: 260px;
-  }
-  .photo-secondary {
-    display: none;
-  }
-  .photo-primary {
-    width: 100%;
-    transform: none !important;
-  }
-  .chapter-meta h3 {
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
-
-  /* Section 4: Collective */
-  .about-collective {
-    padding: 85px 0 95px;
-  }
-  .about-collective-intro {
-    margin-bottom: 50px;
-  }
-  .about-story-triptych {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  .card-mid {
-    transform: none;
-  }
-  .about-story-card {
-    aspect-ratio: 0.85;
-  }
-
-  /* Section 5: Logistics */
-  .about-logistics {
-    padding: 85px 0 90px;
-  }
-  .about-logistics-stage {
+  .about-horizon-grid {
     display: flex;
     flex-direction: column;
     gap: 40px;
   }
-  .about-logistics-visual {
-    position: static;
-    max-width: 400px;
-    margin: 0 auto;
-    width: 100%;
+  .horizon-panel {
+    transform: none !important;
   }
-  .logistics-image-window {
+  .horizon-window {
     height: 260px;
   }
-  .about-ledger-row {
-    padding: 22px 0;
+  .horizon-caption h3 {
+    font-size: 26px;
+  }
+
+  /* Section 4: Collective */
+  .about-community-spread {
+    padding: 85px 0 95px;
+  }
+  .about-spread-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .spread-photo {
+    transform: none !important;
+  }
+  .spread-photo img {
+    height: 240px;
+  }
+  .spread-quote {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  /* Section 5: Logistics */
+  .about-ledger-section {
+    padding: 85px 0 90px;
+  }
+  .ledger-header {
+    margin-bottom: 40px;
+  }
+  .ledger-grid {
+    display: flex;
+    flex-direction: column;
+    border-bottom: none;
+  }
+  .ledger-column {
+    padding: 24px 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(38, 60, 50, 0.12);
+  }
+  .ledger-column:first-child {
+    padding-left: 0;
+  }
+  .ledger-footer {
+    text-align: left;
+    margin-top: 28px;
   }
 
   /* Section 6: Film */
@@ -1445,13 +1295,13 @@
   .about-opening-copy h1 {
     font-size: 38px;
   }
-  .about-founder-narrative h2 {
+  .about-story-narrative h2 {
     font-size: 28px;
   }
-  .about-chapters-intro h2 {
+  .about-horizon-intro h2 {
     font-size: 30px;
   }
-  .about-collective-intro h2 {
+  .spread-content h2 {
     font-size: 30px;
   }
   .about-invitation-copy h2 {
@@ -1472,11 +1322,10 @@
     background: rgba(247, 248, 244, 0.94);
     color: var(--about-green);
   }
-  .about-founder-portrait,
-  .about-founder-snap,
-  .photo-primary,
-  .photo-secondary,
-  .card-mid,
+  .about-portrait-frame,
+  .about-snapshot-card,
+  .horizon-panel,
+  .spread-photo,
   .memory-left,
   .memory-right {
     transform: none !important;

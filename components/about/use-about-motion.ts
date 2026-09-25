@@ -109,11 +109,11 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
             .to({}, { duration: 0.05 });
         }
 
-        // 4. Section 2: Olivia's Story — Portrait curtain unmask & group snap parallax
-        const storySection = select(".about-founder-spread")[0];
+        // 4. Section 2: Olivia's Story — Portrait curtain unmask & snapshot drift
+        const storySection = select(".about-story")[0];
         if (storySection) {
           // Portrait clip-path reveal
-          gsap.fromTo(select(".founder-image-window"), {
+          gsap.fromTo(select(".portrait-image-wrapper"), {
             clipPath: "inset(12% 8% 0% 8%)",
           }, {
             clipPath: "inset(0% 0% 0% 0%)",
@@ -127,7 +127,7 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
           });
 
           // Inner photo optical counter-parallax
-          const portraitImg = select(".founder-image-window img")[0];
+          const portraitImg = select(".portrait-image-wrapper img")[0];
           if (portraitImg) {
             gsap.fromTo(portraitImg, {
               yPercent: -6,
@@ -145,10 +145,10 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
             });
           }
 
-          // Secondary Polaroid group snap enters with diagonal drift
-          gsap.fromTo(select(".about-founder-snap"), {
-            y: mobile ? 25 : 60,
-            x: mobile ? 15 : 35,
+          // Secondary snapshot enters with diagonal drift
+          gsap.fromTo(select(".about-snapshot-card"), {
+            y: mobile ? 25 : 55,
+            x: mobile ? 15 : 30,
             rotation: 8,
             autoAlpha: 0,
             filter: "blur(4px)",
@@ -168,21 +168,65 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
           });
         }
 
-        // 5. Section 3: The 3 Chapter Stelae — Dual photo counter-parallax
-        (select(".about-chapter-stela") as HTMLElement[]).forEach((stela) => {
-          const primaryImg = stela.querySelector(".photo-primary .photo-window img");
-          const secondaryImg = stela.querySelector(".photo-secondary .photo-window img");
+        // 5. Section 3: The Trip Approach — 3-Photo Horizon Panorama Stagger & Parallax
+        const horizonSection = select(".about-horizon")[0];
+        if (horizonSection) {
+          const panels = select(".horizon-panel") as HTMLElement[];
+          if (panels.length > 0) {
+            gsap.fromTo(
+              panels,
+              { y: 55, autoAlpha: 0, filter: "blur(6px)" },
+              {
+                y: 0,
+                autoAlpha: 1,
+                filter: "blur(0px)",
+                duration: 1.8,
+                stagger: 0.22,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: ".about-horizon-grid",
+                  start: "top 78%",
+                  toggleActions: "play none none reverse",
+                },
+              }
+            );
 
-          if (primaryImg) {
-            gsap.fromTo(primaryImg, {
-              yPercent: -8,
-              scale: 1.14,
+            panels.forEach((panel) => {
+              const panelImg = panel.querySelector(".horizon-window img");
+              if (panelImg) {
+                gsap.fromTo(panelImg, {
+                  yPercent: -8,
+                  scale: 1.12,
+                }, {
+                  yPercent: 8,
+                  scale: 1.04,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: panel,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.2,
+                  },
+                });
+              }
+            });
+          }
+        }
+
+        // 6. Section 4: The Collective — Magazine Double-Page Spread
+        const spreadSection = select(".about-community-spread")[0];
+        if (spreadSection) {
+          const spreadImg = select(".spread-photo img")[0];
+          if (spreadImg) {
+            gsap.fromTo(spreadImg, {
+              yPercent: -6,
+              scale: 1.1,
             }, {
-              yPercent: 8,
+              yPercent: 6,
               scale: 1.04,
               ease: "none",
               scrollTrigger: {
-                trigger: stela,
+                trigger: spreadSection,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 1.2,
@@ -190,83 +234,57 @@ export function useAboutMotion(root: RefObject<HTMLDivElement | null>) {
             });
           }
 
-          if (secondaryImg) {
-            gsap.fromTo(secondaryImg, {
-              yPercent: 10,
-              scale: 1.12,
-            }, {
-              yPercent: -10,
-              scale: 1.04,
-              ease: "none",
-              scrollTrigger: {
-                trigger: stela,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.1,
-              },
-            });
-          }
-        });
-
-        // 6. Section 4: The Collective — Deep-blur triptych lift (matching homepage .story-cards)
-        const storyCards = select(".about-story-triptych .about-story-card") as HTMLElement[];
-        if (storyCards.length > 0) {
           gsap.fromTo(
-            storyCards,
-            { y: 80, autoAlpha: 0, filter: "blur(8px)" },
+            select(".spread-photo"),
+            { y: 45, autoAlpha: 0, filter: "blur(6px)" },
             {
               y: 0,
               autoAlpha: 1,
               filter: "blur(0px)",
-              duration: 2.2,
-              stagger: 0.35,
+              duration: 1.8,
               ease: "power2.out",
-              force3D: true,
               scrollTrigger: {
-                trigger: ".about-story-triptych",
-                start: "top 76%",
+                trigger: spreadSection,
+                start: "top 72%",
                 toggleActions: "play none none reverse",
               },
             }
           );
 
-          storyCards.forEach((card) => {
-            const cardImg = card.querySelector("img");
-            if (cardImg) {
-              gsap.fromTo(cardImg, {
-                yPercent: -6,
-                scale: 1.12,
-              }, {
-                yPercent: 6,
-                scale: 1.12,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: card,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 1.1,
-                },
-              });
+          gsap.fromTo(
+            select(".spread-points .point-item"),
+            { y: 24, autoAlpha: 0 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 1.2,
+              stagger: 0.16,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ".spread-points",
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
             }
-          });
+          );
         }
 
-        // 7. Section 5: Practical Care — Ledger list sequential stagger
-        const ledgerRows = select(".about-ledger-row") as HTMLElement[];
-        if (ledgerRows.length > 0) {
+        // 7. Section 5: Practical Care — Swiss Ledger Column Stagger
+        const ledgerColumns = select(".ledger-column") as HTMLElement[];
+        if (ledgerColumns.length > 0) {
           gsap.fromTo(
-            ledgerRows,
-            { y: 24, autoAlpha: 0, filter: "blur(3px)" },
+            ledgerColumns,
+            { y: 28, autoAlpha: 0, filter: "blur(3px)" },
             {
               y: 0,
               autoAlpha: 1,
               filter: "blur(0px)",
               duration: 1.4,
-              stagger: 0.18,
+              stagger: 0.14,
               ease: "power2.out",
               scrollTrigger: {
-                trigger: ".about-ledger-list",
-                start: "top 82%",
+                trigger: ".ledger-grid",
+                start: "top 80%",
                 toggleActions: "play none none reverse",
               },
             }

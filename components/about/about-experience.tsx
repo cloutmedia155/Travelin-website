@@ -75,14 +75,14 @@ export function AboutExperience() {
       </header>
 
       <main id="main-content">
-        {/* Section 1: The company — opening (Hero) */}
+        {/* Section 1: The Company Opening (Hero) */}
         <section className="about-opening" aria-labelledby="about-title">
           <div className="about-opening-stage">
             <div className="about-opening-frame">
               <img
                 className="about-opening-image"
                 src="/media/moment-5.webp"
-                alt="Olivia and travelers enjoying a candid moment together on a Travel & LIV trip"
+                alt="Olivia and travelers enjoying a candid moment on a Travel & LIV trip"
                 fetchPriority="high"
               />
               <div className="about-opening-shade" />
@@ -118,256 +118,160 @@ export function AboutExperience() {
           </div>
         </section>
 
-        {/* Section 2: Olivia — How It Started (High-Fashion Monograph Spread) */}
-        <section id="the-story" className="about-founder-spread" aria-labelledby="story-heading">
-          <div className="about-founder-wrap wrap">
-            <div className="about-founder-visual" data-about-reveal>
-              <figure className="about-founder-portrait">
-                <div className="founder-image-window">
+        {/* Section 2: Olivia's Story — Monograph Portrait & Confession */}
+        <section id="the-story" className="about-story" aria-labelledby="story-heading">
+          <div className="about-story-wrap wrap">
+            <div className="about-story-visual" data-about-reveal>
+              <figure className="about-portrait-frame">
+                <div className="portrait-image-wrapper">
                   <img src="/media/olivia.webp" alt="Olivia Owen, founder and host" loading="lazy" />
                 </div>
                 <figcaption>Olivia, by the sea.</figcaption>
               </figure>
-              <figure className="about-founder-snap" aria-hidden="true">
+              <figure className="about-snapshot-card" aria-hidden="true">
                 <img src="/media/moment-2.webp" alt="Travelers sharing an afternoon together" loading="lazy" />
                 <figcaption>A few more people to go with.</figcaption>
               </figure>
               <span className="about-handwriting" aria-hidden="true">How it started</span>
             </div>
 
-            <div className="about-founder-narrative" data-about-reveal>
+            <div className="about-story-narrative" data-about-reveal>
               <span className="about-label">BEFORE THE COLLECTIVE</span>
               <h2 id="story-heading">
                 She wanted to travel.<br />
                 <em>Finding people wasn’t easy.</em>
               </h2>
-              <p className="about-founder-lead">
-                Olivia started traveling solo because she didn’t want to wait around on anyone. But wanting to go and having good people with you are two different things.
+              <p className="story-lead">
+                Olivia started traveling solo because she didn’t want to wait on anyone’s schedule. But wanting to explore and finding people who are genuinely up for it are two different things.
               </p>
-              <p className="about-founder-sub">
-                Travel & LIV began right there: take the stress out of planning, book stays worth traveling for, and bring together people who are easy to talk to.
+              <p className="story-sub">
+                Travel & LIV began with a simple idea: book stays worth traveling for, take the friction out of the planning, and bring together people who are easy to talk to.
               </p>
-
-              <div className="about-stats-ledger">
-                <div className="stat-row">
-                  <span className="stat-num">01</span>
-                  <div className="stat-text">
-                    <strong>Personally hosted</strong>
-                    <small>Olivia on every trip, every time</small>
-                  </div>
-                </div>
-                <div className="stat-row">
-                  <span className="stat-num">02</span>
-                  <div className="stat-text">
-                    <strong>80%+ join solo</strong>
-                    <small>Nobody arrives knowing everyone</small>
-                  </div>
-                </div>
-                <div className="stat-row">
-                  <span className="stat-num">03</span>
-                  <div className="stat-text">
-                    <strong>4–5-star stays</strong>
-                    <small>Private boutique villas & luxury resorts</small>
-                  </div>
-                </div>
+              <div className="story-signoff">
+                <p>Today, she personally plans and hosts every single departure.</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Section 3: The Trip Approach (3 Visual Chapter Stelae with Dual Photos) */}
-        <section className="about-chapters" aria-labelledby="approach-heading">
-          <div className="about-chapters-intro wrap" data-about-reveal>
-            <span className="about-label">THE TRIP APPROACH</span>
+        {/* Section 3: The Trip Approach — 3-Photo Horizon Panorama */}
+        <section className="about-horizon" aria-labelledby="approach-heading">
+          <div className="about-horizon-intro wrap" data-about-reveal>
             <h2 id="approach-heading">
               Three decisions behind<br />
               <em>every single trip.</em>
             </h2>
           </div>
 
-          <div className="about-chapters-flow wrap">
-            {/* Chapter 01: The Stay */}
-            <article className="about-chapter-stela chapter-left" data-about-reveal>
-              <div className="chapter-photos">
-                <figure className="photo-primary">
-                  <div className="photo-window">
-                    <img src="/media/villa-pool.webp" alt="Private luxury villa pool at sunset" loading="lazy" />
-                  </div>
-                  <figcaption>Room to slow down.</figcaption>
-                </figure>
-                <figure className="photo-secondary" aria-hidden="true">
-                  <div className="photo-window">
-                    <img src="/media/villa-room.webp" alt="Boutique bedroom interior" loading="lazy" />
-                  </div>
-                  <figcaption>Somewhere to settle in.</figcaption>
-                </figure>
+          <div className="about-horizon-grid wrap">
+            <article className="horizon-panel panel-left" data-about-reveal>
+              <div className="horizon-window">
+                <img src="/media/villa-pool.webp" alt="Private luxury villa pool at sunset" loading="lazy" />
               </div>
-              <div className="chapter-meta">
-                <span className="chapter-watermark" aria-hidden="true">01</span>
-                <span className="chapter-tag">01 / THE STAY</span>
-                <h3>Somewhere you want<br /><em>to wake up.</em></h3>
-                <p>4–5-star boutique villas and design-led stays. Confirmed before you book.</p>
-                <span className="chapter-pill">Private rooms or shared matching</span>
+              <div className="horizon-caption">
+                <span className="horizon-num">01</span>
+                <h3>4–5-star stays</h3>
+                <p>Boutique villas and design-led hotels. You’ll know where you stay before you book.</p>
               </div>
             </article>
 
-            {/* Chapter 02: The Days */}
-            <article className="about-chapter-stela chapter-right" data-about-reveal>
-              <div className="chapter-photos">
-                <figure className="photo-primary">
-                  <div className="photo-window">
-                    <img src="/media/boat.webp" alt="Catamaran cruise out on open water" loading="lazy" />
-                  </div>
-                  <figcaption>A day out on the water.</figcaption>
-                </figure>
-                <figure className="photo-secondary" aria-hidden="true">
-                  <div className="photo-window">
-                    <img src="/media/terraces.webp" alt="Lush green destination terraces" loading="lazy" />
-                  </div>
-                  <figcaption>Time to take it in.</figcaption>
-                </figure>
+            <article className="horizon-panel panel-center" data-about-reveal>
+              <div className="horizon-window">
+                <img src="/media/boat.webp" alt="Catamaran cruise out on open water" loading="lazy" />
               </div>
-              <div className="chapter-meta">
-                <span className="chapter-watermark" aria-hidden="true">02</span>
-                <span className="chapter-tag">02 / THE DAYS</span>
-                <h3>Planned,<br /><em>not packed.</em></h3>
-                <p>Curated boat days and group dinners — with space to do your own thing.</p>
-                <span className="chapter-pill">No forced schedules or roll calls</span>
+              <div className="horizon-caption">
+                <span className="horizon-num">02</span>
+                <h3>Planned, not packed</h3>
+                <p>Curated boat days, cultural moments, and dinners — balanced with time to yourself.</p>
               </div>
             </article>
 
-            {/* Chapter 03: The People */}
-            <article className="about-chapter-stela chapter-left" data-about-reveal>
-              <div className="chapter-photos">
-                <figure className="photo-primary">
-                  <div className="photo-window">
-                    <img src="/media/moment-7.webp" alt="Olivia and travelers laughing together on a day out" loading="lazy" />
-                  </div>
-                  <figcaption>A first hello.</figcaption>
-                </figure>
-                <figure className="photo-secondary" aria-hidden="true">
-                  <div className="photo-window">
-                    <img src="/media/toast.webp" alt="Sunset drink with the group" loading="lazy" />
-                  </div>
-                  <figcaption>And people to share it with.</figcaption>
-                </figure>
+            <article className="horizon-panel panel-right" data-about-reveal>
+              <div className="horizon-window">
+                <img src="/media/moment-7.webp" alt="Olivia and travelers laughing together on a day out" loading="lazy" />
               </div>
-              <div className="chapter-meta">
-                <span className="chapter-watermark" aria-hidden="true">03</span>
-                <span className="chapter-tag">03 / THE PEOPLE</span>
-                <h3>An introduction<br /><em>when you need one.</em></h3>
-                <p>Olivia gets people talking so you never have to walk into a room alone.</p>
-                <span className="chapter-pill">From airport welcome to farewell dinner</span>
+              <div className="horizon-caption">
+                <span className="horizon-num">03</span>
+                <h3>Olivia on every trip</h3>
+                <p>Someone there from the airport welcome to the farewell dinner. Never walk into a room alone.</p>
               </div>
             </article>
           </div>
         </section>
 
-        {/* Section 4: The Collective (Full-Bleed Story Cards Triptych) */}
-        <section className="about-collective" aria-labelledby="community-heading">
-          <div className="about-collective-intro wrap" data-about-reveal>
-            <span className="about-label">THE COLLECTIVE</span>
-            <h2 id="community-heading">
-              You don’t need a group.<br />
-              <em>Just show up.</em>
-            </h2>
-            <p className="about-collective-sub">
-              Most travelers book solo. Friends, siblings, and couples join too.
-            </p>
-          </div>
-
-          <div className="about-story-triptych wrap">
-            <figure className="about-story-card" data-about-reveal>
-              <img src="/media/moment-1.webp" alt="Travel & LIV group enjoying dinner together" loading="lazy" />
-              <div className="story-card-overlay" />
-              <figcaption>
-                <span className="story-card-num">01</span>
-                <h3>Coming on your own</h3>
-                <p>“Within two hours of arriving, we were all laughing over dinner like old friends.”</p>
-              </figcaption>
-            </figure>
-
-            <figure className="about-story-card card-mid" data-about-reveal>
-              <img src="/media/moment-8.webp" alt="Group admiring panoramic destination views" loading="lazy" />
-              <div className="story-card-overlay" />
-              <figcaption>
-                <span className="story-card-num">02</span>
-                <h3>10–18 travelers, max</h3>
-                <p>Small enough to know everyone by name. Never a crowded tour bus.</p>
-              </figcaption>
-            </figure>
-
-            <figure className="about-story-card" data-about-reveal>
-              <img src="/media/moment-3.webp" alt="Relaxed evening drinks conversation" loading="lazy" />
-              <div className="story-card-overlay" />
-              <figcaption>
-                <span className="story-card-num">03</span>
-                <h3>At your own pace</h3>
-                <p>Join the evening drinks or have a quiet night by the pool. Your call.</p>
-              </figcaption>
-            </figure>
-          </div>
-        </section>
-
-        {/* Section 5: The People Behind Your Plans (Architectural Ledger) */}
-        <section className="about-logistics" aria-labelledby="org-heading">
-          <div className="about-logistics-stage wrap">
-            <div className="about-logistics-visual" data-about-reveal>
-              <figure className="about-logistics-photo">
-                <div className="logistics-image-window">
-                  <img src="/media/moment-6.webp" alt="Olivia and local partners organizing the day out" loading="lazy" />
-                </div>
-                <figcaption>On-the-ground support with vetted local partners.</figcaption>
+        {/* Section 4: The Collective — Magazine Double-Page Feature on Sage */}
+        <section className="about-community-spread" aria-labelledby="community-heading">
+          <div className="about-spread-wrap wrap">
+            <div className="spread-visual" data-about-reveal>
+              <figure className="spread-photo">
+                <img src="/media/moment-1.webp" alt="Travel & LIV travelers sharing dinner around a warm table" loading="lazy" />
+                <figcaption>Dinner with the collective.</figcaption>
               </figure>
-              <div className="about-logistics-card">
-                <span className="card-kicker">UPFRONT COMMITMENT</span>
-                <p>Every hotel, transfer window, and excursion confirmed before you pay.</p>
-                <Link href="/#questions" className="text-link">
-                  Booking FAQs <ArrowUpRight size={13} />
-                </Link>
+            </div>
+
+            <div className="spread-content" data-about-reveal>
+              <span className="about-label">THE COLLECTIVE</span>
+              <h2 id="community-heading">
+                You don’t need a group.<br />
+                <em>Just show up.</em>
+              </h2>
+              <blockquote className="spread-quote">
+                “Within two hours of arriving, we were all laughing over dinner like old friends.”
+              </blockquote>
+              <div className="spread-points">
+                <div className="point-item">
+                  <strong>80%+ join on their own</strong>
+                  <p>Most travelers arrive solo. Friends, siblings, and couples join our general departures too.</p>
+                </div>
+                <div className="point-item">
+                  <strong>10–18 travelers, max</strong>
+                  <p>Small enough to actually know everyone by name. Never a crowded tour bus.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Practical Care — Swiss Architectural Ledger */}
+        <section className="about-ledger-section" aria-labelledby="org-heading">
+          <div className="ledger-wrap wrap">
+            <div className="ledger-header" data-about-reveal>
+              <span className="about-label">PRACTICAL CARE</span>
+              <h2 id="org-heading">
+                How we run things.
+              </h2>
+            </div>
+
+            <div className="ledger-grid">
+              <div className="ledger-column" data-about-reveal>
+                <span className="ledger-index">01</span>
+                <h4>Pre-Departure</h4>
+                <p>Private trip chat opens weeks early. Direct guidance on flight windows and packing.</p>
+              </div>
+
+              <div className="ledger-column" data-about-reveal>
+                <span className="ledger-index">02</span>
+                <h4>On The Ground</h4>
+                <p>Olivia coordinates with local drivers, guides, and hotel staff behind the scenes.</p>
+              </div>
+
+              <div className="ledger-column" data-about-reveal>
+                <span className="ledger-index">03</span>
+                <h4>Transparent Pricing</h4>
+                <p>Accommodations, excursions, and key dinners included. No surprise checkout fees.</p>
+              </div>
+
+              <div className="ledger-column" data-about-reveal>
+                <span className="ledger-index">04</span>
+                <h4>Safety & Respect</h4>
+                <p>Vetted local operators. A welcoming, mutually respectful space for every traveler.</p>
               </div>
             </div>
 
-            <div className="about-logistics-content" data-about-reveal>
-              <span className="about-label">HOW WE WORK</span>
-              <h2 id="org-heading">
-                The details,<br />
-                <em>handled quietly.</em>
-              </h2>
-
-              <div className="about-ledger-list">
-                <div className="about-ledger-row">
-                  <span className="ledger-num">01</span>
-                  <div className="ledger-detail">
-                    <h4>Before you fly</h4>
-                    <p>Private group chat opens early. Flight windows and packing guidance included.</p>
-                  </div>
-                </div>
-
-                <div className="about-ledger-row">
-                  <span className="ledger-num">02</span>
-                  <div className="ledger-detail">
-                    <h4>On the ground</h4>
-                    <p>Olivia coordinates transport, drivers, and daily timing behind the scenes.</p>
-                  </div>
-                </div>
-
-                <div className="about-ledger-row">
-                  <span className="ledger-num">03</span>
-                  <div className="ledger-detail">
-                    <h4>Transparent pricing</h4>
-                    <p>4–5-star stays, curated excursions, and key dinners covered. No surprise checkout fees.</p>
-                  </div>
-                </div>
-
-                <div className="about-ledger-row">
-                  <span className="ledger-num">04</span>
-                  <div className="ledger-detail">
-                    <h4>Safety & respect</h4>
-                    <p>Vetted local guides. A welcoming, respectful space for everyone.</p>
-                  </div>
-                </div>
-              </div>
+            <div className="ledger-footer" data-about-reveal>
+              <Link href="/#questions" className="text-link">
+                Have questions before booking? Read the FAQ <ArrowUpRight size={14} />
+              </Link>
             </div>
           </div>
         </section>
