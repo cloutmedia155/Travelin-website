@@ -74,7 +74,8 @@ export function useJourneyMotion() {
         const photos = panel.querySelectorAll(".journey-photo");
         const start = i * 3;
         if (i === 0) {
-          gsap.set(copy, { autoAlpha: 1 });
+          gsap.set(copy, { autoAlpha: 1, y: 0, filter: "blur(0px)" });
+          gsap.set(photos, { x: 0, y: 0, autoAlpha: 1, rotation: 0, filter: "blur(0px)" });
         } else {
           gsap.set(copy, { autoAlpha: 0, y: 25, filter: "blur(4px)" });
           gsap.set(photos, { x: -xTravel, y: 45, autoAlpha: 0, rotation: -4, filter: "blur(3px)" });
