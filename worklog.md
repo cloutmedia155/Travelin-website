@@ -413,3 +413,13 @@ gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card
   - GSAP ScrollTrigger timeline sync (`scrub: 0.8`): blooms from `scale: 0` to `1` with `ease: "back.out(1.4)"` as the vine line tip passes each node.
   - Smooth bi-directional scrub (retracts cleanly on upward scroll).
   - Unmount cleanup: all dynamically created SVG nodes removed on unmount.
+
+---
+
+### 15. Removal of Legacy Large Botanical Elements (`app/page.tsx`, `components/home/use-journey-motion.ts`)
+**Description:** Per user request, removed the large outline static botanical icons (`leaf-one`, `leaf-two`, `flower-one`, `leaf-three`) that previously sat along the booking journey section. These clashed with the new high-detail flowering vine branch. Also removed unused `Leaf` and `Flower2` imports from `lucide-react` in `app/page.tsx`, and removed the corresponding GSAP animation loop from `components/home/use-journey-motion.ts`.
+
+#### Changes:
+- **`app/page.tsx`**: Removed `Leaf` and `Flower2` from lucide-react imports; removed all 4 `.botanical` divs.
+- **`components/home/use-journey-motion.ts`**: Removed `.botanical` GSAP animation setup.
+

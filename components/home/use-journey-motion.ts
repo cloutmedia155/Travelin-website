@@ -199,7 +199,6 @@ export function useJourneyMotion() {
         }
       }
 
-      gsap.utils.toArray<HTMLElement>(".botanical").forEach(el=>gsap.fromTo(el, { scale: .2, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .8, scrollTrigger: { trigger: el, start: "top 77%", toggleActions: "play none none reverse" } }));
       gsap.fromTo(".final-cta>img", { yPercent: -12, scale: 1.1 }, { yPercent: 12, scale: 1.1, ease: "none", scrollTrigger: { trigger: ".final-cta", start: "top bottom", end: "bottom top", scrub: 1.1 } });
       return () => {
         video?.removeEventListener("seeked", seek);
