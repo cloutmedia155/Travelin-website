@@ -1,0 +1,119 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Play, Pause, Menu, X } from "lucide-react";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+
+import { Hero } from "@/components/home/hero";
+import { Experience } from "@/components/home/experience";
+import { useJourneyMotion } from "@/components/home/use-journey-motion";
+import "./journey.css";
+
+const M = "/media/";
+const trips = [
+  { name: "Brazil", country: "RIO DE JANEIRO", image: "rio", line: "A little rhythm.<br />A whole lot of Rio.", dates: "Next dates coming soon", length: "Details to be confirmed", price: "Price to be confirmed", note: "Ask Olivia about the next departure", link: "mailto:Info@travelnliv.com?subject=Brazil%20trip%20question", cta: "Ask about Brazil" },
+  { name: "Punta Cana", country: "DOMINICAN REPUBLIC", image: "punta-beach", line: "Good company.<br />Caribbean time.", dates: "Oct 28 – Nov 1, 2026", length: "5 days · 4 nights", price: "From $1,799", note: "Per person · Singles trip · Flights extra", link: "https://www.travelnliv.com/puntacana.html", cta: "Explore this trip" },
+  { name: "Phuket", country: "THAILAND", image: "phuket", line: "Take the long way<br />to the beach.", dates: "Next dates coming soon", length: "Details to be confirmed", price: "Price to be confirmed", note: "Ask Olivia about the next departure", link: "mailto:Info@travelnliv.com?subject=Phuket%20trip%20question", cta: "Ask about Phuket" },
+  { name: "Bali", country: "INDONESIA", image: "beach", line: "A slower morning.<br />A different world.", dates: "Next dates coming soon", length: "Details to be confirmed", price: "Price to be confirmed", note: "Ask Olivia about the next departure", link: "mailto:Info@travelnliv.com?subject=Bali%20trip%20question", cta: "Ask about Bali" },
+];
+const faqs = [
+  ["What does the price cover?", "You’re paying for a 4–5-star stay, the activities in your package, the planning, and Olivia there to host. Meals and transfers vary by trip. Check the trip page for the full breakdown; international flights are generally extra. Most trips offer payment plans, with the total and schedule shown at checkout."],
+  ["How much time off will I need?", "Check the trip dates against your work schedule, then allow for getting there and home. Flights may mean leaving the day before the trip or arriving home the day after it ends. Ask us about arrival and departure windows before you book if you’re unsure."],
+  ["Can I join on my own or bring someone?", "Both. Most travelers book solo, and friends and couples join our general trips too. You can meet other booked travelers in the private trip chat before departure. Any singles-only or other restrictions will be listed on that trip’s page."],
+  ["Do I have to share a room?", "You can choose a private room when one is available. On trips with roommate matching, you can also book a shared room on your own and we’ll pair you with another traveler. Check your trip for room options and prices."],
+  ["Do I have to join every activity or night out?", "No. You can sit an activity out or have a quiet evening. Missed activities aren’t generally refundable, and you’ll arrange and pay for any transport you need outside the group schedule."],
+  ["What if I need to cancel?", "Payments are nonrefundable. Any transfer or credit depends on the terms of your booking and isn’t guaranteed. Review the cancellation terms for your chosen trip before paying, and consider travel insurance for eligible unexpected events."],
+];
+
+function Sprig({ x, y, angle, flower = false }: { x: number; y: number; angle: number; flower?: boolean }) {
+  return <g className="branch-sprig" transform={`translate(${x} ${y}) rotate(${angle})`}>
+    <path className="growth-line" pathLength="1" d="M0 0 Q18 -12 26 -43 M12 -12 Q-7 -17 -9 -33 Q9 -31 12 -12 M20 -27 Q39 -24 42 -40 Q26 -43 20 -27" />
+    {flower && <g className="branch-bloom" transform="translate(26 -45)"><circle cx="0" cy="-7" r="5" /><circle cx="7" cy="-2" r="5" /><circle cx="4" cy="6" r="5" /><circle cx="-4" cy="6" r="5" /><circle cx="-7" cy="-2" r="5" /><circle className="flower-center" r="2" /></g>}
+  </g>;
+}
+function BookingBranch() {
+  const desktop = "M340 110 C430 65 520 65 600 100 S830 130 780 220 S680 265 650 320 S570 360 590 420 S600 540 540 580 S440 660 360 675";
+  const mobile = "M38 0 C12 70 64 110 40 180 S16 280 40 350 S65 455 40 530 S20 650 40 720";
+  return <>
+    <svg className="journey-path desktop-path" viewBox="0 0 1000 760" fill="none" aria-hidden="true">
+      <path className="path-base" d={desktop} /><path className="path-fill" pathLength="1" d={desktop} />
+      <Sprig x={340} y={110} angle={-35} /><Sprig x={600} y={100} angle={30} flower /><Sprig x={780} y={220} angle={105} />
+      <Sprig x={650} y={320} angle={-70} flower /><Sprig x={590} y={420} angle={75} /><Sprig x={540} y={580} angle={-70} flower /><Sprig x={360} y={675} angle={-45} />
+    </svg>
+    <svg className="journey-path mobile-path" viewBox="0 0 80 720" preserveAspectRatio="none" fill="none" aria-hidden="true">
+      <path className="path-base" d={mobile} /><path className="path-fill" pathLength="1" d={mobile} />
+      <Sprig x={40} y={180} angle={-40} flower /><Sprig x={40} y={350} angle={100} /><Sprig x={40} y={530} angle={-40} flower />
+    </svg>
+  </>;
+}
+
+function Wordmark({ footer = false }: { footer?: boolean }) {
+  return <a href="#home" className={`wordmark ${footer ? "wordmark-footer" : ""}`} aria-label="Travel and LIV Collective home"><span>TRAVEL <i>&</i> LIV</span><small>C O L L E C T I V E</small></a>;
+}
+export default function Home() {
+  const [active, setActive] = useState(1);
+  const [menu, setMenu] = useState(false);
+  const [videoActive, setVideoActive] = useState(false);
+  const [ambientPaused, setAmbientPaused] = useState(false);
+  const experienceVideo = useRef<HTMLVideoElement>(null);
+  const startTouch = useRef(0);
+  const activeTrip = trips[active];
+  useJourneyMotion();
+  useEffect(() => { document.body.style.overflow = menu ? "hidden" : ""; document.body.dataset.menuOpen = String(menu); return () => { document.body.style.overflow = ""; delete document.body.dataset.menuOpen; }; }, [menu]);
+  useEffect(() => {
+    const v = experienceVideo.current;
+    if (!v || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (ambientPaused) { v.pause(); return; }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !v.controls) {
+        if (!v.src) v.src = "https://www.travelnliv.com/travelnliv_who.mp4";
+        v.play().catch(() => {});
+      } else if (!entry.isIntersecting) v.pause();
+    }, { threshold: .35 });
+    observer.observe(v);
+    return () => { observer.disconnect(); v.pause(); };
+  }, [ambientPaused]);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => { if (event.key === "Escape") setMenu(false); };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
+  const startFilm = () => {
+    const video = experienceVideo.current;
+    if (!video) return;
+    if (!video.getAttribute("src")) video.src = "https://www.travelnliv.com/travelnliv_who.mp4";
+    video.currentTime = 0;
+    video.muted = false;
+    video.loop = false;
+    video.controls = true;
+    setVideoActive(true);
+    void video.play().catch(() => { /* Native controls remain available if playback is blocked. */ });
+  };
+  const advance = (d: number) => setActive(i => (i + d + trips.length) % trips.length);
+  return <>
+    <a className="skip-link" href="#trips">Skip to trips</a>
+    <header className={`site-header ${menu ? "header-solid" : ""}`}><Wordmark /><nav className="desktop-nav" aria-label="Main navigation"><a href="#experience">The experience</a><a href="#olivia">Meet Olivia</a><a href="#questions">Good to know</a></nav><div className="header-actions"><a className="header-cta" href="#trips">Find your trip <ArrowUpRight size={16} /></a><button className="menu-toggle" aria-label={menu ? "Close menu" : "Open menu"} aria-expanded={menu} aria-controls="mobile-menu" onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</button></div></header>
+    {menu && <nav id="mobile-menu" className="mobile-menu" aria-label="Mobile navigation">{[["The experience", "experience"], ["Find your trip", "trips"], ["Meet Olivia", "olivia"], ["Good to know", "questions"]].map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setMenu(false)}>{label}<ArrowUpRight /></a>)}</nav>}
+    <main>
+      <Hero />
+      <Experience />
+      <section className={`film-scroll ${videoActive ? "film-playing" : ""}`} aria-labelledby="film-title">
+        <div className="experience-film"><div className="film-frame">
+          <video ref={experienceVideo} className="film-poster" muted={!videoActive} loop={!videoActive} controls={videoActive} playsInline preload="none" poster={M + "moment-5.webp"} aria-label="Olivia and the group on a Travel and LIV trip" />
+          <div className="film-shade" />
+          {!videoActive && <button className="ambient-control" aria-label={ambientPaused ? "Play background video" : "Pause background video"} onClick={() => setAmbientPaused(!ambientPaused)}>{ambientPaused ? <Play size={17} /> : <Pause size={17} />}</button>}
+          <div className="film-copy" inert={videoActive}><span className="eyebrow">A MOMENT WITH THE GROUP</span><h2 id="film-title">You had to <em>be there.</em></h2><button className="film-play" onClick={startFilm}><span><Play size={20} fill="currentColor" /></span>Watch with sound</button></div>
+        </div></div>
+      </section>
+      <section id="trips" className="trips-section"><div className="trips-heading wrap reveal"><span className="eyebrow">YOUR NEXT DAYS OFF</span><h2>Where would you<br /><em>like to go?</em></h2><p>See how the dates fit around work. Then take a look at where we’ll stay and what we’ll do together.</p></div><div className="trip-tabs" aria-label="Choose a destination">{trips.map((t, i) => <button key={t.name} className={i === active ? "active" : ""} aria-pressed={i === active} onClick={() => setActive(i)}><span>{t.name}<sup>0{i + 1}</sup></span><small>{t.name === "Punta Cana" ? "Booking open" : "Dates coming soon"}</small></button>)}</div><div className="trip-carousel" tabIndex={0} role="region" aria-roledescription="carousel" aria-label="Group trips" onTouchStart={e => { startTouch.current = e.touches[0].clientX; }} onTouchEnd={e => { const delta = startTouch.current - e.changedTouches[0].clientX; if (Math.abs(delta) > 45) advance(delta > 0 ? 1 : -1); }} onKeyDown={e => { if (e.key === "ArrowRight") advance(1); if (e.key === "ArrowLeft") advance(-1); }}>{trips.map((t, i) => { const offset = (i - active + 4) % 4; const pos = offset === 3 ? -1 : offset; return <article key={t.name} className={`trip-card ${pos === 0 ? "selected" : ""}`} data-position={pos} aria-hidden={pos !== 0} onClick={pos === 0 ? undefined : () => setActive(i)}><img src={M + t.image + ".webp"} alt={t.name === "Punta Cana" ? "Palm-lined Caribbean beach in Punta Cana" : `${t.name} coastal scenery`} loading="lazy" /><div className="trip-overlay" /><div className="trip-topline"><span>PERSONALLY HOSTED BY OLIVIA</span>{t.name === "Punta Cana" && <span>SINGLES TRIP</span>}</div><div className="trip-title"><span className="eyebrow">{t.country}</span><h3 dangerouslySetInnerHTML={{ __html: t.line }} /></div><span className="trip-destination">{t.name}</span></article>; })}</div><div className="trip-details wrap" aria-live="polite" aria-atomic="true"><div className="trip-date"><span className="eyebrow">{activeTrip.length}</span><p>{activeTrip.dates}</p></div><div className="trip-price"><strong>{activeTrip.price}</strong><small>{activeTrip.note}</small></div><a className="button button-dark" href={activeTrip.link} target={activeTrip.link.startsWith("https") ? "_blank" : undefined} rel="noreferrer">{activeTrip.cta}<ArrowUpRight size={17} /></a></div><div className="trip-bottom wrap"><p>Allow for travel days, too. Your time off depends on your flights and work schedule.</p><div className="carousel-controls"><span>0{active + 1} <i>/</i> 04</span><button aria-label="Previous trip" onClick={() => advance(-1)}><ArrowLeft size={20} /></button><button aria-label="Next trip" onClick={() => advance(1)}><ArrowRight size={20} /></button></div></div></section>
+      <section className="people-section" id="people"><div className="people-heading wrap reveal"><div><span className="eyebrow">COME AS YOU ARE</span><h2>Who’s coming<br /><em>with you?</em></h2></div><div><p>People who enjoy a day out, a good meal, and getting to know someone new. Most book solo; friends and couples join too.</p><p>You can start getting to know each other in the trip chat before departure. And Olivia will be there for the first hello.</p></div></div><div className="story-cards wrap">{[{ image: "moment-7", title: "Coming on your own.", text: "Finding your feet, together." }, { image: "moment-5", title: "Getting to know everyone.", text: "Somewhere between the plans." }, { image: "moment-8", title: "Sharing the little moments.", text: "The ones you’ll talk about later." }].map((s, i) => <figure className="story-card reveal" key={s.image}><img src={M + s.image + ".webp"} alt={`Travel & LIV group moment ${i + 1}`} loading="lazy" /><figcaption><span className="story-number">0{i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></figcaption></figure>)}</div></section>
+      <section className="founder-section wrap" id="olivia"><div className="founder-photo reveal"><img src={M + "olivia.webp"} alt="Olivia Owen, founder and host of every Travel & LIV trip" loading="lazy" /><span className="photo-caption">Olivia Owen / Your host, every time.</span></div><div className="founder-copy reveal"><span className="eyebrow">MEET THE PERSON BRINGING YOU TOGETHER</span><h2>Olivia is the one<br />getting everyone<br /><em>laughing.</em></h2><p>Olivia Owen knows what it’s like to want to travel and not have someone to go with. Her own solo travels helped inspire Travel & LIV.</p><p>She has a knack for bringing people into the conversation. An introduction here, a joke there, a little help getting past the first hello.</p><p>She also plans and personally hosts every trip. So the person who put it together is right there with you.</p><a className="text-link" href="mailto:Info@travelnliv.com">Ask Olivia a question <ArrowUpRight size={18} /></a><div className="signature">See you out there,<br /><em>Olivia</em></div></div></section>
+      <section className="collage-section" data-motion="collage" aria-label="Moments from Travel and LIV trips"><div className="collage-stage"><div className="collage-title"><span className="eyebrow">THE CAMERA ROLL SAYS IT BEST</span><h2>A few days away.<br /><em>A lot to come home with.</em></h2></div><div className="collage-grid">{["moment-2", "moment-1", "moment-4", "moment-6", "moment-3", "moment-8", "moment-5"].map((img, i) => <img key={img} className={`collage-image collage-${i}`} src={M + img + ".webp"} alt={["Exploring China together", "Dinner with the group", "Sharing a meal", "The group on a day out", "An evening together", "A view over the city", "A relaxed afternoon with Olivia"][i]} loading="lazy" />)}</div></div></section>
+      <section id="questions" className="faq-section wrap"><div className="faq-intro reveal"><span className="eyebrow">A FEW THINGS YOU MIGHT BE WONDERING</span><h2>Before<br /><em>you book.</em></h2><p>Your money. Your time off.<br />Your first group trip.<br />Let’s talk about it.</p><a href="mailto:Info@travelnliv.com" className="text-link">Ask us anything <ArrowUpRight size={18} /></a></div><Accordion type="single" collapsible className="faq-list">{faqs.map(([q, a], i) => <AccordionItem key={q} value={`faq-${i}`}><AccordionTrigger><span className="faq-number">0{i + 1}</span><span>{q}</span></AccordionTrigger><AccordionContent>{a}{i === 5 && <a className="faq-policy-link" href="mailto:Info@travelnliv.com?subject=Cancellation%20terms%20for%20my%20trip">Ask Olivia for your trip’s cancellation terms <ArrowUpRight size={16} /></a>}</AccordionContent></AccordionItem>)}</Accordion></section>
+      <section className="booking-section" id="booking"><div className="section-intro wrap reveal"><span className="eyebrow">FROM “MAYBE” TO “I’M COMING”</span><h2>Found your trip?<br /><em>Here’s what happens next.</em></h2></div><div className="booking-journey wrap" data-motion="path"><BookingBranch />{[{ title: "Find the trip that fits.", text: "Check the dates against your work schedule, including travel days. Review the itinerary, room options, total price, and booking terms." }, { title: "Reserve your place.", text: "Complete your registration and pay the required deposit or full amount. Your place is secured once payment is confirmed." }, { title: "Get ready to go.", text: "Receive your trip information and join the private group chat. Wait for written trip confirmation and flight guidance before booking nonrefundable flights." }].map((s, i) => <div className={`booking-step step-${i} reveal`} key={s.title}><span className="step-number">0{i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></div>)}</div><p className="booking-note">Payment schedules and available payment methods are shown at checkout.</p></section>
+      <section className="final-cta" data-motion="final"><img src={M + "islands.webp"} alt="The green islands of Raja Ampat, Indonesia, seen from above" loading="lazy" /><div className="final-shade" /><div className="final-copy reveal"><span className="eyebrow">MAKE YOUR MOVE</span><h2>You’ll either be on<br />the next trip…<br /><em>or watching it on Instagram.</em></h2><p>Find the dates that work for you,<br />and come join Olivia and the group.</p><a className="button button-light" href="#trips">Choose Your Trip <ArrowUpRight size={18} /></a><a href="mailto:Info@travelnliv.com" className="final-question">Have a question? Ask us</a></div></section>
+    </main>
+    <footer className="site-footer wrap"><div className="footer-main"><Wordmark footer /><div className="footer-nav"><a href="#trips">The trips</a><a href="#olivia">Meet Olivia</a><a href="#questions">Your questions</a></div><a href="https://www.instagram.com/travelnlivcollective" target="_blank" rel="noreferrer" className="text-link">Follow the moments <ArrowUpRight size={18} /></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Travel & LIV Collective</span><a href="mailto:Info@travelnliv.com">Info@travelnliv.com</a><span>Go somewhere. Feel something.</span></div></footer>
+
+  </>;
+}
