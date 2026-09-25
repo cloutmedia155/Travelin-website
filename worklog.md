@@ -397,3 +397,19 @@ gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card
 - **Two-phase animation per sprout**: stem grows from path → flower/leaf fades in at tip
 - **Flower palette**: petals `#a6b097`, centers `#7d8d66`, leaves `#78895b`
 - **Cleanup**: all dynamically created SVG elements are removed on component unmount
+
+---
+
+### 14. `Flower.svg` Botanical Integration along Booking Journey Vine (`app/page.tsx`, `components/home/flower-symbol.tsx`, `components/home/use-journey-motion.ts`)
+**Description:** Integrated the user-provided vector graphic `Flower.svg` into the booking journey curved path. Defined a reusable SVG `<symbol id="vine-flower">` component with `fill="currentColor"` so the intricate botanical illustration is preserved in full vector detail without DOM duplication. 46 flower instances sprout on alternating sides of the vine branch as the path draws on scroll, utilizing the brand's earthy olive and sage palette (`#6d8154`, `#5b7049`, `#78895b`, `#546848`, `#63774d`) and delicate proportional sizes (`w: 14–21px`, `h: 27–40px`).
+
+#### Key Details:
+- **Symbol Architecture**: Extracted path from `Flower.svg` into `components/home/flower-symbol.tsx` inside `<symbol id="vine-flower" viewBox="0 0 221.941 426.224">` with `fill="currentColor"`.
+- **Page Integration**: Injected `<defs><FlowerSymbol /></defs>` into `<svg className="journey-path">` in `app/page.tsx`.
+- **Motion & Geometry**:
+  - Sampled 46 points along `sproutPath.getPointAtLength()`.
+  - Rotated each flower outward along `perp = tang + side * (Math.PI / 2.3)` with formula `((perp + Math.PI / 2) * 180) / Math.PI`, rooting the base directly on the vine branch.
+  - Sized delicately with aspect ratio `426.224 / 221.941` (`w: 14–21px`, `h: 27–40px`).
+  - GSAP ScrollTrigger timeline sync (`scrub: 0.8`): blooms from `scale: 0` to `1` with `ease: "back.out(1.4)"` as the vine line tip passes each node.
+  - Smooth bi-directional scrub (retracts cleanly on upward scroll).
+  - Unmount cleanup: all dynamically created SVG nodes removed on unmount.

@@ -145,71 +145,57 @@ export function useJourneyMotion() {
       });
       gsap.fromTo(".path-fill", { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 80%", scrub: .8 } });
 
-      // ── Sprout tiny flowers & leaves along the journey path (vine effect) ──
+      // ── Sprout tiny flowers along the journey path (vine branch using Flower.svg) ──
       const sproutPath = document.querySelector<SVGPathElement>(".journey-path .path-base");
       const sproutSvg = document.querySelector<SVGSVGElement>(".journey-path");
       const sproutNodes: SVGGElement[] = [];
       if (sproutPath && sproutSvg) {
         const totalLen = sproutPath.getTotalLength();
-        const sproutCount = 26;
+        const sproutCount = 46;
         const sproutTl = gsap.timeline({
           scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 80%", scrub: 0.8 }
         });
+        const ns = "http://www.w3.org/2000/svg";
+        const palette = ["#6d8154", "#5b7049", "#78895b", "#546848", "#63774d"];
+
         for (let i = 0; i < sproutCount; i++) {
-          const t = (i + 0.5) / sproutCount;
+          const t = 0.03 + (i / (sproutCount - 1)) * 0.94;
           const dist = t * totalLen;
           const pt = sproutPath.getPointAtLength(dist);
-          const ptN = sproutPath.getPointAtLength(Math.min(dist + 1, totalLen));
+          const ptN = sproutPath.getPointAtLength(Math.min(dist + 2, totalLen));
           const tang = Math.atan2(ptN.y - pt.y, ptN.x - pt.x);
           const side = i % 2 === 0 ? 1 : -1;
-          const perp = tang + (Math.PI / 2) * side;
-          const sLen = 12 + Math.random() * 9;
-          const tx = pt.x + Math.cos(perp) * sLen;
-          const ty = pt.y + Math.sin(perp) * sLen;
-          const ns = "http://www.w3.org/2000/svg";
+          const perp = tang + side * (Math.PI / 2.3 + ((i % 5) - 2) * 0.06);
+          const rot = ((perp + Math.PI / 2) * 180) / Math.PI;
+
+          // Dainty flower sizes matching the website's delicate botanical aesthetic
+          const fw = 14 + (i % 4) * 2.2;
+          const fh = fw * (426.224 / 221.941);
+          const color = palette[i % palette.length];
+
           const g = document.createElementNS(ns, "g");
-          g.classList.add("path-sprout");
-          // Stem (starts collapsed at path point, grows outward)
-          const stem = document.createElementNS(ns, "line");
-          stem.setAttribute("x1", String(pt.x)); stem.setAttribute("y1", String(pt.y));
-          stem.setAttribute("x2", String(pt.x)); stem.setAttribute("y2", String(pt.y));
-          stem.setAttribute("stroke", "#8a9e6b"); stem.setAttribute("stroke-width", "0.7");
-          g.appendChild(stem);
-          // Tip group (flower or leaf)
-          const tipG = document.createElementNS(ns, "g");
-          tipG.setAttribute("opacity", "0");
-          if (i % 3 === 0) {
-            // Tiny 5-petal flower
-            for (let j = 0; j < 5; j++) {
-              const pa = (j * 72) * Math.PI / 180;
-              const px = tx + Math.cos(pa) * 3.5, py = ty + Math.sin(pa) * 3.5;
-              const petal = document.createElementNS(ns, "ellipse");
-              petal.setAttribute("cx", String(px)); petal.setAttribute("cy", String(py));
-              petal.setAttribute("rx", "2.5"); petal.setAttribute("ry", "1.4");
-              petal.setAttribute("fill", "#a6b097");
-              petal.setAttribute("transform", `rotate(${j * 72 + 90}, ${px}, ${py})`);
-              tipG.appendChild(petal);
-            }
-            const ctr = document.createElementNS(ns, "circle");
-            ctr.setAttribute("cx", String(tx)); ctr.setAttribute("cy", String(ty));
-            ctr.setAttribute("r", "1.8"); ctr.setAttribute("fill", "#7d8d66");
-            tipG.appendChild(ctr);
-          } else {
-            // Tiny leaf oriented along the stem direction
-            const deg = perp * 180 / Math.PI;
-            const leaf = document.createElementNS(ns, "path");
-            leaf.setAttribute("d", "M0,-6 C3.5,-3.5 3.5,1 0,3 C-3.5,1 -3.5,-3.5 0,-6Z");
-            leaf.setAttribute("fill", "#78895b"); leaf.setAttribute("opacity", "0.85");
-            leaf.setAttribute("transform", `translate(${tx},${ty}) rotate(${deg})`);
-            tipG.appendChild(leaf);
-          }
-          g.appendChild(tipG);
+          g.classList.add("vine-flower");
+          g.setAttribute("transform", `translate(${pt.x}, ${pt.y}) rotate(${rot})`);
+
+          const useEl = document.createElementNS(ns, "use");
+          useEl.setAttribute("href", "#vine-flower");
+          useEl.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#vine-flower");
+          useEl.setAttribute("width", String(fw));
+          useEl.setAttribute("height", String(fh));
+          useEl.setAttribute("x", String(-fw * 0.5));
+          useEl.setAttribute("y", String(-fh));
+          useEl.setAttribute("color", color);
+          useEl.setAttribute("fill", color);
+
+          g.appendChild(useEl);
           sproutSvg.appendChild(g);
           sproutNodes.push(g);
-          // Timeline: stem grows outward, then flower/leaf appears at tip
-          const progress = (i / sproutCount) * 0.94;
-          sproutTl.to(stem, { attr: { x2: tx, y2: ty }, duration: 0.03, ease: "power2.out" }, progress);
-          sproutTl.to(tipG, { attr: { opacity: 1 }, duration: 0.03, ease: "power2.out" }, progress + 0.015);
+
+          gsap.set(g, { scale: 0, autoAlpha: 0, transformOrigin: "0px 0px" });
+
+          // Synchronized timeline animation: flowers sprout progressively as line draws
+          const progress = t * 0.94;
+          sproutTl.to(g, { scale: 1, autoAlpha: 1, duration: 0.026, ease: "back.out(1.4)" }, progress);
         }
       }
 
