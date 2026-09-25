@@ -144,12 +144,82 @@ export function useJourneyMotion() {
         ct.fromTo(el, { x: i % 2 ? 130 : -130, y: i < 2 ? -90 : 160, scale: .75, autoAlpha: 0 }, { x: 0, y: 0, scale: 1, autoAlpha: 1, duration: .7, ease: "power2.out" }, .18 + i * .1);
       });
       gsap.fromTo(".path-fill", { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 80%", scrub: .8 } });
+
+      // ── Sprout tiny flowers & leaves along the journey path (vine effect) ──
+      const sproutPath = document.querySelector<SVGPathElement>(".journey-path .path-base");
+      const sproutSvg = document.querySelector<SVGSVGElement>(".journey-path");
+      const sproutNodes: SVGGElement[] = [];
+      if (sproutPath && sproutSvg) {
+        const totalLen = sproutPath.getTotalLength();
+        const sproutCount = 26;
+        const sproutTl = gsap.timeline({
+          scrollTrigger: { trigger: ".booking-journey", start: "top 70%", end: "bottom 80%", scrub: 0.8 }
+        });
+        for (let i = 0; i < sproutCount; i++) {
+          const t = (i + 0.5) / sproutCount;
+          const dist = t * totalLen;
+          const pt = sproutPath.getPointAtLength(dist);
+          const ptN = sproutPath.getPointAtLength(Math.min(dist + 1, totalLen));
+          const tang = Math.atan2(ptN.y - pt.y, ptN.x - pt.x);
+          const side = i % 2 === 0 ? 1 : -1;
+          const perp = tang + (Math.PI / 2) * side;
+          const sLen = 12 + Math.random() * 9;
+          const tx = pt.x + Math.cos(perp) * sLen;
+          const ty = pt.y + Math.sin(perp) * sLen;
+          const ns = "http://www.w3.org/2000/svg";
+          const g = document.createElementNS(ns, "g");
+          g.classList.add("path-sprout");
+          // Stem (starts collapsed at path point, grows outward)
+          const stem = document.createElementNS(ns, "line");
+          stem.setAttribute("x1", String(pt.x)); stem.setAttribute("y1", String(pt.y));
+          stem.setAttribute("x2", String(pt.x)); stem.setAttribute("y2", String(pt.y));
+          stem.setAttribute("stroke", "#8a9e6b"); stem.setAttribute("stroke-width", "0.7");
+          g.appendChild(stem);
+          // Tip group (flower or leaf)
+          const tipG = document.createElementNS(ns, "g");
+          tipG.setAttribute("opacity", "0");
+          if (i % 3 === 0) {
+            // Tiny 5-petal flower
+            for (let j = 0; j < 5; j++) {
+              const pa = (j * 72) * Math.PI / 180;
+              const px = tx + Math.cos(pa) * 3.5, py = ty + Math.sin(pa) * 3.5;
+              const petal = document.createElementNS(ns, "ellipse");
+              petal.setAttribute("cx", String(px)); petal.setAttribute("cy", String(py));
+              petal.setAttribute("rx", "2.5"); petal.setAttribute("ry", "1.4");
+              petal.setAttribute("fill", "#a6b097");
+              petal.setAttribute("transform", `rotate(${j * 72 + 90}, ${px}, ${py})`);
+              tipG.appendChild(petal);
+            }
+            const ctr = document.createElementNS(ns, "circle");
+            ctr.setAttribute("cx", String(tx)); ctr.setAttribute("cy", String(ty));
+            ctr.setAttribute("r", "1.8"); ctr.setAttribute("fill", "#7d8d66");
+            tipG.appendChild(ctr);
+          } else {
+            // Tiny leaf oriented along the stem direction
+            const deg = perp * 180 / Math.PI;
+            const leaf = document.createElementNS(ns, "path");
+            leaf.setAttribute("d", "M0,-6 C3.5,-3.5 3.5,1 0,3 C-3.5,1 -3.5,-3.5 0,-6Z");
+            leaf.setAttribute("fill", "#78895b"); leaf.setAttribute("opacity", "0.85");
+            leaf.setAttribute("transform", `translate(${tx},${ty}) rotate(${deg})`);
+            tipG.appendChild(leaf);
+          }
+          g.appendChild(tipG);
+          sproutSvg.appendChild(g);
+          sproutNodes.push(g);
+          // Timeline: stem grows outward, then flower/leaf appears at tip
+          const progress = (i / sproutCount) * 0.94;
+          sproutTl.to(stem, { attr: { x2: tx, y2: ty }, duration: 0.03, ease: "power2.out" }, progress);
+          sproutTl.to(tipG, { attr: { opacity: 1 }, duration: 0.03, ease: "power2.out" }, progress + 0.015);
+        }
+      }
+
       gsap.utils.toArray<HTMLElement>(".botanical").forEach(el=>gsap.fromTo(el, { scale: .2, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .8, scrollTrigger: { trigger: el, start: "top 77%", toggleActions: "play none none reverse" } }));
       gsap.fromTo(".final-cta>img", { yPercent: -12, scale: 1.1 }, { yPercent: 12, scale: 1.1, ease: "none", scrollTrigger: { trigger: ".final-cta", start: "top bottom", end: "bottom top", scrub: 1.1 } });
       return () => {
         video?.removeEventListener("seeked", seek);
         video?.removeEventListener("loadedmetadata", seek);
         splitIntroP?.revert();
+        sproutNodes.forEach(el => el.remove());
       };
     });
     const refresh = () => ScrollTrigger.refresh();
