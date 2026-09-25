@@ -448,3 +448,27 @@ gsap.utils.toArray<HTMLElement>(".trip-card img, .founder-photo img, .story-card
    - Pushed commit `fd78116` to GitHub `main`.
    - Verified automated Vercel build and live deployment `https://travelin-website.vercel.app` with Chrome CDP screen captures confirming pristine alignment and smooth transitions.
 
+---
+
+### 17. Film Section Clouds Transition Overhaul Matching Hero Atmosphere (`app/page.tsx`, `app/journey.css`, `components/home/use-journey-motion.ts`)
+**Description:** Applied the multi-layered hero section cloud transition system to the clouds under the video in the film section. Replaced the single flat bottom cloud with a 3-tier atmospheric cloud bank (`film-cloud-back`, `film-cloud-front`, and `film-cloud-floor`) synchronized to a dedicated GSAP ScrollTrigger scrub timeline.
+
+#### Key Implementation Details:
+1. **Architectural Parity with Hero:**
+   - Markup in `app/page.tsx`: Added `.film-clouds` containing `<img className="film-cloud-back" ... />`, `<img className="film-cloud-front" ... />`, and `<div className="film-cloud-floor" />`.
+   - CSS in `app/journey.css`: Shared `.hero-clouds, .film-clouds` rules for full-bleed viewport coverage (`100vw`, `left: 50%`, `translateX(-50%)`, `object-fit: cover`), layered heights (`100%` and `80%`), and floor gradient dissolving to `var(--background)`.
+   - Expanded `.film-scroll` height to `185svh` (desktop) and `155svh` (mobile) to give comfortable sticky duration for both video watching and the exit cloud transition.
+2. **Motion Choreography (`components/home/use-journey-motion.ts`):**
+   - Added `.film-cloud-back`, `.film-cloud-front`, and `.film-cloud-floor` to initial `gsap.set(..., { autoAlpha: 0 })`.
+   - Created dedicated scrub timeline `ft` on `.film-scroll` (`start: "top top"`, `end: "bottom bottom"`, `scrub: 1.2`):
+     - `0.00 - 0.45`: Video stage is prominent, "You had to be there" headline and "Watch the experience" button are fully visible and clickable, clouds remain invisible.
+     - `0.48`: Copy and ambient audio control gently fade out (`y: -25, autoAlpha: 0, duration: 0.18`).
+     - `0.52 - 0.88`: Multi-layer cloud bank swells in from bottom:
+       - `.film-cloud-back`: `yPercent: 100 -> 0`, `scale: 1.12 -> 1`, `autoAlpha: 0 -> 1`
+       - `.film-cloud-front`: `yPercent: 110 -> 0`, `scale: 1.05 -> 1.16`, `autoAlpha: 0 -> 1`
+       - `.film-cloud-floor`: `yPercent: 100 -> 0`, `autoAlpha: 0 -> 1`
+     - `1.00`: Clouds dissolve cleanly into the cream background of the `#trips` section.
+3. **Accessibility:**
+   - `.film-clouds` is hidden under `@media(prefers-reduced-motion: reduce)`.
+
+

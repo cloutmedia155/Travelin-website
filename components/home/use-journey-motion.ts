@@ -35,7 +35,7 @@ export function useJourneyMotion() {
       video?.addEventListener("seeked", seek);
       video?.addEventListener("loadedmetadata", seek);
       const playhead = { time: 0 };
-      gsap.set([".hero-intro", ".hero-action", ".hero-cloud-back", ".hero-cloud-front", ".cloud-floor"], { autoAlpha: 0 });
+      gsap.set([".hero-intro", ".hero-action", ".hero-cloud-back", ".hero-cloud-front", ".cloud-floor", ".film-cloud-back", ".film-cloud-front", ".film-cloud-floor"], { autoAlpha: 0 });
       gsap.fromTo(".hero-line", { yPercent: 115, opacity: 0, rotate: 2, filter: "blur(6px)" }, { yPercent: 0, opacity: 1, rotate: 0, filter: "blur(0px)", duration: 2.4, stagger: .24, delay: .2, ease: "power3.out" });
       const ht = gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: 1.6 } });
       ht.to(playhead, { time: 4.7, duration: .82, ease: "none", onUpdate: () => { wantedTime = playhead.time; seek(); } }, .025)
@@ -79,9 +79,14 @@ export function useJourneyMotion() {
       if (document.querySelector(".experience-progress b")) et.to(".experience-progress b", { scaleX: 1, duration: 9.35, ease: "none" }, 0);
 
       gsap.fromTo(".film-frame", { clipPath: mobile ? "inset(12% 5% 8% 5%)" : "inset(16% 18% 10% 18%)", y: 80 }, { clipPath: "inset(0% 0% 0% 0%)", y: 0, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top 90%", end: "top top", scrub: .9 } });
-      gsap.fromTo(".film-poster", { yPercent: -7, scale: 1.15 }, { yPercent: 7, scale: 1.05, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top bottom", end: "bottom top", scrub: 1 } });
+      gsap.fromTo(".film-poster", { yPercent: -6, scale: 1.14 }, { yPercent: 6, scale: 1.04, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top bottom", end: "bottom top", scrub: 1 } });
       gsap.fromTo(".film-cloud-top", { xPercent: -4, yPercent: -15 }, { xPercent: 4, yPercent: -50, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top bottom", end: "bottom top", scrub: 1 } });
-      gsap.fromTo(".film-cloud-bottom", { xPercent: 5, yPercent: 30 }, { xPercent: -4, yPercent: 0, ease: "none", scrollTrigger: { trigger: ".film-scroll", start: "top top", end: "bottom 40%", scrub: 1 } });
+
+      const ft = gsap.timeline({ scrollTrigger: { trigger: ".film-scroll", start: "top top", end: "bottom bottom", scrub: 1.2 } });
+      ft.to([".film-copy", ".ambient-control"], { autoAlpha: 0, y: -25, duration: .18, ease: "power1.in" }, .48)
+        .fromTo(".film-cloud-back", { yPercent: 100, scale: 1.12, autoAlpha: 0 }, { yPercent: 0, scale: 1, autoAlpha: 1, duration: .36, ease: "power1.out" }, .52)
+        .fromTo(".film-cloud-front", { yPercent: 110, scale: 1.05, autoAlpha: 0 }, { yPercent: 0, scale: 1.16, autoAlpha: 1, duration: .32, ease: "power1.out" }, .58)
+        .fromTo(".film-cloud-floor", { yPercent: 100, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: .28, ease: "power1.inOut" }, .64);
       const expLines = document.querySelectorAll<HTMLElement>(".experience-intro .editorial-line");
       if (expLines.length > 0) {
         gsap.fromTo(expLines, { yPercent: 110, autoAlpha: 0, clipPath: "inset(0 0 100% 0)", filter: "blur(4px)" }, { yPercent: 0, autoAlpha: 1, clipPath: "inset(0 0 -4% 0)", filter: "blur(0px)", duration: 2.2, stagger: .26, ease: "power3.out", scrollTrigger: { trigger: ".experience-intro .editorial-heading", start: "top 87%", toggleActions: "restart reverse restart reverse" } });
