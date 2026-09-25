@@ -118,28 +118,25 @@ export function AboutExperience() {
           </div>
         </section>
 
-        {/* Section 2: Olivia's Story — Editorial Letter & Margin Artifact */}
+        {/* Section 2: The Origin — Calm Reading Section */}
         <section id="the-story" className="about-editorial-letter" aria-labelledby="letter-title">
           <div className="wrap">
             <div className="editorial-container" data-about-reveal>
               <div className="editorial-content">
-                <span className="about-label">WHY WE STARTED</span>
+                <span className="about-label">THE ORIGIN</span>
                 <h2 id="letter-title">
-                  The group chat never<br />
-                  <em>left the group chat.</em>
+                  Tired of waiting on<br />
+                  <em>the group chat.</em>
                 </h2>
                 <div className="editorial-prose">
                   <p className="editorial-lead">
-                    Olivia spent her early twenties wanting to see the world. But planning trips with friends always ran into the same wall: conflicting schedules, shifting budgets, and excitement that faded the moment it came time to put a card down.
+                    Olivia wanted to travel, but plans with friends rarely made it out of the group chat.
                   </p>
                   <p>
-                    She started traveling solo because she refused to stay home. What she quickly realized was that navigating foreign cities wasn’t the hard part. The hard part was having no one across the dinner table to share the view with.
+                    She started going solo because she refused to stay home. Then she started Travel & LIV so no one has to sit at dinner alone.
                   </p>
-                  <blockquote className="editorial-pullquote">
-                    “Travel & LIV began for anyone who is done waiting on someone else to pack a bag.”
-                  </blockquote>
                   <p className="editorial-signoff">
-                    Today, she personally plans, vets, and hosts every single departure.
+                    Olivia Owen · Founder & Host
                   </p>
                 </div>
               </div>
@@ -149,26 +146,22 @@ export function AboutExperience() {
                   <div className="polaroid-photo">
                     <img src="/media/olivia.webp" alt="Olivia Owen, founder and host" loading="lazy" />
                   </div>
-                  <figcaption>Olivia in Positano, where the idea began.</figcaption>
+                  <figcaption>Olivia in Positano, where it started.</figcaption>
                 </figure>
-                <span className="editorial-cursive">From the journal</span>
               </aside>
             </div>
           </div>
         </section>
 
-        {/* Section 3: The Trip Standard — Asymmetrical Photographic Installation */}
+        {/* Section 3: How We Travel — Immersive Photographic Tapestry */}
         <section className="about-installation" aria-labelledby="standard-title">
           <div className="wrap">
             <div className="installation-header" data-about-reveal>
-              <span className="about-label">OUR THREE PROMISES</span>
+              <span className="about-label">THE STANDARD</span>
               <h2 id="standard-title">
                 Curated without<br />
                 <em>the tour bus.</em>
               </h2>
-              <p className="installation-intro">
-                Three decisions we refuse to compromise on for any departure.
-              </p>
             </div>
 
             <div className="installation-canvas">
@@ -178,9 +171,8 @@ export function AboutExperience() {
                   <img src="/media/villa-pool.webp" alt="Private luxury boutique villa pool at sunset" loading="lazy" />
                 </div>
                 <div className="canvas-meta">
-                  <span className="canvas-num">01 / THE STAY</span>
-                  <h3>4–5-Star Boutique Villas & Hotels</h3>
-                  <p>Hand-picked properties chosen for design, location, and privacy. You know the exact stay before you put down a deposit.</p>
+                  <span className="canvas-num">01 / THE STAYS</span>
+                  <p>4–5-star boutique villas and design hotels. You know where you’ll stay before you book.</p>
                 </div>
               </article>
 
@@ -191,9 +183,8 @@ export function AboutExperience() {
                     <img src="/media/boat.webp" alt="Catamaran cruising open Mediterranean water" loading="lazy" />
                   </div>
                   <div className="canvas-meta">
-                    <span className="canvas-num">02 / THE RHYTHM</span>
-                    <h3>Planned, Not Packed</h3>
-                    <p>Curated boat days, cultural visits, and private dinners — balanced with unhurried mornings and free afternoons to wander.</p>
+                    <span className="canvas-num">02 / THE PACE</span>
+                    <p>Curated boat days and group dinners. Plenty of time to head off on your own.</p>
                   </div>
                 </article>
 
@@ -203,8 +194,7 @@ export function AboutExperience() {
                   </div>
                   <div className="canvas-meta">
                     <span className="canvas-num">03 / THE HOST</span>
-                    <h3>Olivia on Every Single Trip</h3>
-                    <p>From airport greetings to the farewell toast. Someone who knows the local drivers, handles the tables, and makes sure you never feel alone.</p>
+                    <p>Olivia on every departure. Someone to get everyone talking from the first hello.</p>
                   </div>
                 </article>
               </div>
@@ -212,35 +202,35 @@ export function AboutExperience() {
           </div>
         </section>
 
-        {/* Section 4: Who Travels With Us — Monumental Typographic Manifesto on Sage */}
+        {/* Section 4: The Crowd — Calm Typographic Reassurance on Warm Sage */}
         <section className="about-manifesto" aria-labelledby="manifesto-title">
           <div className="wrap">
             <div className="manifesto-statement" data-about-reveal>
-              <span className="about-label">WHO TRAVELS WITH US</span>
+              <span className="about-label">THE COLLECTIVE</span>
               <h2 id="manifesto-title">
-                80% of our travelers arrive solo.<br />
-                <em>None of them leave that way.</em>
+                80% arrive solo.<br />
+                <em>Everyone leaves together.</em>
               </h2>
               <p className="manifesto-body">
-                You don’t need a travel partner to see the world. Most departures are 10 to 18 people who took the leap completely on their own — and by the first evening, were sharing wine like old friends.
+                Most people on every departure book on their own. Within hours of arriving, you’re laughing over dinner like old friends.
               </p>
             </div>
 
             <div className="manifesto-visual" data-about-reveal>
               <figure className="manifesto-frame">
                 <img src="/media/moment-1.webp" alt="Travel & LIV travelers sharing dinner around a warm table" loading="lazy" />
-                <figcaption>Dinner at the villa. Evening three.</figcaption>
+                <figcaption>Dinner with the collective.</figcaption>
               </figure>
             </div>
 
             <div className="manifesto-reassurance" data-about-reveal>
               <div className="reassurance-fact">
-                <span className="fact-title">10–18 TRAVELERS MAX</span>
-                <p>Small enough to fit around a single dinner table. Big enough to find your people.</p>
+                <span className="fact-title">10–18 TRAVELERS</span>
+                <p>Small enough to share one dinner table.</p>
               </div>
               <div className="reassurance-fact">
-                <span className="fact-title">ALL ARE WELCOME</span>
-                <p>While the majority arrive solo, friends, siblings, and couples join our departures too.</p>
+                <span className="fact-title">ALL WELCOME</span>
+                <p>Friends and couples join general trips too.</p>
               </div>
             </div>
           </div>
@@ -250,31 +240,26 @@ export function AboutExperience() {
         <section className="about-ledger" aria-labelledby="ledger-title">
           <div className="wrap">
             <div className="ledger-intro" data-about-reveal>
-              <span className="about-label">HOW IT WORKS</span>
+              <span className="about-label">ON EVERY TRIP</span>
               <h2 id="ledger-title">
-                Everything taken care of.
+                Everything handled.
               </h2>
-              <p className="ledger-subtitle">
-                Zero logistical friction. No surprise checkout fees.
-              </p>
             </div>
 
             <div className="ledger-timeline">
               <div className="timeline-row" data-about-reveal>
                 <span className="timeline-step">01</span>
-                <div className="timeline-phase">WEEKS BEFORE</div>
+                <div className="timeline-phase">BEFORE YOU FLY</div>
                 <div className="timeline-content">
-                  <h4>Private Trip Chat & Flight Windows</h4>
-                  <p>A dedicated group opens weeks early. You get exact flight arrival windows, curated packing lists, and meet everyone before you fly.</p>
+                  <p>Private trip chat opens weeks early. Flight windows and packing lists shared.</p>
                 </div>
               </div>
 
               <div className="timeline-row" data-about-reveal>
                 <span className="timeline-step">02</span>
-                <div className="timeline-phase">ARRIVAL DAY</div>
+                <div className="timeline-phase">ARRIVALS</div>
                 <div className="timeline-content">
-                  <h4>Airport Pickups & Villa Welcome</h4>
-                  <p>Coordinated private transfers take you from arrivals to the villa. Olivia is there at the door to welcome you in person.</p>
+                  <p>Airport transfers coordinated. Olivia welcomes you at the villa door.</p>
                 </div>
               </div>
 
@@ -282,24 +267,22 @@ export function AboutExperience() {
                 <span className="timeline-step">03</span>
                 <div className="timeline-phase">ON THE GROUND</div>
                 <div className="timeline-content">
-                  <h4>Private Drivers & Reserved Experiences</h4>
-                  <p>Local vetted drivers handle every transfer. Catamaran charters, guided excursions, and group dinners are fully hosted and managed.</p>
+                  <p>Private drivers for excursions. Curated boat days and dinners fully hosted.</p>
                 </div>
               </div>
 
               <div className="timeline-row" data-about-reveal>
                 <span className="timeline-step">04</span>
-                <div className="timeline-phase">PRICING</div>
+                <div className="timeline-phase">THE PRICE</div>
                 <div className="timeline-content">
-                  <h4>Transparent Upfront Inclusions</h4>
-                  <p>Accommodations, daily breakfasts, excursions, and key dinners are included in your rate. What you see is what you pay.</p>
+                  <p>Stays, activities, daily breakfasts, and key dinners included. Zero surprise fees.</p>
                 </div>
               </div>
             </div>
 
             <div className="ledger-bottom-link" data-about-reveal>
               <Link href="/#questions" className="text-link">
-                Have questions about room sharing, deposits, or solo travel? Read the FAQ <ArrowUpRight size={14} />
+                Common questions before booking <ArrowUpRight size={14} />
               </Link>
             </div>
           </div>
