@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { trips, getTrip } from "@/lib/trips";
 import { TripDetail } from "@/components/trips/trip-detail";
 import "../trips.css";
+import "../punta.css";
+import { PuntaExperience } from "@/components/trips/punta-experience";
 export function generateStaticParams() { return trips.map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const trip = getTrip((await params).slug);
@@ -12,5 +14,5 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function TripPage({ params }: { params: Promise<{ slug: string }> }) {
   const trip = getTrip((await params).slug);
   if (!trip) notFound();
-  return <TripDetail trip={trip} />;
+  return trip.slug === "punta-cana" ? <PuntaExperience /> : <TripDetail trip={trip} />;
 }
