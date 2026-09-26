@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HowItWorksExperience } from "@/components/support/how-it-works-experience";
-import "../support.css";
+import "../support-shell.css";
+import "./how-it-works.css";
 
 export const metadata: Metadata = {
   title: "How It Works — Travel & LIV Collective",
