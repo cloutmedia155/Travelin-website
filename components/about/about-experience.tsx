@@ -68,7 +68,7 @@ export function AboutExperience() {
             <Play size={13} fill="currentColor" />
             <span>Watch film</span>
           </button>
-          <Link className="about-header-trip" href="/#trips">
+          <Link className="about-header-trip" href="/trips">
             Find your trip <ArrowUpRight size={15} />
           </Link>
         </div>
@@ -360,7 +360,7 @@ export function AboutExperience() {
               <em>somewhere new.</em>
             </h2>
             <div className="about-invitation-actions">
-              <Link className="button button-dark" href="/#trips">
+              <Link className="button button-dark" href="/trips">
                 Find Your Trip <ArrowUpRight size={17} />
               </Link>
               <a className="about-question" href="mailto:Info@travelnliv.com">
@@ -379,7 +379,7 @@ export function AboutExperience() {
       <footer className="about-footer wrap">
         <AboutWordmark footer />
         <nav aria-label="Footer navigation">
-          <Link href="/#trips">The trips</Link>
+          <Link href="/trips">The trips</Link>
           <Link href="/about" aria-current="page">Our story</Link>
           <Link href="/#questions">Your questions</Link>
           <a href="https://www.instagram.com/travelnlivcollective" target="_blank" rel="noreferrer">

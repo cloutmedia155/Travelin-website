@@ -3,6 +3,7 @@ import { ReticleScript } from "@/components/reticle-script";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://travelin-website.vercel.app"),
   title: "Travel & LIV Collective — Go somewhere new",
   description: "Personally hosted group trips with Olivia Owen. Thoughtfully planned days, 4–5-star stays, and people who are up for it.",
   icons: {
