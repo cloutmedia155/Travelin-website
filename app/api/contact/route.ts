@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ accepted: false, code: "validation_failed" }, { status: 400 });
   }
 
-  const headers: HeadersInit = { "Content-Type": "application/json" };
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (process.env.CONTACT_FORM_AUTH_TOKEN) {
     headers.Authorization = `Bearer ${process.env.CONTACT_FORM_AUTH_TOKEN}`;
   }
