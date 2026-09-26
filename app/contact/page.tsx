@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactExperience } from "@/components/support/contact-experience";
-import "../support.css";
+import "../support-shell.css";
+import "./contact.css";
 
 export const metadata: Metadata = {
   title: "Contact — Travel & LIV Collective",
