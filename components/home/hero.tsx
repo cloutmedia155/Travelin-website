@@ -35,7 +35,7 @@ export function Hero() {
             <span className="line-mask"><span className="action-line">and get everyone talking.</span></span>
           </h2>
           <div className="hero-action-cta">
-            <a className="button button-light" href="#trips">Find Your Trip <ArrowUpRight size={17} /></a>
+            <a className="button button-light" href="/trips">Find Your Trip <ArrowUpRight size={17} /></a>
             <p className="hero-action-note">4–5-star stays <span>·</span> Payment plans on most trips</p>
           </div>
         </div>
